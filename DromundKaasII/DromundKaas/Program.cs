@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DromundKaas
+namespace DromundKaasII
 {
 #if WINDOWS || LINUX
     /// <summary>

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
-namespace DromundKaas
+namespace DromundKaasII
 {
     /// <summary>
     /// This is the main type for your game.
@@ -11,6 +13,9 @@ namespace DromundKaas
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        // Use this to map types to textures.
+        Dictionary<Type, Texture2D> TypeTextures;
 
         public Game1()
         {
@@ -30,6 +35,7 @@ namespace DromundKaas
 
             base.Initialize();
         }
+
 
         Texture2D mytex;
 

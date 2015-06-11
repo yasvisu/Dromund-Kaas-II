@@ -25,3 +25,30 @@ C:\dromund2\DromundKaasII\DromundKaas\obj\x86\Debug\DromundKaas.exe
 C:\dromund2\DromundKaasII\DromundKaas\obj\x86\Debug\DromundKaas.pdb
 C:\dromund2\DromundKaasII\DromundKaas\bin\Windows\Debug\Content\Fadeout.xnb
 C:\dromund2\DromundKaasII\DromundKaas\bin\Windows\Debug\Content\Splash\dksplash.xnb
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\Content\Fadeout.xnb
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\Content\Splash\dksplash.xnb
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\DromundKaas.exe
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\DromundKaas.pdb
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\obj\x86\Debug\DromundKaas.csprojResolveAssemblyReference.cache
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\obj\x86\Debug\DromundKaas.exe
+C:\Users\Nicks\Google Диск\Study\OOP\Team\Dromund-Kaas-II\DromundKaasII\DromundKaas\obj\x86\Debug\DromundKaas.pdb

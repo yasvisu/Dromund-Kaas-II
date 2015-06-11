@@ -4,7 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/dromund2/DromundKaasII/DromundKaas/Content/Fadeout.png</File>
-    <File>C:/dromund2/DromundKaasII/DromundKaas/Content/Splash/dksplash.png</File>
+    <File>C:/Users/Nicks/Google Диск/Study/OOP/Team/Dromund-Kaas-II/DromundKaasII/DromundKaas/Content/Fadeout.png</File>
+    <File>C:/Users/Nicks/Google Диск/Study/OOP/Team/Dromund-Kaas-II/DromundKaasII/DromundKaas/Content/Splash/dksplash.png</File>
   </SourceFiles>
 </SourceFileCollection>

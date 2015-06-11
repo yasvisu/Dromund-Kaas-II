@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Nicks/Google Диск/Study/OOP/Team/Dromund-Kaas-II/DromundKaasII/DromundKaas/Content/Splash/dksplash.png</SourceFile>
-  <SourceTime>2015-06-11T14:18:41.1480692+03:00</SourceTime>
-  <DestFile>C:/Users/Nicks/Google Диск/Study/OOP/Team/Dromund-Kaas-II/DromundKaasII/DromundKaas/Content/bin/Windows/Splash/dksplash.xnb</DestFile>
-  <DestTime>2015-06-11T14:24:03.8978681+03:00</DestTime>
+  <SourceFile>D:/Dromund-Kaas-II/DromundKaasII/DromundKaas/Content/Splash/dksplash.png</SourceFile>
+  <SourceTime>2015-06-11T15:37:27.8889865+03:00</SourceTime>
+  <DestFile>D:/Dromund-Kaas-II/DromundKaasII/DromundKaas/Content/bin/Windows/Splash/dksplash.xnb</DestFile>
+  <DestTime>2015-06-11T15:40:53.5256961+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T20:14:44+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

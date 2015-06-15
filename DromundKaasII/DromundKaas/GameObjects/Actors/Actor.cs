@@ -13,7 +13,7 @@ namespace DromundKaasII.GameObjects.Actors
     {
         public Vector2 MapPosition { get; set; }
 
-        public int Health { get; set; }
+        public Statblock Stats { get; set; }
 
         public Dictionary<StatusEffects, TimeSpan> StatusEffects { get; set; }
 
@@ -36,6 +36,11 @@ namespace DromundKaasII.GameObjects.Actors
             {
                 this.StatusEffects.Remove(GarbageCan.Pop());
             }
+        }
+
+        public double DistanceTo(Actor other)
+        {
+            return Math.Sqrt((other.MapPosition.X - this.MapPosition.X) * (other.MapPosition.X - this.MapPosition.X) + (other.MapPosition.Y - this.MapPosition.Y) * (other.MapPosition.Y - this.MapPosition.Y));
         }
     }
 }

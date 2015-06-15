@@ -14,10 +14,8 @@ namespace DromundKaasII.Engine
 {
     public class Engine : IEngine
     {
-
-        
-        private uint cycleCounter;
-        private TimeSpan elapsedTime;
+        protected uint cycleCounter;
+        protected TimeSpan elapsedTime;
 
         public Engine()
         {
@@ -28,8 +26,6 @@ namespace DromundKaasII.Engine
         }
 
         public GameState GameState { get; set; }
-
-
 
         public bool IsRunning { get; set; }
 
@@ -61,16 +57,6 @@ namespace DromundKaasII.Engine
             {
                 a.RemoveExpiredStatusEffects();
                 a.Act(this.GameState);
-                if (a.Health <= 0)
-                {
-                    GarbageCan.Push(a);
-                }
-            }
-            while (GarbageCan.Count > 0)
-            {
-                var frag = GarbageCan.Pop();
-                this.GameState.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, frag));
-                this.GameState.Actors.Remove(frag);
             }
         }
     }

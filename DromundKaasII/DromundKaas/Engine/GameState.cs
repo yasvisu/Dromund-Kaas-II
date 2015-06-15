@@ -12,7 +12,7 @@ namespace DromundKaasII.Engine
 {
     public class GameState
     {
-        Queue<ActorStateEvent> transpiredEvents;
+        protected Queue<ActorStateEvent> transpiredEvents;
 
         public GameState(int X, int Y)
         {

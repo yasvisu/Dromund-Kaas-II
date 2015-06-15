@@ -66,6 +66,7 @@
     <Compile Include="GameObjects\Enums\StatusEffects.cs" />
     <Compile Include="GameObjects\Enums\TileDrawOptions.cs" />
     <Compile Include="GameObjects\Skills\Skill.cs" />
+    <Compile Include="GameObjects\Actors\Statblock.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />

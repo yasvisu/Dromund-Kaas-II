@@ -62,6 +62,7 @@
     <Compile Include="GameObjects\ActorStateEvent.cs" />
     <Compile Include="GameObjects\Enums\GameDifficulty.cs" />
     <Compile Include="GameObjects\Enums\GameSpeed.cs" />
+    <Compile Include="GameObjects\Enums\StatusEffects.cs" />
     <Compile Include="GameObjects\Enums\TileDrawOptions.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
     <Compile Include="Interfaces\IActor.cs" />
@@ -84,7 +85,11 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Engine\AI\Pathfinding\" />
+    <Folder Include="Engine\AI\Targetting\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="GameObjects\Actors\Debris\" />
+    <Folder Include="GameObjects\Actors\NPCs\" />
     <Folder Include="GameObjects\Actors\Players\" />
     <Folder Include="Graphics\" />
   </ItemGroup>

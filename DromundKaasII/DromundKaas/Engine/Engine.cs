@@ -15,7 +15,7 @@ namespace DromundKaasII.Engine
     {
 
         ConcurrentQueue<ActorStateEvent> transpiredEvents;
-        private int cycleCounter;
+        private uint cycleCounter;
         private TimeSpan elapsedTime;
 
         public Engine()
@@ -36,7 +36,7 @@ namespace DromundKaasII.Engine
 
         public bool IsRunning { get; set; }
 
-        public int CycleCounter
+        public uint CycleCounter
         {
             get
             {

@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DromundKaasII.Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DromundKaasII
 {
@@ -13,12 +15,13 @@ namespace DromundKaasII
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Engine.Engine engine;
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
 
         public Game1()
         {
+            this.engine = new Engine.Engine();
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
@@ -71,6 +74,7 @@ namespace DromundKaasII
                 Exit();
 
             // TODO: Add your update logic here
+            engine.Step(gameTime);
 
             base.Update(gameTime);
         }
@@ -81,9 +85,10 @@ namespace DromundKaasII
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Blue);
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            //engine.someflag = !engine.someflag;
             spriteBatch.Draw(mytex, new Vector2(0, 0));
             spriteBatch.End();
             base.Draw(gameTime);

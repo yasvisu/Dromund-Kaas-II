@@ -11,7 +11,5 @@ namespace DromundKaasII.Interfaces
     {
         GameState GameState { get; }
         IEnumerable<ActorStateEvent> TranspiredEvents { get; }
-        void Step();
-
     }
 }

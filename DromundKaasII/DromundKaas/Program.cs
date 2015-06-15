@@ -1,4 +1,6 @@
 ﻿using System;
+using DromundKaasII.Engine;
+using System.Threading.Tasks;
 
 namespace DromundKaasII
 {
@@ -15,7 +17,9 @@ namespace DromundKaasII
         static void Main()
         {
             using (var game = new Game1())
+            {
                 game.Run();
+            }
         }
     }
 #endif

@@ -9,7 +9,6 @@ namespace DromundKaasII.GameObjects.Actors
     {
         public int Health { get; set; }
         public int Mana { get; set; }
-
         public int Focus { get; set; }
 
         public float Strength { get; set; }

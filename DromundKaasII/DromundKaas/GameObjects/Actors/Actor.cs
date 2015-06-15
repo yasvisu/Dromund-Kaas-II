@@ -11,6 +11,11 @@ namespace DromundKaasII.GameObjects.Actors
 {
     public abstract class Actor : IActor
     {
+        protected readonly int baseHealth;
+        protected readonly int baseMana;
+        protected readonly int baseFocus;
+
+
         public Vector2 MapPosition { get; set; }
 
         public Statblock Stats { get; set; }

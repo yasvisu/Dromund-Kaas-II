@@ -5,19 +5,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DromundKaasII.GameObjects.Enums;
+using DromundKaasII.Engine;
 
 namespace DromundKaasII.GameObjects.Actors
 {
     public abstract class Actor : IActor
     {
+        public Vector2 MapPosition { get; set; }
 
         public int Health { get; set; }
 
-        public Dictionary<StatusEffects, TimeSpan> StatusEffects;
+        public Dictionary<StatusEffects, TimeSpan> StatusEffects { get; set; }
 
-        public virtual void Act()
+        public virtual void Act(GameState G)
         {
             throw new NotImplementedException("Not implemented.");
+        }
+
+        public virtual void RemoveExpiredStatusEffects()
+        {
+            Stack<StatusEffects> GarbageCan = new Stack<StatusEffects>();
+            foreach (var kvp in this.StatusEffects)
+            {
+                if (kvp.Value.TotalMilliseconds <= 0)
+                {
+                    GarbageCan.Push(kvp.Key);
+                }
+            }
+            while (GarbageCan.Count > 0)
+            {
+                this.StatusEffects.Remove(GarbageCan.Pop());
+            }
         }
     }
 }

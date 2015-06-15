@@ -9,7 +9,13 @@ namespace DromundKaasII.GameObjects
 {
     public class ActorStateEvent
     {
-        public ActorEvents EventType;
-        public Actor Actor;
+        public ActorStateEvent(ActorEvents EventType, Actor Actor)
+        {
+            this.EventType = EventType;
+            this.Actor = Actor;
+        }
+
+        public ActorEvents EventType { get; set; }
+        public Actor Actor { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace DromundKaasII.GameObjects.Actors
         public int Mana { get; set; }
         public int Focus { get; set; }
 
-        public float Strength { get; set; }
+        public float Strength { get; set; } // 10 = default
         public float Constitution { get; set; }
         public float Intelligence { get; set; }
         public float Dexterity { get; set; }

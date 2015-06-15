@@ -58,6 +58,7 @@
     <Compile Include="Engine\GameState.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\Actors\Actor.cs" />
+    <Compile Include="GameObjects\Actors\Players\Primal.cs" />
     <Compile Include="GameObjects\Enums\ActorEvents.cs" />
     <Compile Include="GameObjects\ActorStateEvent.cs" />
     <Compile Include="GameObjects\Enums\GameDifficulty.cs" />
@@ -91,7 +92,6 @@
     <Folder Include="Exceptions\" />
     <Folder Include="GameObjects\Actors\Debris\" />
     <Folder Include="GameObjects\Actors\NPCs\" />
-    <Folder Include="GameObjects\Actors\Players\" />
     <Folder Include="Graphics\" />
   </ItemGroup>
   <ItemGroup>

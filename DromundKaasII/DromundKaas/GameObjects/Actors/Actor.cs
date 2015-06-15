@@ -15,6 +15,20 @@ namespace DromundKaasII.GameObjects.Actors
         protected readonly int baseMana;
         protected readonly int baseFocus;
 
+        protected Actor(int baseHealth, int baseMana, int baseFocus)
+        {
+            this.BaseHealth = baseHealth;
+            this.BaseMana = baseMana;
+            this.BaseFocus = baseFocus;
+
+        }
+
+        private int BaseHealth { get; set; }
+
+        private int BaseMana { get; set; }
+
+        private int BaseFocus { get; set; }
+
 
         public Vector2 MapPosition { get; set; }
 

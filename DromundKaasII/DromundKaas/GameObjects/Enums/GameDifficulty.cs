@@ -5,12 +5,24 @@ using System.Text;
 
 namespace DromundKaasII.GameObjects.Enums
 {
+    /// <summary>
+    /// Game Difficulty options.
+    /// </summary>
     public enum GameDifficulty
     {
-        // Multipliers
-
+        /// <summary>
+        /// Easy game difficulty.
+        /// </summary>
         Easy,
+
+        /// <summary>
+        /// Medium game difficulty.
+        /// </summary>
         Medium,
+
+        /// <summary>
+        /// Hard game difficulty.
+        /// </summary>
         Hard
     }
 }

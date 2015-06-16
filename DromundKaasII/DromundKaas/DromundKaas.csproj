@@ -68,6 +68,9 @@
     <Compile Include="GameObjects\Skills\Skill.cs" />
     <Compile Include="GameObjects\Actors\Statblock.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
+    <Compile Include="Graphics\GameScreen.cs" />
+    <Compile Include="Graphics\ScreenManager.cs" />
+    <Compile Include="Graphics\SplashScreen.cs" />
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IPathable.cs" />
@@ -82,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Graphics\SplshScreen\image1.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +97,6 @@
     <Folder Include="Exceptions\" />
     <Folder Include="GameObjects\Actors\Debris\" />
     <Folder Include="GameObjects\Actors\NPCs\" />
-    <Folder Include="Graphics\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

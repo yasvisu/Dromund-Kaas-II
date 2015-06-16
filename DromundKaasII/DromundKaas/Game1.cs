@@ -88,9 +88,8 @@ namespace DromundKaasII
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Blue);
-            spriteBatch.Begin();
+
             ScreenManager.Instance.Draw(spriteBatch);
-            spriteBatch.End();
             spriteBatch.Begin();
             //engine.someflag = !engine.someflag;
             spriteBatch.Draw(mytex, new Vector2(0, 0));

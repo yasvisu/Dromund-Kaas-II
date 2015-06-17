@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.GameObjects.Actors.Players.Tier1
 {
-    class Apprentice : Player
+    class Apprentice : Tier1
     {
         public Apprentice(Vector2 MapPosition)
             : base(MapPosition)
@@ -15,10 +15,9 @@ namespace DromundKaasII.GameObjects.Actors.Players.Tier1
         }
 
         public Apprentice(Primal candidate)
-            : base(candidate.MapPosition)
+            : base(candidate)
         {
-            this.Score = candidate.Score;
-            this.Stats = candidate.Stats;
+
         }
     }
 }

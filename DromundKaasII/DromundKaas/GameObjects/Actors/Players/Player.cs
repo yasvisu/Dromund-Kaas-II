@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.GameObjects.Actors.Players
 {
-    class Player : Actor, IPlayer
+    public abstract class Player : Actor, IPlayer
     {
         public Player(Vector2 MapPosition)
             : base(MapPosition)

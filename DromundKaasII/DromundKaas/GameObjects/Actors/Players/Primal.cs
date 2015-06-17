@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.GameObjects.Actors.Players
 {
-    class Primal : Player
+    public class Primal : Player
     {
 
         public Primal(Vector2 MapPosition)

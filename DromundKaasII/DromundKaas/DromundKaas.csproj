@@ -58,7 +58,12 @@
     <Compile Include="Engine\GameState.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\Actors\Actor.cs" />
+    <Compile Include="GameObjects\Actors\Players\Player.cs" />
     <Compile Include="GameObjects\Actors\Players\Primal.cs" />
+    <Compile Include="GameObjects\Actors\Players\Tier1\Apprentice.cs" />
+    <Compile Include="GameObjects\Actors\Players\Tier1\Builder.cs" />
+    <Compile Include="GameObjects\Actors\Players\Tier1\Fighter.cs" />
+    <Compile Include="GameObjects\Actors\Players\Tier1\Tier1.cs" />
     <Compile Include="GameObjects\Enums\ActorEvents.cs" />
     <Compile Include="GameObjects\ActorStateEvent.cs" />
     <Compile Include="GameObjects\Enums\GameDifficulty.cs" />
@@ -74,6 +79,7 @@
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IPathable.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,6 +103,7 @@
     <Folder Include="Exceptions\" />
     <Folder Include="GameObjects\Actors\Debris\" />
     <Folder Include="GameObjects\Actors\NPCs\" />
+    <Folder Include="GameObjects\Professions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

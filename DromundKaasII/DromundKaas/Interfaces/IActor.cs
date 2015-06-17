@@ -10,6 +10,5 @@ namespace DromundKaasII.Interfaces
     public interface IActor
     {
         Vector2 MapPosition { get; set; }
-
     }
 }

@@ -14,15 +14,15 @@ namespace DromundKaasII.GameObjects.Actors.Players
         {
             this.Stats = new Statblock()
             {
-                Strength        = 8,
-                Dexterity       = 8,
-                Constitution    = 8,
-                Intelligence    = 8,
+                Strength = 8,
+                Dexterity = 8,
+                Constitution = 8,
+                Intelligence = 8,
 
-                Wisdom          = 8,
-                Charisma        = 8,
-                Psychic         = 8,
-            }
+                Wisdom = 8,
+                Charisma = 8,
+                Psychic = 8,
+            };
         }
 
 

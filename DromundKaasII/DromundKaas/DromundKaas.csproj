@@ -72,6 +72,7 @@
     <Compile Include="GameObjects\Enums\TileDrawOptions.cs" />
     <Compile Include="GameObjects\Skills\Skill.cs" />
     <Compile Include="GameObjects\Actors\Statblock.cs" />
+    <Compile Include="GameObjects\Skills\SkillManager.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Graphics\ScreenManager.cs" />
@@ -104,6 +105,7 @@
     <Folder Include="GameObjects\Actors\Debris\" />
     <Folder Include="GameObjects\Actors\NPCs\" />
     <Folder Include="GameObjects\Professions\" />
+    <Folder Include="Tools\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

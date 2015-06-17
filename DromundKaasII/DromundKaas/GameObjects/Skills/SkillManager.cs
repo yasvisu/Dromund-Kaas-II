@@ -18,6 +18,7 @@ namespace DromundKaasII.GameObjects.Skills
         void LoadSkills()
         {
             // Load all skills here
+            // ...
         }
     }
 }

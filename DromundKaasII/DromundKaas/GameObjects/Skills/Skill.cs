@@ -16,6 +16,7 @@ namespace DromundKaasII.GameObjects.Skills
         Vector2 mapTarget;
         Actor actorTarget;
 
-
+        // add appropriate constructors and properties for the fields
+        // ...
     }
 }

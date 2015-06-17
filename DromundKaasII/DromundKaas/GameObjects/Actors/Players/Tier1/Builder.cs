@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DromundKaasII.GameObjects.Actors.Players.Tier1
 {
-    class Builder : Actor
+    class Builder : Player
     {
     }
 }

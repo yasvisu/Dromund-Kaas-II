@@ -8,8 +8,9 @@ namespace DromundKaasII.GameObjects.Actors.Players
 {
     class Primal : Player
     {
-     
-        public Primal(Vector2 MapPosition):base(MapPosition)
+
+        public Primal(Vector2 MapPosition)
+            : base(MapPosition)
         {
             this.Stats = new Statblock();
         }

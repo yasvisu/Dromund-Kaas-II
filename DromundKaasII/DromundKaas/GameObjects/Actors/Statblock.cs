@@ -14,8 +14,31 @@ namespace DromundKaasII.GameObjects.Actors
 
         // Experience
         public int Experience { get; set; }
+        public byte Level { get; set; }
 
         // Primary stats
+        public int MaxHealth
+        {
+            get
+            {
+                return (int)(this.Constitution * 10 + Level * 10);
+            }
+        }
+        public int MaxMana
+        {
+            get
+            {
+                return (int)(this.Intelligence * 10 + Level * 10);
+            }
+        }
+        public int MaxFocus
+        {
+            get
+            {
+                return (int)(this.Dexterity * 10 + Level * 10);
+            }
+        }
+
         public float Strength { get; set; }
         public float Dexterity { get; set; }
         public float Constitution { get; set; }

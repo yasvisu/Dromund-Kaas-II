@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.GameObjects.Actors.Players
 {
@@ -13,7 +14,7 @@ namespace DromundKaasII.GameObjects.Actors.Players
         
         public Primal(Vector2 MapPosition, int baseHealth, int baseMana, int baseFocus):base(MapPosition)
         {
-            
+            this.Stats = new Statblock();
         }
 
 

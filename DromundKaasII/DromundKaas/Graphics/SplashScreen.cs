@@ -17,7 +17,7 @@ namespace DromundKaasII
         public override void LoadContent()
         {
             base.LoadContent();
-            path = "SplshScreen/image1.png";
+            path = "Splash/image1.png";
             image = content.Load<Texture2D>(path);
         }
 

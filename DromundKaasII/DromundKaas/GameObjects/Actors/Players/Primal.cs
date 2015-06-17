@@ -11,7 +11,7 @@ namespace DromundKaasII.GameObjects.Actors.Players
         private const int BaseMana = 100;
         private const int BaseFocus = 100;
         
-        public Primal(int baseHealth, int baseMana, int baseFocus) : base(baseHealth, baseMana, baseFocus)
+        public Primal(Vector2 MapPosition, int baseHealth, int baseMana, int baseFocus):base(MapPosition)
         {
             
         }

@@ -11,24 +11,16 @@ namespace DromundKaasII.GameObjects.Actors
 {
     public abstract class Actor : IActor
     {
-        protected readonly int baseHealth;
-        protected readonly int baseMana;
-        protected readonly int baseFocus;
-
-        protected Actor(int baseHealth, int baseMana, int baseFocus)
+        protected Actor(Vector2 MapPosition)
         {
-            this.BaseHealth = baseHealth;
-            this.BaseMana = baseMana;
-            this.BaseFocus = baseFocus;
-
+            this.MapPosition = MapPosition;
         }
 
-        private int BaseHealth { get; set; }
-
-        private int BaseMana { get; set; }
-
-        private int BaseFocus { get; set; }
-
+        protected Actor(Vector2 MapPosition, Statblock Stats)
+            : this(MapPosition)
+        {
+            this.Stats = Stats;
+        }
 
         public Vector2 MapPosition { get; set; }
 

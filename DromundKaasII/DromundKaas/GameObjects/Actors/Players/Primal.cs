@@ -12,7 +12,17 @@ namespace DromundKaasII.GameObjects.Actors.Players
         public Primal(Vector2 MapPosition)
             : base(MapPosition)
         {
-            this.Stats = new Statblock();
+            this.Stats = new Statblock()
+            {
+                Strength        = 8,
+                Dexterity       = 8,
+                Constitution    = 8,
+                Intelligence    = 8,
+
+                Wisdom          = 8,
+                Charisma        = 8,
+                Psychic         = 8,
+            }
         }
 
 

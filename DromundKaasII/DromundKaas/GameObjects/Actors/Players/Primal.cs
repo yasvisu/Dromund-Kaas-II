@@ -9,7 +9,7 @@ namespace DromundKaasII.GameObjects.Actors.Players
     class Primal : Actor
     {
      
-        public Primal(Vector2 MapPosition, int baseHealth, int baseMana, int baseFocus):base(MapPosition)
+        public Primal(Vector2 MapPosition):base(MapPosition)
         {
             this.Stats = new Statblock();
         }

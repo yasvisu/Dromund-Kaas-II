@@ -18,6 +18,7 @@ namespace DromundKaasII.GameObjects.Actors.Players
         public int Score
         {
             get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
         }
     }
 }

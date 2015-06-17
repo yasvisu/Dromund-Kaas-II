@@ -13,5 +13,12 @@ namespace DromundKaasII.GameObjects.Actors.Players.Tier1
         {
 
         }
+
+        public Fighter(Primal candidate)
+            : base(candidate.MapPosition)
+        {
+            this.Score = candidate.Score;
+            this.Stats = candidate.Stats;
+        }
     }
 }

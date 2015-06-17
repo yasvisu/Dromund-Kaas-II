@@ -17,7 +17,9 @@ namespace DromundKaasII.GameObjects.Actors.Players.Tier1
         public Fighter(Primal candidate)
             : base(candidate)
         {
-
+            candidate.Stats.Strength += 2;
+            candidate.Stats.Constitution += 2;
+            candidate.Stats.Charisma += 1;
         }
     }
 }

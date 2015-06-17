@@ -17,7 +17,9 @@ namespace DromundKaasII.GameObjects.Actors.Players.Tier1
         public Builder(Primal candidate)
             : base(candidate)
         {
-
+            candidate.Stats.Dexterity += 1;
+            candidate.Stats.Constitution += 2;
+            candidate.Stats.Wisdom += 2;
         }
     }
 }

@@ -83,5 +83,19 @@ namespace DromundKaasII.GameObjects.Actors
         public float Charisma { get; set; }
         public float Psychic { get; set; }
 
+        public Statblock operator +(Statblock s)
+        {
+            return new Statblock()
+            {
+                Strength = this.Strength + s.Strength,
+                Dexterity = this.Dexterity + s.Dexterity,
+                Constitution = this.Constitution + s.Constitution,
+                Intelligence = this.Intelligence + s.Intelligence,
+
+                Wisdom = this.Wisdom + s.Wisdom,
+                Charisma = this.Charisma + s.Charisma,
+                Psychic = this.Psychic + s.Psychic,
+            };
+        }
     }
 }

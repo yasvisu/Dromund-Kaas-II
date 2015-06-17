@@ -17,7 +17,9 @@ namespace DromundKaasII.GameObjects.Actors.Players.Tier1
         public Apprentice(Primal candidate)
             : base(candidate)
         {
-
+            candidate.Stats.Dexterity += 1;
+            candidate.Stats.Intelligence += 2;
+            candidate.Stats.Psychic += 2;
         }
     }
 }

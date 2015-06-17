@@ -7,10 +7,44 @@ namespace DromundKaasII.GameObjects.Actors
 {
     public class Statblock
     {
+        int health;
+        int mana;
+        int focus;
+
         // Combat
-        public int Health { get; set; }
-        public int Mana { get; set; }
-        public int Focus { get; set; }
+        public int Health
+        {
+            get
+            {
+                return this.health;
+            }
+            set
+            {
+                this.health = Math.Min(this.MaxHealth, value);
+            }
+        }
+        public int Mana
+        {
+            get
+            {
+                return this.mana;
+            }
+            set
+            {
+                this.mana = Math.Min(this.MaxMana, value);
+            }
+        }
+        public int Focus
+        {
+            get
+            {
+                return this.focus;
+            }
+            set
+            {
+                this.focus = Math.Min(this.MaxFocus, value);
+            }
+        }
 
         // Experience
         public int Experience { get; set; }

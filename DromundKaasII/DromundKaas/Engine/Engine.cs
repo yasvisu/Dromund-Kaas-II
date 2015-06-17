@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.GameObjects.Actors;
 using DromundKaasII.GameObjects.Enums;
+using DromundKaasII.GameObjects.Skills;
 namespace DromundKaasII.Engine
 {
     public class Engine : IEngine
@@ -21,8 +22,9 @@ namespace DromundKaasII.Engine
         {
             this.GameState = new GameState(10, 10);
             this.IsRunning = true;
-            cycleCounter = 0;
-            elapsedTime = new TimeSpan();
+            this.cycleCounter = 0;
+            this.elapsedTime = new TimeSpan();
+            this.SkillManager = new SkillManager();
         }
 
         public GameState GameState { get; set; }
@@ -36,6 +38,8 @@ namespace DromundKaasII.Engine
                 return this.cycleCounter;
             }
         }
+
+        public SkillManager SkillManager { get; private set; }
 
         public void Step(GameTime gameTime)
         {

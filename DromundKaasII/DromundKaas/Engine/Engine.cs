@@ -65,7 +65,23 @@ namespace DromundKaasII.Engine
             }
 
             // Move / act all actors based on their desired move
-            // ...
+            foreach(Actor a in this.GameState.Actors)
+            {
+                switch(a.DesiredAction)
+                {
+                    case ActionTypeOptions.Move:
+                        MoveActor(a.GroundTarget);
+                        break;
+                    case ActionTypeOptions.SkillActor:
+                        EnactSkill(a.Target);
+                        break;
+                    case ActionTypeOptions.SkillGround:
+                        EnactSkill(a.GroundTarget);
+                        break;
+                    default:
+                        break;
+                }
+            }
 
 
             // Prune dead actors
@@ -83,6 +99,24 @@ namespace DromundKaasII.Engine
                 GameState.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, temp));
                 this.GameState.Actors.Remove(temp);
             }
+        }
+
+        private void EnactSkill(Vector2 vector2)
+        {
+            // Check whether Skill can target ground, then enact Skill.
+            throw new NotImplementedException();
+        }
+
+        private void EnactSkill(Actor actor)
+        {
+            // Check whether Actor is within range of other Actor (by Skill), then enact skill.
+            throw new NotImplementedException();
+        }
+
+        private void MoveActor(Vector2 vector2)
+        {
+            // Check whether Actor can move on tile, then move Actor.
+            throw new NotImplementedException();
         }
     }
 }

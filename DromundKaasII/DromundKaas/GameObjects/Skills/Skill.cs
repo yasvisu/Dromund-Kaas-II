@@ -12,6 +12,7 @@ namespace DromundKaasII.GameObjects.Skills
         string name;
         int manaCost;
         int focusCost;
+        int range;
 
         // add appropriate constructors and properties for the fields
         // ...

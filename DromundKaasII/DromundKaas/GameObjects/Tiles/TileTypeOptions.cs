@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DromundKaasII.GameObjects.Enums
+namespace DromundKaasII.GameObjects.Tiles
 {
     /// <summary>
     /// Options for tile type.

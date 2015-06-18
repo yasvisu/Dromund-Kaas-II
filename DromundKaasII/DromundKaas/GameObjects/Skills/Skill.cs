@@ -9,12 +9,14 @@ namespace DromundKaasII.GameObjects.Skills
 {
     public class Skill
     {
-        string name;
-        int manaCost;
-        int focusCost;
-        int range;
-
         // add appropriate constructors and properties for the fields
         // ...
+
+        public string Name { get; set; }
+        public int ManaCost { get; set; }
+        public int FocusCost { get; set; }
+        public int Range { get; set; }
+
+
     }
 }

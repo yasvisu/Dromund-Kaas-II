@@ -65,18 +65,18 @@ namespace DromundKaasII.Engine
             }
 
             // Move / act all actors based on their desired move
-            foreach(Actor a in this.GameState.Actors)
+            foreach (Actor a in this.GameState.Actors)
             {
-                switch(a.DesiredAction)
+                switch (a.DesiredAction)
                 {
                     case ActionTypeOptions.Move:
-                        MoveActor(a.GroundTarget);
+                        MoveActor(a, a.GroundTarget);
                         break;
                     case ActionTypeOptions.SkillActor:
-                        EnactSkill(a.Target);
+                        EnactSkill(a, a.Target);
                         break;
                     case ActionTypeOptions.SkillGround:
-                        EnactSkill(a.GroundTarget);
+                        EnactSkill(a, a.GroundTarget);
                         break;
                     default:
                         break;
@@ -101,22 +101,27 @@ namespace DromundKaasII.Engine
             }
         }
 
-        private void EnactSkill(Vector2 vector2)
+        private void EnactSkill(Actor parent, Vector2 target)
         {
             // Check whether Skill can target ground, then enact Skill.
             throw new NotImplementedException();
         }
 
-        private void EnactSkill(Actor actor)
+        private void EnactSkill(Actor parent, Actor target)
         {
             // Check whether Actor is within range of other Actor (by Skill), then enact skill.
             throw new NotImplementedException();
         }
 
-        private void MoveActor(Vector2 vector2)
+        private void MoveActor(Actor parent, Vector2 target)
         {
             // Check whether Actor can move on tile, then move Actor.
-            throw new NotImplementedException();
+            if (parent.Stats.TraversalPower >= GameState.Map[(int)target.Y, (int)target.X].TraversalCost && GameState.Map[(int)target.Y, (int)target.X] != null)
+            {
+                GameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X] = null;
+                parent.MapPosition = target;
+                GameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
+            }
         }
     }
 }

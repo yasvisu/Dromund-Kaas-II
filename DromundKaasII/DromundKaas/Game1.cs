@@ -46,6 +46,7 @@ namespace DromundKaasII
 
 
         Texture2D mytex;
+        Texture2D mychar;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -56,7 +57,7 @@ namespace DromundKaasII
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             mytex = this.Content.Load<Texture2D>("Splash/dksplash");
-
+            mychar = this.Content.Load<Texture2D>("Actors/placeholderChar");
             //ScreenManager.Instance.LoadContent(Content);
         }
 
@@ -97,7 +98,12 @@ namespace DromundKaasII
             //ScreenManager.Instance.Draw(spriteBatch);
             //spriteBatch.End();
             //spriteBatch.Begin();
-            spriteBatch.Draw(mytex, new Vector2(0, 0));
+            //spriteBatch.Draw(mytex, new Vector2(0, 0));
+
+            foreach(var a in engine.GameState.Actors)
+            {
+                spriteBatch.Draw(mychar, new Vector2(a.MapPosition.X * 64, a.MapPosition.Y * 64));
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }

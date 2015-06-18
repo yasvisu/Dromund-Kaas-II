@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.GameObjects.Actors.Players
 {
+    using DromundKaasII.GameObjects.Skills;
+
     public abstract class Player : Actor, IPlayer
     {
         protected GameInputs playerInputOptions;
@@ -23,6 +25,8 @@ namespace DromundKaasII.GameObjects.Actors.Players
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
         }
+
+        public Skill[] PlayerSkills { get; protected set; }
 
         public GameInputs PlayerInputOptions
         {

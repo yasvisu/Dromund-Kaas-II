@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using DromundKaasII.GameObjects.Actors;
 using DromundKaasII.GameObjects.Enums;
 using DromundKaasII.GameObjects.Skills;
+using DromundKaasII.Input;
 namespace DromundKaasII.Engine
 {
     public class Engine : IEngine
@@ -56,6 +57,7 @@ namespace DromundKaasII.Engine
 
         public void UpdateGameState()
         {
+            this.GameState.PlayerInputOptions = GameInputs.None;
             Stack<Actor> GarbageCan = new Stack<Actor>();
             foreach (Actor a in this.GameState.Actors)
             {

@@ -8,6 +8,9 @@ namespace DromundKaasII.Input
     [Flags]
     public enum GameInputs
     {
+
+        None = 0x0,
+
         // Movement
 
         Up = 0x1,

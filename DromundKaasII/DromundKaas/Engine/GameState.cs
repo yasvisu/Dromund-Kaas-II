@@ -13,6 +13,8 @@ namespace DromundKaasII.Engine
 {
     public class GameState
     {
+        protected GameInputs playerInputOptions;
+
         public GameState(int X, int Y)
         {
             this.GameSpeed = GameSpeedOptions.Fast;
@@ -28,6 +30,19 @@ namespace DromundKaasII.Engine
         public List<Actor> Actors { get; set; }
         public Tile[,] Map { get; set; }
 
-        public GameInputs PlayerInputOptions { get; set; }
+        public GameInputs PlayerInputOptions
+        {
+            get
+            {
+                return this.playerInputOptions;
+            }
+            set
+            {
+                if (value != GameInputs.None)
+                {
+                    this.playerInputOptions |= value;
+                }
+            }
+        }
     }
 }

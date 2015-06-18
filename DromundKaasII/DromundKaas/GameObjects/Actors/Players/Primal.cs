@@ -22,6 +22,8 @@ namespace DromundKaasII.GameObjects.Actors.Players
                 Wisdom = 8,
                 Charisma = 8,
                 Psychic = 8,
+                
+                TraversalPower = 100,
             };
         }
 

@@ -57,11 +57,31 @@ namespace DromundKaasII.Engine
 
         public void UpdateGameState()
         {
-            Stack<Actor> GarbageCan = new Stack<Actor>();
+            // Tell all actors to think of a next move
             foreach (Actor a in this.GameState.Actors)
             {
                 a.RemoveExpiredStatusEffects();
                 a.Act(this.GameState);
+            }
+
+            // Move / act all actors based on their desired move
+            // ...
+
+
+            // Prune dead actors
+            Stack<Actor> GarbageCan = new Stack<Actor>();
+            foreach (Actor a in this.GameState.Actors)
+            {
+                if (a.Stats.Health <= 0)
+                {
+                    GarbageCan.Push(a);
+                }
+            }
+            while (GarbageCan.Count > 0)
+            {
+                Actor temp = GarbageCan.Pop();
+                GameState.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, temp));
+                this.GameState.Actors.Remove(temp);
             }
         }
     }

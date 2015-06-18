@@ -12,6 +12,7 @@ using DromundKaasII.GameObjects.Actors;
 using DromundKaasII.GameObjects.Enums;
 using DromundKaasII.GameObjects.Skills;
 using DromundKaasII.Input;
+using DromundKaasII.GameObjects.Actors.Players;
 namespace DromundKaasII.Engine
 {
     public class Engine : IEngine
@@ -26,6 +27,7 @@ namespace DromundKaasII.Engine
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
+            this.GameState.Actors.Add(new Primal(new Vector2(3,3)));
         }
 
         public GameState GameState { get; set; }

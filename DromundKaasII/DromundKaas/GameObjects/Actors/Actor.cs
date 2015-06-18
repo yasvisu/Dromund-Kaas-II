@@ -14,6 +14,7 @@ namespace DromundKaasII.GameObjects.Actors
         protected Actor(Vector2 MapPosition)
         {
             this.MapPosition = MapPosition;
+            this.StatusEffects = new Dictionary<StatusEffects, TimeSpan>();
         }
 
         protected Actor(Vector2 MapPosition, Statblock Stats)
@@ -25,9 +26,9 @@ namespace DromundKaasII.GameObjects.Actors
 
         public Vector2 MapPosition { get; set; }
 
-        public Actor Target { get; private set; }
-        public Vector2 GroundTarget { get; private set; }
-        public ActionTypeOptions DesiredAction { get; private set; }
+        public Actor Target { get; protected set; }
+        public Vector2 GroundTarget { get; protected set; }
+        public ActionTypeOptions DesiredAction { get; protected set; }
 
         public Statblock Stats { get; set; }
 
@@ -41,6 +42,7 @@ namespace DromundKaasII.GameObjects.Actors
         public virtual void RemoveExpiredStatusEffects()
         {
             Stack<StatusEffects> GarbageCan = new Stack<StatusEffects>();
+
             foreach (var kvp in this.StatusEffects)
             {
                 if (kvp.Value.TotalMilliseconds <= 0)

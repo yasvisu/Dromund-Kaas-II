@@ -27,7 +27,7 @@ namespace DromundKaasII.Input
         // Menus
         public const Buttons default_Pause = Buttons.Back;
 
-        public const Buttons default_Quit = Buttons.BigButton;
+        public const Buttons default_Quit = Buttons.Back | Buttons.Start;
         #endregion
 
         public GamePadInputScheme()

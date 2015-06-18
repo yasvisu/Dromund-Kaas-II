@@ -54,6 +54,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\UnsupportedKeyException.cs" />
     <Compile Include="Input\GameInputs.cs" />
     <Compile Include="Input\GamePadInputScheme.cs" />
     <Compile Include="Input\InputManager.cs" />
@@ -106,7 +107,6 @@
   <ItemGroup>
     <Folder Include="Engine\AI\Pathfinding\" />
     <Folder Include="Engine\AI\Targetting\" />
-    <Folder Include="Exceptions\" />
     <Folder Include="GameObjects\Actors\Debris\" />
     <Folder Include="GameObjects\Actors\NPCs\" />
     <Folder Include="GameObjects\Professions\" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using DromundKaasII.Exceptions;
 
 namespace DromundKaasII.Input
 {
@@ -172,7 +173,8 @@ namespace DromundKaasII.Input
                         return CurrentGamePad.IsButtonDown(GamePadScheme.Quit);
                     }
                     break;
-                // throw exception if otherwise
+                default:
+                    throw new UnsupportedKeyException(string.Format("{0} key is not supported!", Input));
             }
             return false;
         }

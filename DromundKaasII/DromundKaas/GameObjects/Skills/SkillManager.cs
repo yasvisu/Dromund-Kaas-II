@@ -19,6 +19,13 @@ namespace DromundKaasII.GameObjects.Skills
         {
             // Load all skills here
             // ...
+            Skills["Fireball"] = new Skill()
+            {
+                Name="Fireball",
+                ManaCost=100,
+                FocusCost=0,
+                Range=5
+            };
         }
     }
 }

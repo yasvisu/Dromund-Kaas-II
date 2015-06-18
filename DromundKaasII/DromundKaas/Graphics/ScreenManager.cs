@@ -15,7 +15,10 @@ namespace DromundKaasII
         public Vector2 Dimensions { private set; get; }
         public ContentManager Content { private set; get; }
 
+
         GameScreen currentScreen;
+        public GraphicsDevice GraphicsDevice;
+        public SpriteBatch SpriteBatch;
 
         public static ScreenManager Instance
         {

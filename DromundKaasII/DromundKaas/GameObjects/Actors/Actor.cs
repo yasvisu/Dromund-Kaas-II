@@ -24,8 +24,9 @@ namespace DromundKaasII.GameObjects.Actors
 
         public Vector2 MapPosition { get; set; }
 
-        public Actor Target { get; set; }
-        public Vector2 GroundTarget { get; set; }
+        public Actor Target { get; private set; }
+        public Vector2 GroundTarget { get; private set; }
+        public ActionTypeOptions DesiredAction { get; private set; }
 
         public Statblock Stats { get; set; }
 

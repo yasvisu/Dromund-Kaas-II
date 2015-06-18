@@ -17,6 +17,6 @@ namespace DromundKaasII.GameObjects.Skills
         public int FocusCost { get; set; }
         public int Range { get; set; }
 
-
+        public SkillTargetPermissions TargetPermissions { get; set; }
     }
 }

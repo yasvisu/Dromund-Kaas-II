@@ -21,11 +21,16 @@ namespace DromundKaasII.GameObjects.Skills
             // ...
             Skills["Fireball"] = new Skill()
             {
-                Name="Fireball",
-                ManaCost=100,
-                FocusCost=0,
-                Range=5
+                Name = "Fireball",
+                ManaCost = 100,
+                FocusCost = 0,
+                Range = 5,
+
+                TargetPermissions = SkillTargetPermissions.All
             };
+
+            // Ice bolt...
+            // Electric shock...
         }
     }
 }

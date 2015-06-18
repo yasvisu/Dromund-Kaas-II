@@ -24,6 +24,9 @@ namespace DromundKaasII.GameObjects.Actors
 
         public Vector2 MapPosition { get; set; }
 
+        public Actor Target { get; set; }
+        public Vector2 GroundTarget { get; set; }
+
         public Statblock Stats { get; set; }
 
         public Dictionary<StatusEffects, TimeSpan> StatusEffects { get; set; }

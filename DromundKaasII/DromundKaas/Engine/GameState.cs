@@ -16,7 +16,7 @@ namespace DromundKaasII.Engine
 
         public GameState(int X, int Y)
         {
-            this.GameSpeed = GameSpeed.Fast;
+            this.GameSpeed = GameSpeedOptions.Fast;
             this.Actors = new List<Actor>();
             this.Map = new Tile[X, Y];
             this.transpiredEvents = new Queue<ActorStateEvent>();
@@ -27,7 +27,8 @@ namespace DromundKaasII.Engine
         {
             get { return this.transpiredEvents; }
         }
-        public GameSpeed GameSpeed { get; set; }
+        public GameSpeedOptions GameSpeed { get; set; }
+        public GameDifficultyOptions GameDifficulty { get; set; }
         public List<Actor> Actors { get; set; }
         public Tile[,] Map { get; set; }
     }

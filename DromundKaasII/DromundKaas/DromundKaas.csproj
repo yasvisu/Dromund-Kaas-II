@@ -70,10 +70,10 @@
     <Compile Include="GameObjects\Actors\Players\Tier1\Tier1.cs" />
     <Compile Include="GameObjects\Enums\ActorEvents.cs" />
     <Compile Include="GameObjects\ActorStateEvent.cs" />
-    <Compile Include="GameObjects\Enums\GameDifficulty.cs" />
+    <Compile Include="GameObjects\Enums\GameDifficultyOptions.cs" />
     <Compile Include="GameObjects\Enums\GameSpeed.cs" />
     <Compile Include="GameObjects\Enums\StatusEffects.cs" />
-    <Compile Include="GameObjects\Enums\TileDrawOptions.cs" />
+    <Compile Include="GameObjects\Tiles\TileTypeOptions.cs" />
     <Compile Include="GameObjects\Skills\Skill.cs" />
     <Compile Include="GameObjects\Actors\Statblock.cs" />
     <Compile Include="GameObjects\Skills\SkillManager.cs" />

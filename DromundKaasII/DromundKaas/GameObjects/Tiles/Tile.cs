@@ -9,7 +9,7 @@ using DromundKaasII.GameObjects.Enums;
 
 namespace DromundKaasII.GameObjects.Tiles
 {
-    public abstract class Tile : IPathable
+    public class Tile : IPathable
     {
         public double TraversalCost { get; set; }
         public Actor Occupant { get; set; }

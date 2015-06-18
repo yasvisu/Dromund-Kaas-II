@@ -47,6 +47,7 @@ namespace DromundKaasII
 
         Texture2D mytex;
         Texture2D mychar;
+        Texture2D mytile;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -58,6 +59,7 @@ namespace DromundKaasII
             spriteBatch = new SpriteBatch(GraphicsDevice);
             mytex = this.Content.Load<Texture2D>("Splash/dksplash");
             mychar = this.Content.Load<Texture2D>("Actors/placeholderChar");
+            mytile = this.Content.Load<Texture2D>("Tiles/placeholderTile");
             //ScreenManager.Instance.LoadContent(Content);
         }
 
@@ -84,6 +86,9 @@ namespace DromundKaasII
             engine.Step(gameTime);
             input.UpdateInput();
 
+
+            engine.GameState.Player.PlayerInputOptions = GameInputs.Down;
+
             base.Update(gameTime);
         }
 
@@ -99,8 +104,15 @@ namespace DromundKaasII
             //spriteBatch.End();
             //spriteBatch.Begin();
             //spriteBatch.Draw(mytex, new Vector2(0, 0));
+            for (int i = 0; i < engine.GameState.Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < engine.GameState.Map.GetLength(1); j++)
+                {
+                    spriteBatch.Draw(mytile, new Vector2(i * 64, j * 64));
+                }
+            }
 
-            foreach(var a in engine.GameState.Actors)
+            foreach (var a in engine.GameState.Actors)
             {
                 spriteBatch.Draw(mychar, new Vector2(a.MapPosition.X * 64, a.MapPosition.Y * 64));
             }

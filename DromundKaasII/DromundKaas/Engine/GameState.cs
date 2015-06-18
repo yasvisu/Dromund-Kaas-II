@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using DromundKaasII.GameObjects;
 using DromundKaasII.Input;
+using DromundKaasII.GameObjects.Actors.Players;
 
 namespace DromundKaasII.Engine
 {
@@ -22,7 +23,7 @@ namespace DromundKaasII.Engine
             this.TranspiredEvents = new Queue<ActorStateEvent>();
         }
 
-        //public Player
+        public Player Player { get; set; }
         public Queue<ActorStateEvent> TranspiredEvents { get; private set; }
         public GameSpeedOptions GameSpeed { get; set; }
         public GameDifficultyOptions GameDifficulty { get; set; }

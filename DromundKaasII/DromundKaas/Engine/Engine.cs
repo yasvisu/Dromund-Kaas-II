@@ -13,6 +13,7 @@ using DromundKaasII.GameObjects.Enums;
 using DromundKaasII.GameObjects.Skills;
 using DromundKaasII.Input;
 using DromundKaasII.GameObjects.Actors.Players;
+using DromundKaasII.GameObjects.Tiles;
 namespace DromundKaasII.Engine
 {
     public class Engine : IEngine
@@ -27,7 +28,22 @@ namespace DromundKaasII.Engine
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
-            this.GameState.Actors.Add(new Primal(new Vector2(3,3)));
+
+
+            for(int i=0; i<this.GameState.Map.GetLength(0); i++)
+            {
+                for(int j=0; j<this.GameState.Map.GetLength(1); j++)
+                {
+                    Tile temp = new Tile();
+                    temp.TraversalCost = 100;
+                    this.GameState.Map[i, j] = temp;
+                }
+            }
+
+            Player p = new Primal(new Vector2(3, 3));
+            this.GameState.Actors.Add(p);
+            this.GameState.Player = p;
+            this.GameState.Map[(int)p.MapPosition.Y, (int)p.MapPosition.X].Occupant = p;
         }
 
         public GameState GameState { get; set; }

@@ -7,29 +7,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DromundKaasII.GameObjects;
+using DromundKaasII.Input;
 
 namespace DromundKaasII.Engine
 {
     public class GameState
     {
-        protected Queue<ActorStateEvent> transpiredEvents;
-
         public GameState(int X, int Y)
         {
             this.GameSpeed = GameSpeedOptions.Fast;
             this.Actors = new List<Actor>();
             this.Map = new Tile[X, Y];
-            this.transpiredEvents = new Queue<ActorStateEvent>();
+            this.TranspiredEvents = new Queue<ActorStateEvent>();
         }
 
         //public Player
-        public Queue<ActorStateEvent> TranspiredEvents
-        {
-            get { return this.transpiredEvents; }
-        }
+        public Queue<ActorStateEvent> TranspiredEvents { get; private set; }
         public GameSpeedOptions GameSpeed { get; set; }
         public GameDifficultyOptions GameDifficulty { get; set; }
         public List<Actor> Actors { get; set; }
         public Tile[,] Map { get; set; }
+
+        public GameInputs PlayerInputOptions { get; set; }
     }
 }

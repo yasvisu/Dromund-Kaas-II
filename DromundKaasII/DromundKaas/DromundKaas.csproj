@@ -71,7 +71,7 @@
     <Compile Include="GameObjects\Enums\ActorEvents.cs" />
     <Compile Include="GameObjects\ActorStateEvent.cs" />
     <Compile Include="GameObjects\Enums\GameDifficultyOptions.cs" />
-    <Compile Include="GameObjects\Enums\GameSpeed.cs" />
+    <Compile Include="GameObjects\Enums\GameSpeedOptions.cs" />
     <Compile Include="GameObjects\Enums\StatusEffects.cs" />
     <Compile Include="GameObjects\Tiles\TileTypeOptions.cs" />
     <Compile Include="GameObjects\Skills\Skill.cs" />

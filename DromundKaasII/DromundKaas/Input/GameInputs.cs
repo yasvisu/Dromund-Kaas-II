@@ -5,29 +5,30 @@ using System.Text;
 
 namespace DromundKaasII.Input
 {
+    [Flags]
     public enum GameInputs
     {
         // Movement
 
-        Up,
-        Down,
-        Left,
-        Right,
+        Up = 0x1,
+        Down = 0x2,
+        Left = 0x4,
+        Right = 0x8,
 
         // Actions
 
-        A1,
-        A2,
-        A3,
-        A4,
-        A5,
+        A1 = 0x10,
+        A2 = 0x20,
+        A3 = 0x40,
+        A4 = 0x80,
+        A5 = 0x100,
 
-        Interact,
+        Interact = 0x200,
 
         // Menus
 
-        Pause,
+        Pause = 0x400,
 
-        Quit
+        Quit = 0x800
     }
 }

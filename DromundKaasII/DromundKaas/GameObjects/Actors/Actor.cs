@@ -22,6 +22,7 @@ namespace DromundKaasII.GameObjects.Actors
             this.Stats = Stats;
         }
 
+
         public Vector2 MapPosition { get; set; }
 
         public Actor Target { get; private set; }

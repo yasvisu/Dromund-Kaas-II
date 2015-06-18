@@ -83,6 +83,9 @@ namespace DromundKaasII.GameObjects.Actors
         public float Charisma { get; set; }
         public float Psychic { get; set; }
 
+        // Movement
+        public int TraversalPower { get; set; }
+
         public static Statblock operator +(Statblock a, Statblock b)
         {
             return new Statblock()

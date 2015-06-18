@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.GameObjects.Actors.Players
 {
+    using DromundKaasII.GameObjects.Skills;
+
     public class Primal : Player 
     {
 
@@ -29,6 +31,10 @@ namespace DromundKaasII.GameObjects.Actors.Players
             this.Stats.Health = this.Stats.MaxHealth;
             this.Stats.Mana = this.Stats.MaxMana;
             this.Stats.Focus = this.Stats.MaxFocus;
+
+            this.PlayerSkills = new Skill[5];
+            
+ 
         }
     }
 }

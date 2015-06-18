@@ -25,6 +25,10 @@ namespace DromundKaasII.GameObjects.Actors.Players
                 
                 TraversalPower = 100,
             };
+
+            this.Stats.Health = this.Stats.MaxHealth;
+            this.Stats.Mana = this.Stats.MaxMana;
+            this.Stats.Focus = this.Stats.MaxFocus;
         }
 
 

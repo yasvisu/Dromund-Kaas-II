@@ -103,16 +103,19 @@ namespace DromundKaasII.Engine
 
         private void EnactSkill(Vector2 vector2)
         {
+            // Check whether Skill can target ground, then enact Skill.
             throw new NotImplementedException();
         }
 
         private void EnactSkill(Actor actor)
         {
+            // Check whether Actor is within range of other Actor (by Skill), then enact skill.
             throw new NotImplementedException();
         }
 
         private void MoveActor(Vector2 vector2)
         {
+            // Check whether Actor can move on tile, then move Actor.
             throw new NotImplementedException();
         }
     }

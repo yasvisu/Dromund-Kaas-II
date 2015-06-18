@@ -54,6 +54,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Input\GameInputs.cs" />
+    <Compile Include="Input\GamePadInputScheme.cs" />
+    <Compile Include="Input\InputManager.cs" />
     <Compile Include="Engine\Engine.cs" />
     <Compile Include="Engine\GameState.cs" />
     <Compile Include="Game1.cs" />
@@ -77,6 +80,8 @@
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Graphics\ScreenManager.cs" />
     <Compile Include="Graphics\SplashScreen.cs" />
+    <Compile Include="Input\InputModes.cs" />
+    <Compile Include="Input\KeyboardInputScheme.cs" />
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IPathable.cs" />

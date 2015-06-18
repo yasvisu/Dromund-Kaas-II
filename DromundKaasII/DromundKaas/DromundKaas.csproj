@@ -91,6 +91,7 @@
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\AsyncTimer.cs" />
     <Compile Include="Tools\XmlManager.cs" />
   </ItemGroup>
   <ItemGroup>

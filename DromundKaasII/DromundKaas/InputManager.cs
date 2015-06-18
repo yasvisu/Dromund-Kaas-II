@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DromundKaasII
 {
-    public class ControlManager
+    public class InputManager
     {
 
     }

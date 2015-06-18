@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DromundKaasII.Input;
 
 namespace DromundKaasII
 {
@@ -16,14 +17,17 @@ namespace DromundKaasII
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Engine.Engine engine;
+        InputManager input;
+
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
 
         public Game1()
         {
-            this.engine = new Engine.Engine();
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.engine = new Engine.Engine();
+            input = new InputManager();
         }
 
         /// <summary>
@@ -72,11 +76,12 @@ namespace DromundKaasII
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (input.IsPressed(GameInputs.Quit))
                 Exit();
 
             //ScreenManager.Instance.Update(gameTime);
             engine.Step(gameTime);
+            input.UpdateInput();
 
             base.Update(gameTime);
         }

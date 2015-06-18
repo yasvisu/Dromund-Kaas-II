@@ -13,7 +13,6 @@ namespace DromundKaasII.Engine
 {
     public class GameState
     {
-        protected GameInputs playerInputOptions;
 
         public GameState(int X, int Y)
         {
@@ -29,20 +28,5 @@ namespace DromundKaasII.Engine
         public GameDifficultyOptions GameDifficulty { get; set; }
         public List<Actor> Actors { get; set; }
         public Tile[,] Map { get; set; }
-
-        public GameInputs PlayerInputOptions
-        {
-            get
-            {
-                return this.playerInputOptions;
-            }
-            set
-            {
-                if (value != GameInputs.None)
-                {
-                    this.playerInputOptions |= value;
-                }
-            }
-        }
     }
 }

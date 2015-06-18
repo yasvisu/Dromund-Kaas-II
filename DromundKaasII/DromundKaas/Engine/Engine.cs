@@ -57,7 +57,6 @@ namespace DromundKaasII.Engine
 
         public void UpdateGameState()
         {
-            this.GameState.PlayerInputOptions = GameInputs.None;
             Stack<Actor> GarbageCan = new Stack<Actor>();
             foreach (Actor a in this.GameState.Actors)
             {

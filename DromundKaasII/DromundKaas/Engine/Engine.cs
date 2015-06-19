@@ -23,16 +23,16 @@ namespace DromundKaasII.Engine
 
         public Engine()
         {
-            this.GameState = new GameState(10, 10);
+            this.GameState = new GameState(5, 5);
             this.IsRunning = true;
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
 
 
-            for(int i=0; i<this.GameState.Map.GetLength(0); i++)
+            for (int i = 0; i < this.GameState.Map.GetLength(0); i++)
             {
-                for(int j=0; j<this.GameState.Map.GetLength(1); j++)
+                for (int j = 0; j < this.GameState.Map.GetLength(1); j++)
                 {
                     Tile temp = new Tile();
                     temp.TraversalCost = 100;
@@ -40,7 +40,7 @@ namespace DromundKaasII.Engine
                 }
             }
 
-            Player p = new Primal(new Vector2(3, 3));
+            Player p = new Primal(new Vector2(2, 2));
             this.GameState.Actors.Add(p);
             this.GameState.Player = p;
             this.GameState.Map[(int)p.MapPosition.Y, (int)p.MapPosition.X].Occupant = p;
@@ -75,18 +75,22 @@ namespace DromundKaasII.Engine
             {
                 switch (a.DesiredAction)
                 {
-                    case ActionTypeOptions.Move:
-                        MoveActor(a, a.GroundTarget);
+                    case GameInputs.Up:
+                        MoveActor(a, new Vector2(a.MapPosition.X, a.MapPosition.Y - 1));
                         break;
-                    case ActionTypeOptions.SkillActor:
-                        EnactSkill(a, a.Target);
+                    case GameInputs.Down:
+                        MoveActor(a, new Vector2(a.MapPosition.X, a.MapPosition.Y + 1));
                         break;
-                    case ActionTypeOptions.SkillGround:
-                        EnactSkill(a, a.GroundTarget);
+                    case GameInputs.Left:
+                        MoveActor(a, new Vector2(a.MapPosition.X - 1, a.MapPosition.Y));
+                        break;
+                    case GameInputs.Right:
+                        MoveActor(a, new Vector2(a.MapPosition.X + 1, a.MapPosition.Y));
                         break;
                     default:
                         break;
                 }
+                a.DesiredAction = GameInputs.None;
             }
 
 
@@ -122,12 +126,18 @@ namespace DromundKaasII.Engine
         private void MoveActor(Actor parent, Vector2 target)
         {
             // Check whether Actor can move on tile, then move Actor.
-            if (parent.Stats.TraversalPower >= GameState.Map[(int)target.Y, (int)target.X].TraversalCost && GameState.Map[(int)target.Y, (int)target.X] != null)
+            if (target.X < 0 || target.X >= GameState.MapWidth || target.Y < 0 || target.Y >= GameState.MapHeight)
             {
-                GameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X] = null;
+                return;
+            }
+            if (parent.Stats.TraversalPower >= GameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
+                GameState.Map[(int)target.Y, (int)target.X].Occupant == null)
+            {
+                GameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
                 parent.MapPosition = target;
                 GameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
             }
+
         }
     }
 }

@@ -29,7 +29,7 @@ namespace DromundKaasII.Graphics
         public override void Begin()
         {
             this.engine = new Engine.Engine();
-            engineTask = new AsyncTimer(engine.UpdateGameState, int.MaxValue, (ulong)engine.GameState.GameDifficulty).StartAsync();
+            engineTask = new AsyncTimer(engine.UpdateGameState, int.MaxValue, (ulong)engine.GameState.GameSpeed).StartAsync();
         }
 
         public override void LoadContent()
@@ -52,21 +52,21 @@ namespace DromundKaasII.Graphics
         {
             base.Update(gameTime);
             input.UpdateInput();
-            if(input.IsPressed(GameInputs.Up))
+            if (input.IsPressed(GameInputs.Up))
             {
-                engine.GameState.Player.PlayerInputOptions = GameInputs.Up;
+                engine.GameState.Player.DesiredAction = GameInputs.Up;
             }
             else if (input.IsPressed(GameInputs.Down))
             {
-                engine.GameState.Player.PlayerInputOptions = GameInputs.Down;
+                engine.GameState.Player.DesiredAction = GameInputs.Down;
             }
             else if (input.IsPressed(GameInputs.Left))
             {
-                engine.GameState.Player.PlayerInputOptions = GameInputs.Left;
+                engine.GameState.Player.DesiredAction = GameInputs.Left;
             }
             else if (input.IsPressed(GameInputs.Right))
             {
-                engine.GameState.Player.PlayerInputOptions = GameInputs.Right;
+                engine.GameState.Player.DesiredAction = GameInputs.Right;
             }
         }
 
@@ -76,13 +76,13 @@ namespace DromundKaasII.Graphics
             {
                 for (int j = 0; j < engine.GameState.Map.GetLength(1); j++)
                 {
-                    spriteBatch.Draw(mytile, new Vector2(j * 64, i * 64));
+                    Vector2 destination = new Vector2(j * 64, i * 64);
+                    spriteBatch.Draw(mytile, destination);
+                    if (engine.GameState.Map[i, j].Occupant != null)
+                    {
+                        spriteBatch.Draw(mychar, destination);
+                    }
                 }
-            }
-
-            foreach (var a in engine.GameState.Actors)
-            {
-                spriteBatch.Draw(mychar, new Vector2(a.MapPosition.X * 64, a.MapPosition.Y * 64));
             }
         }
     }

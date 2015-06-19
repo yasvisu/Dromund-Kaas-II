@@ -8,7 +8,11 @@ namespace DromundKaasII.GameObjects.Actors
     public enum ActionTypeOptions
     {
         None,
-        Move,
+        MoveUp,
+        MoveDown,
+        MoveLeft,
+        MoveRight,
+
         SkillGround,
         SkillActor
     }

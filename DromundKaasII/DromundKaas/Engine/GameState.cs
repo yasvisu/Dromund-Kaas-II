@@ -29,5 +29,19 @@ namespace DromundKaasII.Engine
         public GameDifficultyOptions GameDifficulty { get; set; }
         public List<Actor> Actors { get; set; }
         public Tile[,] Map { get; set; }
+        public int MapHeight
+        {
+            get
+            {
+                return this.Map.GetLength(0);
+            }
+        }
+        public int MapWidth
+        {
+            get
+            {
+                return this.Map.GetLength(1);
+            }
+        }
     }
 }

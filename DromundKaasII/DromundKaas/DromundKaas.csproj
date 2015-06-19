@@ -54,8 +54,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Engine\ActorFactory.cs" />
+    <Compile Include="Exceptions\PlayerAlreadyExistsException.cs" />
     <Compile Include="Exceptions\UnsupportedKeyException.cs" />
     <Compile Include="GameObjects\Actors\ActionTypeOptions.cs" />
+    <Compile Include="GameObjects\Actors\NPCs\ZombieFriend.cs" />
     <Compile Include="GameObjects\Skills\SkillTargetPermissions.cs" />
     <Compile Include="Graphics\CreditsScreen.cs" />
     <Compile Include="Graphics\Image.cs" />
@@ -115,7 +118,6 @@
     <Folder Include="Engine\AI\Pathfinding\" />
     <Folder Include="Engine\AI\Targetting\" />
     <Folder Include="GameObjects\Actors\Debris\" />
-    <Folder Include="GameObjects\Actors\NPCs\" />
     <Folder Include="GameObjects\Professions\" />
   </ItemGroup>
   <ItemGroup>

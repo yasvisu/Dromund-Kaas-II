@@ -14,12 +14,14 @@ using DromundKaasII.GameObjects.Skills;
 using DromundKaasII.Input;
 using DromundKaasII.GameObjects.Actors.Players;
 using DromundKaasII.GameObjects.Tiles;
+using DromundKaasII.GameObjects.Actors.NPCs;
 namespace DromundKaasII.Engine
 {
     public class Engine : IEngine
     {
         protected uint cycleCounter;
         protected TimeSpan elapsedTime;
+        protected ActorFactory actorFactory;
 
         #region Vector Constants
         protected static readonly Vector2 UpV = new Vector2(0, -1);
@@ -40,7 +42,7 @@ namespace DromundKaasII.Engine
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
-
+            actorFactory = new ActorFactory(GameState);
 
             for (int i = 0; i < this.GameState.Map.GetLength(0); i++)
             {
@@ -58,9 +60,11 @@ namespace DromundKaasII.Engine
             this.GameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree);
 
             Player p = new Primal(new Vector2(2, 2));
-            this.GameState.Actors.Add(p);
-            this.GameState.Player = p;
-            this.GameState.Map[(int)p.MapPosition.Y, (int)p.MapPosition.X].Occupant = p;
+            actorFactory.CreatePlayer(p.MapPosition, p);
+
+            //ZombieFriend z = new ZombieFriend(new Vector2(5, 5));
+            //this.GameState.Actors.Add(z);
+            //this.GameState.Map[(int)z.MapPosition.Y, (int)z.MapPosition.X].Occupant = z;
         }
 
         public GameState GameState { get; set; }

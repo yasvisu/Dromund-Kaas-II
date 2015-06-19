@@ -16,6 +16,7 @@ namespace DromundKaasII.GameObjects.Actors
         {
             this.MapPosition = MapPosition;
             this.StatusEffects = new Dictionary<StatusEffects, TimeSpan>();
+            this.DesiredAction = GameInputs.None;
         }
 
         protected Actor(Vector2 MapPosition, Statblock Stats)

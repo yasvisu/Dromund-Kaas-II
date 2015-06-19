@@ -41,6 +41,9 @@ namespace DromundKaasII.Engine
 
             // Sample water tile!
             this.GameState.Map[1, 1] = new Tile(200, TileTypeOptions.Water);
+            this.GameState.Map[3, 1] = new Tile(1000, TileTypeOptions.Hole);
+            this.GameState.Map[1, 3] = new Tile(700, TileTypeOptions.Wall);
+            this.GameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree);
 
             Player p = new Primal(new Vector2(2, 2));
             this.GameState.Actors.Add(p);

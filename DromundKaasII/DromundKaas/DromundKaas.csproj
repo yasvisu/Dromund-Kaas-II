@@ -58,6 +58,7 @@
     <Compile Include="GameObjects\Actors\ActionTypeOptions.cs" />
     <Compile Include="GameObjects\Skills\SkillTargetPermissions.cs" />
     <Compile Include="Graphics\Image.cs" />
+    <Compile Include="Graphics\PlayScreen.cs" />
     <Compile Include="Input\GameInputs.cs" />
     <Compile Include="Input\GamePadInputScheme.cs" />
     <Compile Include="Input\InputManager.cs" />
@@ -103,7 +104,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Graphics\SplshScreen\image1.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

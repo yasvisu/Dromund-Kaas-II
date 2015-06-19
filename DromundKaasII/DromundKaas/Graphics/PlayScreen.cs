@@ -52,23 +52,22 @@ namespace DromundKaasII.Graphics
         {
             base.Update(gameTime);
             input.UpdateInput();
-            /*
-            switch (engine.CycleCounter % 4)
+            if(input.IsPressed(GameInputs.Up))
             {
-                case 0:
-                    engine.GameState.Player.PlayerInputOptions = GameInputs.Down;
-                    break;
-                case 1:
-                    engine.GameState.Player.PlayerInputOptions = GameInputs.Up;
-                    break;
-                case 2:
-                    engine.GameState.Player.PlayerInputOptions = GameInputs.Left;
-                    break;
-                case 3:
-                    engine.GameState.Player.PlayerInputOptions = GameInputs.Right;
-                    break;
+                engine.GameState.Player.PlayerInputOptions = GameInputs.Up;
             }
-            */
+            else if (input.IsPressed(GameInputs.Down))
+            {
+                engine.GameState.Player.PlayerInputOptions = GameInputs.Down;
+            }
+            else if (input.IsPressed(GameInputs.Left))
+            {
+                engine.GameState.Player.PlayerInputOptions = GameInputs.Left;
+            }
+            else if (input.IsPressed(GameInputs.Right))
+            {
+                engine.GameState.Player.PlayerInputOptions = GameInputs.Right;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

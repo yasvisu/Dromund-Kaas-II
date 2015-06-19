@@ -62,9 +62,8 @@ namespace DromundKaasII.Engine
             Player p = new Primal(new Vector2(2, 2));
             actorFactory.CreatePlayer(p);
 
-            //ZombieFriend z = new ZombieFriend(new Vector2(5, 5));
-            //this.GameState.Actors.Add(z);
-            //this.GameState.Map[(int)z.MapPosition.Y, (int)z.MapPosition.X].Occupant = z;
+            ZombieFriend z = new ZombieFriend(new Vector2(5, 5));
+            actorFactory.CreateNpc(z);
         }
 
         public GameState GameState { get; set; }
@@ -116,19 +115,15 @@ namespace DromundKaasII.Engine
 
 
             // Prune dead actors
-            Stack<Actor> GarbageCan = new Stack<Actor>();
             foreach (Actor a in this.GameState.Actors)
             {
                 if (a.Stats.Health <= 0)
                 {
-                    GarbageCan.Push(a);
+                    if (a is Npc)
+                    {
+                        actorFactory.RemoveNpc(a as Npc);
+                    }
                 }
-            }
-            while (GarbageCan.Count > 0)
-            {
-                Actor temp = GarbageCan.Pop();
-                GameState.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, temp));
-                this.GameState.Actors.Remove(temp);
             }
         }
 

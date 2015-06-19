@@ -44,5 +44,16 @@ namespace DromundKaasII.Engine
             this.GameState.Actors.Add(Npc);
             this.GameState.Map[(int)Npc.MapPosition.Y, (int)Npc.MapPosition.X].Occupant = Npc;
         }
+
+        public void RemovePlayer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveNpc(Npc Npc)
+        {
+            GameState.Map[(int)Npc.MapPosition.Y, (int)Npc.MapPosition.X].Occupant = null;
+            GameState.Actors.Remove(Npc);
+        }
     }
 }

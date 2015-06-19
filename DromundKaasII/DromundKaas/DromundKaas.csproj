@@ -56,8 +56,10 @@
   <ItemGroup>
     <Compile Include="Engine\ActorFactory.cs" />
     <Compile Include="Exceptions\PlayerAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\SpawnOccupiedException.cs" />
     <Compile Include="Exceptions\UnsupportedKeyException.cs" />
     <Compile Include="GameObjects\Actors\ActionTypeOptions.cs" />
+    <Compile Include="GameObjects\Actors\NPCs\Npc.cs" />
     <Compile Include="GameObjects\Actors\NPCs\ZombieFriend.cs" />
     <Compile Include="GameObjects\Skills\SkillTargetPermissions.cs" />
     <Compile Include="Graphics\CreditsScreen.cs" />

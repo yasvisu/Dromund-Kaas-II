@@ -34,11 +34,13 @@ namespace DromundKaasII.Engine
             {
                 for (int j = 0; j < this.GameState.Map.GetLength(1); j++)
                 {
-                    Tile temp = new Tile();
-                    temp.TraversalCost = 100;
+                    Tile temp = new Tile(100, TileTypeOptions.Ground);
                     this.GameState.Map[i, j] = temp;
                 }
             }
+
+            // Sample water tile!
+            this.GameState.Map[1, 1] = new Tile(200, TileTypeOptions.Water);
 
             Player p = new Primal(new Vector2(2, 2));
             this.GameState.Actors.Add(p);

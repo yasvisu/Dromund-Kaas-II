@@ -11,6 +11,12 @@ namespace DromundKaasII.GameObjects.Tiles
 {
     public class Tile : IPathable
     {
+        public Tile(double TraversalCost, TileTypeOptions TileType)
+        {
+            this.TraversalCost = TraversalCost;
+            this.TileType = TileType;
+        }
+
         public double TraversalCost { get; set; }
         public Actor Occupant { get; set; }
         public TileTypeOptions TileType { get; set; }

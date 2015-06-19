@@ -57,6 +57,7 @@
     <Compile Include="Exceptions\UnsupportedKeyException.cs" />
     <Compile Include="GameObjects\Actors\ActionTypeOptions.cs" />
     <Compile Include="GameObjects\Skills\SkillTargetPermissions.cs" />
+    <Compile Include="Graphics\Image.cs" />
     <Compile Include="Input\GameInputs.cs" />
     <Compile Include="Input\GamePadInputScheme.cs" />
     <Compile Include="Input\InputManager.cs" />

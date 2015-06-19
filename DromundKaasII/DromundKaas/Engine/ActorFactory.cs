@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DromundKaasII.Exceptions;
+using DromundKaasII.GameObjects.Actors.NPCs;
 using DromundKaasII.GameObjects.Actors.Players;
 using Microsoft.Xna.Framework;
 
@@ -17,11 +18,15 @@ namespace DromundKaasII.Engine
             this.GameState = G;
         }
 
-        public void CreatePlayer(Vector2 location, Player Player)
+        public void CreatePlayer(Player Player)
         {
-            if(this.GameState.Player!=null)
+            if (this.GameState.Player != null)
             {
                 throw new PlayerAlreadyExistsException();
+            }
+            if (this.GameState.Map[(int)Player.MapPosition.X, (int)Player.MapPosition.Y].Occupant != null)
+            {
+                throw new SpawnOccupiedException();
             }
 
             this.GameState.Actors.Add(Player);
@@ -29,9 +34,15 @@ namespace DromundKaasII.Engine
             this.GameState.Map[(int)Player.MapPosition.Y, (int)Player.MapPosition.X].Occupant = Player;
         }
 
-        public void CreateNpc()
+        public void CreateNpc(Npc Npc)
         {
-            throw new NotImplementedException();
+            if (this.GameState.Map[(int)Npc.MapPosition.X, (int)Npc.MapPosition.Y].Occupant != null)
+            {
+                throw new SpawnOccupiedException();
+            }
+
+            this.GameState.Actors.Add(Npc);
+            this.GameState.Map[(int)Npc.MapPosition.Y, (int)Npc.MapPosition.X].Occupant = Npc;
         }
     }
 }

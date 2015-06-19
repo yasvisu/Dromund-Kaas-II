@@ -86,5 +86,11 @@ namespace DromundKaasII.Graphics
         {
             currentScreen.Draw(spriteBatch);
         }
+
+        private void SwitchScreen(GameScreen G)
+        {
+            currentScreen = G;
+            G.Begin();
+        }
     }
 }

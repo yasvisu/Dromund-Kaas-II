@@ -28,11 +28,7 @@ namespace DromundKaasII.Graphics
 
         public override void LoadContent()
         {
-
-
             base.LoadContent();
-            path = "Splash/image1";
-            image = content.Load<Texture2D>(path);
 
             mytex = this.content.Load<Texture2D>("Splash/dksplash");
             mychar = this.content.Load<Texture2D>("Actors/placeholderChar");

@@ -16,6 +16,11 @@ namespace DromundKaasII.Graphics
         public bool IsDone { get; set; }
         public bool IsPaused { get; set; }
 
+        public virtual void Begin()
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");

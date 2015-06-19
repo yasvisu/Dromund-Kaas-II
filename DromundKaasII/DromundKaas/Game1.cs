@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DromundKaasII.Input;
+using DromundKaasII.Tools;
 
 namespace DromundKaasII
 {
@@ -17,6 +18,7 @@ namespace DromundKaasII
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Engine.Engine engine;
+        Task engineTask;
         InputManager input;
 
         // Use this to map types to textures.
@@ -27,6 +29,7 @@ namespace DromundKaasII
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.engine = new Engine.Engine();
+            engineTask = new AsyncTimer(engine.UpdateGameState, int.MaxValue, (ulong)engine.GameState.GameDifficulty).StartAsync();
             input = new InputManager();
         }
 
@@ -40,7 +43,7 @@ namespace DromundKaasII
         {
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
-            graphics.ApplyChanges();
+            graphics.ApplyChanges();  
             base.Initialize();
         }
 
@@ -70,6 +73,7 @@ namespace DromundKaasII
         protected override void UnloadContent()
         {
             //ScreenManager.Instance.UnloadContent();
+            //engineTask.Dispose();
         }
 
         /// <summary>
@@ -83,12 +87,24 @@ namespace DromundKaasII
                 Exit();
 
             //ScreenManager.Instance.Update(gameTime);
-            engine.Step(gameTime);
             input.UpdateInput();
-
-
-            engine.GameState.Player.PlayerInputOptions = GameInputs.Down;
-
+            /*
+            switch (engine.CycleCounter % 4)
+            {
+                case 0:
+                    engine.GameState.Player.PlayerInputOptions = GameInputs.Down;
+                    break;
+                case 1:
+                    engine.GameState.Player.PlayerInputOptions = GameInputs.Up;
+                    break;
+                case 2:
+                    engine.GameState.Player.PlayerInputOptions = GameInputs.Left;
+                    break;
+                case 3:
+                    engine.GameState.Player.PlayerInputOptions = GameInputs.Right;
+                    break;
+            }
+            */
             base.Update(gameTime);
         }
 

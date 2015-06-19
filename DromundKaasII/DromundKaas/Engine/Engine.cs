@@ -60,21 +60,9 @@ namespace DromundKaasII.Engine
 
         public SkillManager SkillManager { get; private set; }
 
-        public void Step(GameTime gameTime)
-        {
-            elapsedTime += gameTime.ElapsedGameTime;
-            if (elapsedTime.TotalMilliseconds < ((int)this.GameState.GameSpeed) * cycleCounter)
-            {
-                return;
-            }
-            elapsedTime = new TimeSpan();
-            cycleCounter++;
-
-            UpdateGameState();
-        }
-
         public void UpdateGameState()
         {
+            cycleCounter++;
             // Tell all actors to think of a next move
             foreach (Actor a in this.GameState.Actors)
             {

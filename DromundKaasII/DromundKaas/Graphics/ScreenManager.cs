@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DromundKaasII
+namespace DromundKaasII.Graphics
 {
     public class ScreenManager
     {
@@ -16,9 +16,37 @@ namespace DromundKaasII
         public ContentManager Content { private set; get; }
 
 
+        GameScreen[] Screens;
+
+        SplashScreen Splash;
+        PlayScreen Play;
+        OptionsScreen Options;
+        CreditsScreen Credits;
+
         GameScreen currentScreen;
         public GraphicsDevice GraphicsDevice;
         public SpriteBatch SpriteBatch;
+
+
+        public ScreenManager()
+        {
+            Dimensions = new Vector2(640, 480);
+            currentScreen = new SplashScreen();
+
+            Screens = new GameScreen[4];
+
+            Splash = new SplashScreen();
+            Play = new PlayScreen();
+            Options = new OptionsScreen();
+            Credits = new CreditsScreen();
+
+            Screens[0] = Splash;
+            Screens[1] = Play;
+            Screens[2] = Options;
+            Screens[3] = Credits;
+
+            currentScreen = Splash;
+        }
 
         public static ScreenManager Instance
         {
@@ -32,21 +60,21 @@ namespace DromundKaasII
             }
         }
 
-        public ScreenManager()
-        {
-            Dimensions = new Vector2(640, 480);
-            currentScreen = new SplashScreen();
-        }
-
         public void LoadContent(ContentManager Content)
         {
             this.Content = new ContentManager(Content.ServiceProvider, "Content");
-            currentScreen.LoadContent();
+            for(int i=0; i<Screens.Length; i++)
+            {
+                Screens[i].LoadContent();
+            }
         }
 
         public void UnloadContent()
         {
-            currentScreen.UnloadContent();
+            for (int i = 0; i < Screens.Length; i++)
+            {
+                Screens[i].UnloadContent();
+            }
         }
 
         public void Update(GameTime gameTime)

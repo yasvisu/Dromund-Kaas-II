@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DromundKaasII
+namespace DromundKaasII.Graphics
 {
     class SplashScreen : GameScreen
     {

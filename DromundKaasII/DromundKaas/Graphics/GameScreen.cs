@@ -7,11 +7,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DromundKaasII
+namespace DromundKaasII.Graphics
 {
     public class GameScreen
     {
         protected ContentManager content;
+
+        public bool IsDone { get; set; }
+        public bool IsPaused { get; set; }
 
         public virtual void LoadContent()
         {

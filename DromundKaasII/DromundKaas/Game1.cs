@@ -63,7 +63,7 @@ namespace DromundKaasII
             mytex = this.Content.Load<Texture2D>("Splash/dksplash");
             mychar = this.Content.Load<Texture2D>("Actors/placeholderChar");
             mytile = this.Content.Load<Texture2D>("Tiles/placeholderTile");
-            //ScreenManager.Instance.LoadContent(Content);
+            ScreenManager.Instance.LoadContent(Content);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace DromundKaasII
             if (input.IsPressed(GameInputs.Quit))
                 Exit();
 
-            //ScreenManager.Instance.Update(gameTime);
+            ScreenManager.Instance.Update(gameTime);
             input.UpdateInput();
             /*
             switch (engine.CycleCounter % 4)
@@ -116,7 +116,7 @@ namespace DromundKaasII
         {
             GraphicsDevice.Clear(Color.Blue);
             spriteBatch.Begin();
-            //ScreenManager.Instance.Draw(spriteBatch);
+            ScreenManager.Instance.Draw(spriteBatch);
             //spriteBatch.End();
             //spriteBatch.Begin();
             //spriteBatch.Draw(mytex, new Vector2(0, 0));

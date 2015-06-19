@@ -80,6 +80,10 @@ namespace DromundKaasII.Graphics
         public void Update(GameTime gameTime)
         {
             currentScreen.Update(gameTime);
+            if(gameTime.TotalGameTime.TotalSeconds>3 && currentScreen is SplashScreen)
+            {
+                this.SwitchScreen(Play);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

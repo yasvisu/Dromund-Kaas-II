@@ -26,16 +26,20 @@ namespace DromundKaasII.Graphics
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
 
+        public override void Begin()
+        {
+            this.engine = new Engine.Engine();
+            engineTask = new AsyncTimer(engine.UpdateGameState, int.MaxValue, (ulong)engine.GameState.GameDifficulty).StartAsync();
+        }
+
         public override void LoadContent()
         {
             base.LoadContent();
 
-            mytex = this.content.Load<Texture2D>("Splash/dksplash");
             mychar = this.content.Load<Texture2D>("Actors/placeholderChar");
             mytile = this.content.Load<Texture2D>("Tiles/placeholderTile");
 
-            this.engine = new Engine.Engine();
-            engineTask = new AsyncTimer(engine.UpdateGameState, int.MaxValue, (ulong)engine.GameState.GameDifficulty).StartAsync();
+
             input = new InputManager();
         }
 

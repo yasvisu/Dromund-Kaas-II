@@ -13,9 +13,6 @@ namespace DromundKaasII.Graphics
     {
         protected ContentManager content;
 
-        public bool IsDone { get; set; }
-        public bool IsPaused { get; set; }
-
         public virtual void Begin()
         {
             throw new NotImplementedException();

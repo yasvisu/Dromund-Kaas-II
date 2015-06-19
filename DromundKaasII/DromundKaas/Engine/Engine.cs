@@ -23,7 +23,7 @@ namespace DromundKaasII.Engine
 
         public Engine()
         {
-            this.GameState = new GameState(5, 5);
+            this.GameState = new GameState(7, 7);
             this.IsRunning = true;
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();

@@ -77,13 +77,16 @@ namespace DromundKaasII.Graphics
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            Vector2 playerOffset = -engine.GameState.Player.MapPosition;
+            Vector2 pixelOffset = new Vector2((640 - 64) / 2, (480 - 64) / 2);
+
             for (int i = 0; i < engine.GameState.Map.GetLength(0); i++)
             {
                 for (int j = 0; j < engine.GameState.Map.GetLength(1); j++)
                 {
-                    Vector2 destination = new Vector2(j * 64, i * 64);
+                    Vector2 destination = new Vector2((j + playerOffset.X) * 64, (i + playerOffset.Y) * 64) + pixelOffset;
                     Texture2D ToDraw = mytile;
-                    switch(engine.GameState.Map[i,j].TileType)
+                    switch (engine.GameState.Map[i, j].TileType)
                     {
                         case TileTypeOptions.Ground:
                             ToDraw = ground;

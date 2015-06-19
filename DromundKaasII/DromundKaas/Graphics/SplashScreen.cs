@@ -23,7 +23,7 @@ namespace DromundKaasII.Graphics
         public override void LoadContent()
         {
             base.LoadContent();
-            path = "Splash/image1";
+            path = "Splash/dksplash";
             image = content.Load<Texture2D>(path);
         }
 

@@ -77,7 +77,7 @@ namespace DromundKaasII.Graphics
             {
                 for (int j = 0; j < engine.GameState.Map.GetLength(1); j++)
                 {
-                    spriteBatch.Draw(mytile, new Vector2(i * 64, j * 64));
+                    spriteBatch.Draw(mytile, new Vector2(j * 64, i * 64));
                 }
             }
 

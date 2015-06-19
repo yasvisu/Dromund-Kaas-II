@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DromundKaasII.GameObjects.Tiles;
 using DromundKaasII.Input;
 using DromundKaasII.Tools;
 using Microsoft.Xna.Framework;
@@ -21,7 +22,7 @@ namespace DromundKaasII.Graphics
         Texture2D mytex;
         Texture2D mychar;
         Texture2D mytile;
-
+        Texture2D ground, tree, hole, water, wall;
 
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
@@ -38,7 +39,11 @@ namespace DromundKaasII.Graphics
 
             mychar = this.content.Load<Texture2D>("Actors/placeholderChar");
             mytile = this.content.Load<Texture2D>("Tiles/placeholderTile");
-
+            ground = this.content.Load<Texture2D>("Tiles/default/ground");
+            tree = this.content.Load<Texture2D>("Tiles/default/tree");
+            hole = this.content.Load<Texture2D>("Tiles/default/hole");
+            water = this.content.Load<Texture2D>("Tiles/default/water");
+            wall = this.content.Load<Texture2D>("Tiles/default/wall");
 
             input = new InputManager();
         }
@@ -77,7 +82,26 @@ namespace DromundKaasII.Graphics
                 for (int j = 0; j < engine.GameState.Map.GetLength(1); j++)
                 {
                     Vector2 destination = new Vector2(j * 64, i * 64);
-                    spriteBatch.Draw(mytile, destination);
+                    Texture2D ToDraw = mytile;
+                    switch(engine.GameState.Map[i,j].TileType)
+                    {
+                        case TileTypeOptions.Ground:
+                            ToDraw = ground;
+                            break;
+                        case TileTypeOptions.Water:
+                            ToDraw = water;
+                            break;
+                        case TileTypeOptions.Tree:
+                            ToDraw = tree;
+                            break;
+                        case TileTypeOptions.Hole:
+                            ToDraw = hole;
+                            break;
+                        case TileTypeOptions.Wall:
+                            ToDraw = wall;
+                            break;
+                    }
+                    spriteBatch.Draw(ToDraw, destination);
                     if (engine.GameState.Map[i, j].Occupant != null)
                     {
                         spriteBatch.Draw(mychar, destination);

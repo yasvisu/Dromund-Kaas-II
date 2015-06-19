@@ -46,6 +46,8 @@ namespace DromundKaasII.Graphics
             wall = this.content.Load<Texture2D>("Tiles/default/wall");
 
             input = new InputManager();
+            input.InputMode = InputModes.GamePad;
+            
         }
 
         public override void UnloadContent()

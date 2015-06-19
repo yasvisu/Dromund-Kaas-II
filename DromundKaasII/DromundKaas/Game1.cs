@@ -18,9 +18,6 @@ namespace DromundKaasII
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        // Use this to map types to textures.
-        Dictionary<Type, Texture2D> TypeTextures;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -86,10 +83,8 @@ namespace DromundKaasII
         {
             GraphicsDevice.Clear(Color.Blue);
             spriteBatch.Begin();
+
             ScreenManager.Instance.Draw(spriteBatch);
-            //spriteBatch.End();
-            //spriteBatch.Begin();
-            //spriteBatch.Draw(mytex, new Vector2(0, 0));
 
             spriteBatch.End();
             base.Draw(gameTime);

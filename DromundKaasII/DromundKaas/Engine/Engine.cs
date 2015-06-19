@@ -21,6 +21,18 @@ namespace DromundKaasII.Engine
         protected uint cycleCounter;
         protected TimeSpan elapsedTime;
 
+        #region Vector Constants
+        protected static readonly Vector2 UpV = new Vector2(0, -1);
+        protected static readonly Vector2 DownV = new Vector2(0, 1);
+        protected static readonly Vector2 LeftV = new Vector2(-1, 0);
+        protected static readonly Vector2 RightV = new Vector2(1, 0);
+
+        protected static readonly Vector2 UpLeftV = UpV + LeftV;
+        protected static readonly Vector2 UpRightV = UpV + RightV;
+        protected static readonly Vector2 DownLeftV = DownV + LeftV;
+        protected static readonly Vector2 DownRightV = DownV + RightV;
+        #endregion
+
         public Engine()
         {
             this.GameState = new GameState(7, 7);
@@ -81,16 +93,16 @@ namespace DromundKaasII.Engine
                 switch (a.DesiredAction)
                 {
                     case GameInputs.Up:
-                        MoveActor(a, new Vector2(a.MapPosition.X, a.MapPosition.Y - 1));
+                        MoveActor(a, a.MapPosition + UpV);
                         break;
                     case GameInputs.Down:
-                        MoveActor(a, new Vector2(a.MapPosition.X, a.MapPosition.Y + 1));
+                        MoveActor(a, a.MapPosition + DownV);
                         break;
                     case GameInputs.Left:
-                        MoveActor(a, new Vector2(a.MapPosition.X - 1, a.MapPosition.Y));
+                        MoveActor(a, a.MapPosition + LeftV);
                         break;
                     case GameInputs.Right:
-                        MoveActor(a, new Vector2(a.MapPosition.X + 1, a.MapPosition.Y));
+                        MoveActor(a, a.MapPosition + RightV);
                         break;
                     default:
                         break;

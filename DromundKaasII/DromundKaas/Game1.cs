@@ -61,7 +61,7 @@ namespace DromundKaasII
         /// </summary>
         protected override void UnloadContent()
         {
-            //ScreenManager.Instance.UnloadContent();
+            ScreenManager.Instance.UnloadContent();
             //engineTask.Dispose();
         }
 

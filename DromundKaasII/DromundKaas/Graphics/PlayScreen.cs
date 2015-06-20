@@ -41,6 +41,7 @@ namespace DromundKaasII.Graphics
 
         public override void Run()
         {
+            base.Run();
             if (engine == null)
             {
                 this.Initialize();
@@ -74,7 +75,7 @@ namespace DromundKaasII.Graphics
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            input.UpdateInput();
+
             if (input.IsPressed(GameInputs.Up))
             {
                 engine.GameState.Player.DesiredAction = GameInputs.Up;

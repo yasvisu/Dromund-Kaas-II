@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using DromundKaasII.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -14,9 +16,16 @@ namespace DromundKaasII.Graphics
         protected ContentManager content;
         protected InputManager input;
 
+        public bool IsSwitchReady { get; set; }
+
         public virtual void Run()
         {
-
+            this.IsSwitchReady = false;
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(500);
+                this.IsSwitchReady = true;
+            });
         }
 
         public virtual void Pause()

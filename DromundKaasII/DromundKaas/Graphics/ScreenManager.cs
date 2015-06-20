@@ -50,6 +50,7 @@ namespace DromundKaasII.Graphics
             Screens[3] = Credits;
 
             currentScreen = Splash;
+            Splash.Run();
         }
 
         public static ScreenManager Instance
@@ -96,18 +97,20 @@ namespace DromundKaasII.Graphics
 
         private void CheckForSwitch(GameTime gameTime)
         {
-            
-            if (currentScreen is SplashScreen && (gameTime.TotalGameTime.TotalSeconds > 3 || Input.IsPressed(GameInputs.Pause)))
+            if (currentScreen.IsSwitchReady)
             {
-                this.SwitchScreen(Play);
-            }
-            else if (currentScreen is PlayScreen && Input.IsPressed(GameInputs.Pause))
-            {
-                this.SwitchScreen(Options, true);
-            }
-            else if (currentScreen is OptionsScreen && Input.IsPressed(GameInputs.Pause))
-            {
-                this.SwitchScreen(Play);
+                if (currentScreen is SplashScreen && (gameTime.TotalGameTime.TotalSeconds > 3 || Input.IsPressed(GameInputs.Pause)))
+                {
+                    this.SwitchScreen(Play);
+                }
+                else if (currentScreen is PlayScreen && Input.IsPressed(GameInputs.Pause))
+                {
+                    this.SwitchScreen(Options, true);
+                }
+                else if (currentScreen is OptionsScreen && Input.IsPressed(GameInputs.Pause))
+                {
+                    this.SwitchScreen(Play);
+                }
             }
         }
 

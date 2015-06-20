@@ -76,6 +76,7 @@ namespace DromundKaasII
                 Exit();
 
             ScreenManager.Instance.Update(gameTime);
+            Input.UpdateInput();
 
             base.Update(gameTime);
         }

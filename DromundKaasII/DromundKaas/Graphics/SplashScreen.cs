@@ -15,10 +15,6 @@ namespace DromundKaasII.Graphics
         Texture2D image;
         string path;
 
-        public override void Begin()
-        {
-
-        }
 
         public override void LoadContent()
         {

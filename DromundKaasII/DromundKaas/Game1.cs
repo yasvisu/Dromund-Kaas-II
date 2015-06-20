@@ -18,11 +18,15 @@ namespace DromundKaasII
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        InputManager Input;
+
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            Input = new InputManager();
+            Input.InputMode = InputModes.Keyboard;
         }
 
         /// <summary>
@@ -48,7 +52,7 @@ namespace DromundKaasII
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ScreenManager.Instance.LoadContent(Content);
+            ScreenManager.Instance.LoadContent(Content, Input);
         }
 
         /// <summary>
@@ -68,7 +72,7 @@ namespace DromundKaasII
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Input.IsPressed(GameInputs.Quit))
                 Exit();
 
             ScreenManager.Instance.Update(gameTime);

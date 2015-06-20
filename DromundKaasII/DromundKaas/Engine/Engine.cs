@@ -71,6 +71,8 @@ namespace DromundKaasII.Engine
 
         public bool IsRunning { get; set; }
 
+        public bool IsPaused { get; set; }
+
         public uint CycleCounter
         {
             get

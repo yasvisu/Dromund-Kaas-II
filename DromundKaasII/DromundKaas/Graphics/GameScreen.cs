@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using DromundKaasII.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,15 +12,22 @@ namespace DromundKaasII.Graphics
     public class GameScreen
     {
         protected ContentManager content;
+        protected InputManager input;
 
-        public virtual void Begin()
+        public virtual void Run()
         {
-            throw new NotImplementedException();
+
         }
 
+        public virtual void Pause()
+        {
+            
+        }
+        
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
+            this.input = ScreenManager.Instance.Input;
         }
 
         public virtual void UnloadContent()

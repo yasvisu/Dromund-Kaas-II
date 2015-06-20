@@ -17,7 +17,6 @@ namespace DromundKaasII.Graphics
         string path;
         Engine.Engine engine;
         Task engineTask;
-        InputManager input;
 
         Texture2D mytex;
         Texture2D mychar;
@@ -27,10 +26,31 @@ namespace DromundKaasII.Graphics
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
 
-        public override void Begin()
+        public void Initialize()
         {
             this.engine = new Engine.Engine();
-            engineTask = new AsyncTimer(engine.UpdateGameState, int.MaxValue, (ulong)engine.GameState.GameSpeed).StartAsync();
+            engineTask = new AsyncTimer(() =>
+            {
+                if (!engine.IsPaused && engine.IsRunning)
+                {
+                    engine.UpdateGameState();
+                }
+            },
+            int.MaxValue, (ulong)engine.GameState.GameSpeed).StartAsync();
+        }
+
+        public override void Run()
+        {
+            if (engine == null)
+            {
+                this.Initialize();
+            }
+            engine.IsPaused = false;
+        }
+
+        public override void Pause()
+        {
+            engine.IsPaused = true;
         }
 
         public override void LoadContent()
@@ -44,10 +64,6 @@ namespace DromundKaasII.Graphics
             hole = this.content.Load<Texture2D>("Tiles/default/hole");
             water = this.content.Load<Texture2D>("Tiles/default/water");
             wall = this.content.Load<Texture2D>("Tiles/default/wall");
-
-            input = new InputManager();
-            input.InputMode = InputModes.Keyboard;
-            
         }
 
         public override void UnloadContent()

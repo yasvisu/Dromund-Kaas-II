@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using DromundKaasII.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace DromundKaasII.Graphics
 {
@@ -14,7 +15,7 @@ namespace DromundKaasII.Graphics
         private static ScreenManager instance;
         public Vector2 Dimensions { private set; get; }
         public ContentManager Content { private set; get; }
-
+        public InputManager Input { private set; get; }
 
         GameScreen[] Screens;
 
@@ -24,6 +25,8 @@ namespace DromundKaasII.Graphics
         CreditsScreen Credits;
 
         GameScreen currentScreen;
+        Stack<GameScreen> stackedScreens;
+
         public GraphicsDevice GraphicsDevice;
         public SpriteBatch SpriteBatch;
 
@@ -32,6 +35,7 @@ namespace DromundKaasII.Graphics
         {
             Dimensions = new Vector2(640, 480);
             currentScreen = new SplashScreen();
+            stackedScreens = new Stack<GameScreen>();
 
             Screens = new GameScreen[4];
 
@@ -60,10 +64,11 @@ namespace DromundKaasII.Graphics
             }
         }
 
-        public void LoadContent(ContentManager Content)
+        public void LoadContent(ContentManager Content, InputManager Input)
         {
             this.Content = new ContentManager(Content.ServiceProvider, "Content");
-            for(int i=0; i<Screens.Length; i++)
+            this.Input = Input;
+            for (int i = 0; i < Screens.Length; i++)
             {
                 Screens[i].LoadContent();
             }
@@ -79,11 +84,9 @@ namespace DromundKaasII.Graphics
 
         public void Update(GameTime gameTime)
         {
+            CheckForSwitch(gameTime);
+
             currentScreen.Update(gameTime);
-            if(gameTime.TotalGameTime.TotalSeconds>3 && currentScreen is SplashScreen)
-            {
-                this.SwitchScreen(Play);
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -91,10 +94,37 @@ namespace DromundKaasII.Graphics
             currentScreen.Draw(spriteBatch);
         }
 
+        private void CheckForSwitch(GameTime gameTime)
+        {
+            
+            if (currentScreen is SplashScreen && (gameTime.TotalGameTime.TotalSeconds > 3 || Input.IsPressed(GameInputs.Pause)))
+            {
+                this.SwitchScreen(Play);
+            }
+            else if (currentScreen is PlayScreen && Input.IsPressed(GameInputs.Pause))
+            {
+                this.SwitchScreen(Options, true);
+            }
+            else if (currentScreen is OptionsScreen && Input.IsPressed(GameInputs.Pause))
+            {
+                this.SwitchScreen(Play);
+            }
+        }
+
         private void SwitchScreen(GameScreen G)
         {
+            this.SwitchScreen(G, false);
+        }
+
+        private void SwitchScreen(GameScreen G, bool stackScreen)
+        {
+            if (stackScreen)
+            {
+                stackedScreens.Push(currentScreen);
+                currentScreen.Pause();
+            }
             currentScreen = G;
-            G.Begin();
+            currentScreen.Run();
         }
     }
 }

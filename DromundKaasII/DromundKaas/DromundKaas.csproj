@@ -59,6 +59,7 @@
     <Compile Include="Exceptions\SpawnOccupiedException.cs" />
     <Compile Include="Exceptions\UnsupportedKeyException.cs" />
     <Compile Include="GameObjects\Actors\ActionTypeOptions.cs" />
+    <Compile Include="GameObjects\Actors\Directions.cs" />
     <Compile Include="GameObjects\Actors\NPCs\Npc.cs" />
     <Compile Include="GameObjects\Actors\NPCs\ZombieFriend.cs" />
     <Compile Include="GameObjects\Skills\SkillTargetPermissions.cs" />

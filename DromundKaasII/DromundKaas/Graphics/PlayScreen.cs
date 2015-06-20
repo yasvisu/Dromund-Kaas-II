@@ -96,7 +96,7 @@ namespace DromundKaasII.Graphics
         public override void Draw(SpriteBatch spriteBatch)
         {
             Vector2 playerOffset = -engine.GameState.Player.MapPosition;
-            Vector2 pixelOffset = new Vector2((640 - 64) / 2, (480 - 64) / 2);
+            Vector2 pixelOffset = new Vector2((ScreenManager.Instance.Dimensions.X - 64) / 2, (ScreenManager.Instance.Dimensions.Y - 64) / 2);
 
             for (int i = 0; i < engine.GameState.Map.GetLength(0); i++)
             {

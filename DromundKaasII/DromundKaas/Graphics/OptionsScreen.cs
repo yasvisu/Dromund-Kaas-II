@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.Graphics.UI;
+using DromundKaasII.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,9 +15,10 @@ namespace DromundKaasII.Graphics
     {
         private List<Button> buttons;
         private int activeIndex;
-        private bool buttonsActive;
+        private bool buttonToggleActive;
+        private Color TintColor;
 
-        private const int buttonTimeout = 150;
+        private int buttonTimeout;
 
         private int ActiveIndex
         {
@@ -45,9 +47,11 @@ namespace DromundKaasII.Graphics
         {
             base.LoadContent();
             this.buttons = new List<Button>();
-            this.buttons.Add(new Button() { Click = () => { }, Location = new Vector2(5, 5), Texture = content.Load<Texture2D>("button-sample") });
-            this.buttons.Add(new Button() { Click = () => { }, Location = new Vector2(60, 60), Texture = content.Load<Texture2D>("button-sample"), IsActive = true });
-            this.buttonsActive = true;
+            this.buttons.Add(new Button(() => { this.TintColor = Color.Red; }, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button(() => { this.TintColor = Color.Green; }, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
+            this.TintColor = Color.Red;
+            this.buttonToggleActive = true;
+            this.buttonTimeout = 150;
         }
 
         public override void UnloadContent()
@@ -58,27 +62,41 @@ namespace DromundKaasII.Graphics
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (this.buttonsActive)
+            if (this.buttonToggleActive)
             {
-                if (input.IsPressed(Input.GameInputs.Up))
+                if (input.IsPressed(GameInputs.Up))
                 {
-                    this.buttonsActive = false;
+                    this.buttonToggleActive = false;
                     this.ActiveIndex--;
                     Task.Factory.StartNew(() =>
                     {
-                        Thread.Sleep(buttonTimeout);
-                        this.buttonsActive = true;
+                        Thread.Sleep(this.buttonTimeout);
+                        this.buttonToggleActive = true;
                     });
                 }
-                else if (input.IsPressed(Input.GameInputs.Down))
+                else if (input.IsPressed(GameInputs.Down))
                 {
-                    this.buttonsActive = false;
+                    this.buttonToggleActive = false;
                     this.ActiveIndex++;
                     Task.Factory.StartNew(() =>
                     {
-                        Thread.Sleep(buttonTimeout);
-                        this.buttonsActive = true;
+                        Thread.Sleep(this.buttonTimeout);
+                        this.buttonToggleActive = true;
                     });
+                }
+                else if (input.IsPressed(GameInputs.Interact))
+                {
+                    if (buttons[activeIndex].IsActive)
+                    {
+                        buttons[activeIndex].IsActive = false;
+                        Console.Beep();
+                        buttons[activeIndex].Click();
+                        Task.Factory.StartNew(() => 
+                        {
+                            Thread.Sleep(this.buttonTimeout);
+                            buttons[activeIndex].IsActive = true;
+                        });
+                    }
                 }
             }
         }
@@ -87,7 +105,7 @@ namespace DromundKaasII.Graphics
         {
             for (int i = 0; i < buttons.Count; i++)
             {
-                spriteBatch.Draw(buttons[i].Texture, buttons[i].Location, (i == activeIndex ? Color.Red : Color.White));
+                spriteBatch.Draw(buttons[i].Texture, buttons[i].Location, (i == activeIndex ? this.TintColor : Color.White));
             }
         }
     }

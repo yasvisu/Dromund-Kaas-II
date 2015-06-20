@@ -23,6 +23,8 @@ namespace DromundKaasII.Graphics
         Texture2D mytile;
         Texture2D ground, tree, hole, water, wall;
 
+        Texture2D background;
+
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
 
@@ -65,6 +67,9 @@ namespace DromundKaasII.Graphics
             hole = this.content.Load<Texture2D>("Tiles/default/hole");
             water = this.content.Load<Texture2D>("Tiles/default/water");
             wall = this.content.Load<Texture2D>("Tiles/default/wall");
+
+            // starry background from http://amzwall.com/starry-background-image/
+            background = this.content.Load<Texture2D>("starry_background");
         }
 
         public override void UnloadContent()
@@ -98,6 +103,8 @@ namespace DromundKaasII.Graphics
         {
             Vector2 playerOffset = -engine.GameState.Player.MapPosition;
             Vector2 pixelOffset = new Vector2((ScreenManager.Instance.Dimensions.X - 64) / 2, (ScreenManager.Instance.Dimensions.Y - 64) / 2);
+
+            spriteBatch.Draw(background, Vector2.Zero + (playerOffset * 64) / 10, Color.White);
 
             for (int i = 0; i < engine.GameState.Map.GetLength(0); i++)
             {

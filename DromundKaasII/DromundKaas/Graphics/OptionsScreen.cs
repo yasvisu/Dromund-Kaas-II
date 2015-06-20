@@ -47,8 +47,8 @@ namespace DromundKaasII.Graphics
         {
             base.LoadContent();
             this.buttons = new List<Button>();
-            this.buttons.Add(new Button(() => { this.TintColor = Color.Red; }, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
-            this.buttons.Add(new Button(() => { this.TintColor = Color.Green; }, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button("Button One", () => { this.TintColor = Color.Red; }, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button("Button Two", () => { this.TintColor = Color.Green; }, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
             this.TintColor = Color.Red;
             this.buttonToggleActive = true;
             this.buttonTimeout = 150;
@@ -91,7 +91,7 @@ namespace DromundKaasII.Graphics
                         buttons[activeIndex].IsActive = false;
                         Console.Beep();
                         buttons[activeIndex].Click();
-                        Task.Factory.StartNew(() => 
+                        Task.Factory.StartNew(() =>
                         {
                             Thread.Sleep(this.buttonTimeout);
                             buttons[activeIndex].IsActive = true;
@@ -106,6 +106,7 @@ namespace DromundKaasII.Graphics
             for (int i = 0; i < buttons.Count; i++)
             {
                 spriteBatch.Draw(buttons[i].Texture, buttons[i].Location, (i == activeIndex ? this.TintColor : Color.White));
+                spriteBatch.DrawString(ScreenManager.Instance.TitleFont, buttons[i].Text, buttons[i].Location, (i == activeIndex ? this.TintColor : Color.White));
             }
         }
     }

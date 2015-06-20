@@ -30,6 +30,9 @@ namespace DromundKaasII.Graphics
         public GraphicsDevice GraphicsDevice;
         public SpriteBatch SpriteBatch;
 
+        public SpriteFont TitleFont;
+        public SpriteFont TextFont;
+
 
         public ScreenManager()
         {
@@ -73,6 +76,8 @@ namespace DromundKaasII.Graphics
             {
                 Screens[i].LoadContent();
             }
+            TitleFont = Content.Load<SpriteFont>("Fonts/TitleFont");
+            TextFont = Content.Load<SpriteFont>("Fonts/TextFont");
         }
 
         public void UnloadContent()

@@ -25,7 +25,7 @@ namespace DromundKaasII.Graphics
         public Image()
         {
             Path = Text = String.Empty;
-            FontName = "Fonts/Orbitron";
+            FontName = "Fonts/TextFont";
             Position = Vector2.Zero;
             Scale = Vector2.One;
             Alpha = 1.0f;

@@ -16,7 +16,7 @@ namespace DromundKaasII.Interfaces
         IPlayer Player { get; }
         Queue<ActorStateEvent> TranspiredEvents { get; }
         IEnumerable<IActor> Actors { get; }
-        IPathable[,] Map { get; }
+        ITile[,] Map { get; }
         int MapHeight { get; }
         int MapWidth { get; }
 

@@ -7,7 +7,7 @@ using DromundKaasII.GameObjects.Tiles;
 
 namespace DromundKaasII.Interfaces
 {
-    public interface IPathable
+    public interface ITile
     {
         double TraversalCost { get; }
         IActor Occupant { get; }

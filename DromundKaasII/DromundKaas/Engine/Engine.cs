@@ -127,7 +127,7 @@ namespace DromundKaasII.Engine
                 return this.gameState.Actors;
             }
         }
-        public IPathable[,] Map
+        public ITile[,] Map
         {
             get
             {

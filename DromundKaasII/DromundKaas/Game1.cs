@@ -1,13 +1,8 @@
-﻿using DromundKaasII.Engine;
+﻿using System;
+using DromundKaasII.Graphics;
+using DromundKaasII.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DromundKaasII.Input;
-using DromundKaasII.Tools;
-using DromundKaasII.Graphics;
 
 namespace DromundKaasII
 {
@@ -19,7 +14,7 @@ namespace DromundKaasII
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputManager Input;
-
+        
 
         public Game1()
         {

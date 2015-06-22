@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
+﻿using DromundKaasII.Engine.GameObjects.Skills;
 using DromundKaasII.Input;
-using DromundKaasII.Engine.GameObjects.Skills;
 
 namespace DromundKaasII.Interfaces
 {
     /// <summary>
-    /// IPlayer interface for all players.
+    /// Exposes player score, skills, and desired action.
     /// </summary>
     public interface IPlayer : IActor
     {

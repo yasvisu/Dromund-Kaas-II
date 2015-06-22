@@ -1,20 +1,18 @@
-﻿using DromundKaasII.Interfaces;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Concurrent;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using DromundKaasII.Input;
-using DromundKaasII.Engine.GameObjects.Skills;
-using DromundKaasII.Engine.GameObjects.Enums;
-using DromundKaasII.Engine.GameObjects.Tiles;
-using DromundKaasII.Engine.GameObjects.Actors.Players;
-using DromundKaasII.Engine.GameObjects.Actors.NPCs;
+
 using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
+using DromundKaasII.Engine.GameObjects.Actors.NPCs;
+using DromundKaasII.Engine.GameObjects.Actors.Players;
+using DromundKaasII.Engine.GameObjects.Enums;
+using DromundKaasII.Engine.GameObjects.Skills;
+using DromundKaasII.Engine.GameObjects.Tiles;
+using DromundKaasII.Input;
+using DromundKaasII.Interfaces;
+
+using Microsoft.Xna.Framework;
+
 namespace DromundKaasII.Engine
 {
     public class Engine : IEngine

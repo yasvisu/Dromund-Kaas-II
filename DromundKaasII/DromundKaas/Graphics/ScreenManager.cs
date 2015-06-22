@@ -77,10 +77,7 @@ namespace DromundKaasII.Graphics
         {
             this.Content = new ContentManager(Content.ServiceProvider, "Content");
             this.Input = Input;
-            for (int i = 0; i < Screens.Length; i++)
-            {
-                Screens[i].LoadContent();
-            }
+
             TitleFont = Content.Load<SpriteFont>("Fonts/TitleFont");
             TextFont = Content.Load<SpriteFont>("Fonts/TextFont");
 
@@ -91,7 +88,11 @@ namespace DromundKaasII.Graphics
             };
             Background.LoadContent();
 
-            Options.Background = Play.Background = Credits.Background = Background;
+            for (int i = 0; i < Screens.Length; i++)
+            {
+                Screens[i].LoadContent();
+                Screens[i].Background = Background;
+            }
         }
 
         public void UnloadContent()

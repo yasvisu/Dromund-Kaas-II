@@ -1,0 +1,51 @@
+﻿    Credits
+
+
+
+
+
+
+
+
+
+
+>>> Team
+..Dromund Kaas II
+
+Yasen Visulchev
+ +yasvisu
+
+
+Ivaylo Hristov
+ +IvayloKHristov
+
+
+Nickolay Paunov
+ +npaunov
+
+
+Asya Manolova
+
+
+Viktor Karaulanov
+
+
+
+>>>> Coding
+
+yasvisu:
+ >Engine
+ >Graphics
+ >Tools
+ >Game
+
+
+  IvayloKHristov:
+   >Graphics
+   >Tools
+
+ .
+ .
+ .
+
++End.

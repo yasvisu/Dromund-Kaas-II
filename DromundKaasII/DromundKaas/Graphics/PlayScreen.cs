@@ -35,7 +35,7 @@ namespace DromundKaasII.Graphics
             {
                 if (!engine.IsPaused && engine.IsRunning)
                 {
-                    engine.UpdateGameState();
+                    engine.Update();
                 }
             },
             int.MaxValue, (ulong)engine.GameState.GameSpeed).StartAsync();

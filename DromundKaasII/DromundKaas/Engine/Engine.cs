@@ -67,6 +67,8 @@ namespace DromundKaasII.Engine
             actorFactory.CreateNpc(z);
         }
 
+        #region Public Interface
+
         public GameState GameState { get; set; }
 
         public bool IsRunning { get; set; }
@@ -83,7 +85,7 @@ namespace DromundKaasII.Engine
 
         public SkillManager SkillManager { get; private set; }
 
-        public void UpdateGameState()
+        public void Update()
         {
             cycleCounter++;
             // Tell all actors to think of a next move
@@ -130,6 +132,9 @@ namespace DromundKaasII.Engine
             }
         }
 
+        #endregion
+
+        #region State Changers
         private void EnactSkill(Actor parent, Vector2 target)
         {
             // Check whether Skill can target ground, then enact Skill.
@@ -158,5 +163,7 @@ namespace DromundKaasII.Engine
             }
 
         }
+
+        #endregion
     }
 }

@@ -10,5 +10,10 @@ namespace DromundKaasII.Interfaces
     public interface IEngine
     {
         GameState GameState { get; }
+
+        bool IsRunning { get; set; }
+        bool IsPaused { get; set; }
+
+        void Update();
     }
 }

@@ -26,7 +26,6 @@ namespace DromundKaasII
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             Input = new InputManager();
-            Input.InputMode = InputModes.Keyboard;
         }
 
         /// <summary>
@@ -72,6 +71,20 @@ namespace DromundKaasII
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if(Input.GamePadConnected)
+            {
+                if (Input.InputMode != InputModes.GamePad)
+                {
+                    Console.Beep();
+                    Input.InputMode = InputModes.GamePad;
+                }
+            }
+            else if(Input.InputMode!=InputModes.Keyboard)
+            {
+                Console.Beep();
+                Input.InputMode = InputModes.Keyboard;
+            }
+
             if (Input.IsPressed(GameInputs.Quit))
                 Exit();
 

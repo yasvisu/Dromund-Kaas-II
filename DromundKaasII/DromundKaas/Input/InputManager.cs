@@ -29,6 +29,14 @@ namespace DromundKaasII.Input
         public GamePadState CurrentGamePad { get; set; }
         public PlayerIndex CurrentPlayerIndex { get; set; }
 
+        public bool GamePadConnected
+        {
+            get
+            {
+                return this.CurrentGamePad.IsConnected;
+            }
+        }
+
         public void UpdateInput()
         {
             if (InputMode == InputModes.Keyboard)

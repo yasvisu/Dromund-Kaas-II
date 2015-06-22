@@ -37,28 +37,28 @@ namespace DromundKaasII.Engine
 
         public Engine()
         {
-            this.GameState = new GameState(7, 7);
-            this.GameState.GameSpeed = GameSpeedOptions.Fast;
+            this.gameState = new GameState(7, 7);
+            this.gameState.GameSpeed = GameSpeedOptions.Fast;
             this.IsRunning = true;
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
-            actorFactory = new ActorFactory(GameState);
+            actorFactory = new ActorFactory(gameState);
 
-            for (int i = 0; i < this.GameState.Map.GetLength(0); i++)
+            for (int i = 0; i < this.gameState.Map.GetLength(0); i++)
             {
-                for (int j = 0; j < this.GameState.Map.GetLength(1); j++)
+                for (int j = 0; j < this.gameState.Map.GetLength(1); j++)
                 {
                     Tile temp = new Tile(100, TileTypeOptions.Ground);
-                    this.GameState.Map[i, j] = temp;
+                    this.gameState.Map[i, j] = temp;
                 }
             }
 
             // Sample water tile!
-            this.GameState.Map[1, 1] = new Tile(200, TileTypeOptions.Water);
-            this.GameState.Map[3, 1] = new Tile(1000, TileTypeOptions.Hole);
-            this.GameState.Map[1, 3] = new Tile(700, TileTypeOptions.Wall);
-            this.GameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree);
+            this.gameState.Map[1, 1] = new Tile(200, TileTypeOptions.Water);
+            this.gameState.Map[3, 1] = new Tile(1000, TileTypeOptions.Hole);
+            this.gameState.Map[1, 3] = new Tile(700, TileTypeOptions.Wall);
+            this.gameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree);
 
             Player p = new Primal(new Vector2(2, 2));
             actorFactory.CreatePlayer(p);
@@ -69,7 +69,7 @@ namespace DromundKaasII.Engine
 
         #region Public Interface
 
-        public GameState GameState { get; set; }
+        protected GameState gameState { get; set; }
 
         public bool IsRunning { get; set; }
 
@@ -85,18 +85,83 @@ namespace DromundKaasII.Engine
 
         public SkillManager SkillManager { get; private set; }
 
+        public IPlayer Player
+        {
+            get
+            {
+                return this.gameState.Player;
+            }
+        }
+        public Queue<ActorStateEvent> TranspiredEvents
+        {
+            get
+            {
+                return this.gameState.TranspiredEvents;
+            }
+        }
+        public GameSpeedOptions GameSpeed
+        {
+            get
+            {
+                return this.gameState.GameSpeed;
+            }
+            set
+            {
+                this.gameState.GameSpeed = value;
+            }
+        }
+        public GameDifficultyOptions GameDifficulty
+        {
+            get
+            {
+                return this.gameState.GameDifficulty;
+            }
+            set
+            {
+                this.gameState.GameDifficulty = value;
+            }
+        }
+        public IEnumerable<IActor> Actors
+        {
+            get
+            {
+                return this.gameState.Actors;
+            }
+        }
+        public IPathable[,] Map
+        {
+            get
+            {
+                return this.gameState.Map;
+            }
+        }
+        public int MapHeight
+        {
+            get
+            {
+                return this.gameState.MapHeight;
+            }
+        }
+        public int MapWidth
+        {
+            get
+            {
+                return this.gameState.MapWidth;
+            }
+        }
+
         public void Update()
         {
             cycleCounter++;
             // Tell all actors to think of a next move
-            foreach (Actor a in this.GameState.Actors)
+            foreach (Actor a in this.gameState.Actors)
             {
                 a.RemoveExpiredStatusEffects();
-                a.Act(this.GameState);
+                a.Act(this.gameState);
             }
 
             // Move / act all actors based on their desired move
-            foreach (Actor a in this.GameState.Actors)
+            foreach (Actor a in this.gameState.Actors)
             {
                 switch (a.DesiredAction)
                 {
@@ -120,7 +185,7 @@ namespace DromundKaasII.Engine
 
 
             // Prune dead actors
-            foreach (Actor a in this.GameState.Actors)
+            foreach (Actor a in this.gameState.Actors)
             {
                 if (a.Stats.Health <= 0)
                 {
@@ -150,16 +215,16 @@ namespace DromundKaasII.Engine
         private void MoveActor(Actor parent, Vector2 target)
         {
             // Check whether Actor can move on tile, then move Actor.
-            if (target.X < 0 || target.X >= GameState.MapWidth || target.Y < 0 || target.Y >= GameState.MapHeight)
+            if (target.X < 0 || target.X >= gameState.MapWidth || target.Y < 0 || target.Y >= gameState.MapHeight)
             {
                 return;
             }
-            if (parent.Stats.TraversalPower >= GameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
-                GameState.Map[(int)target.Y, (int)target.X].Occupant == null)
+            if (parent.Stats.TraversalPower >= gameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
+                gameState.Map[(int)target.Y, (int)target.X].Occupant == null)
             {
-                GameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
+                gameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
                 parent.MapPosition = target;
-                GameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
+                gameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
             }
 
         }

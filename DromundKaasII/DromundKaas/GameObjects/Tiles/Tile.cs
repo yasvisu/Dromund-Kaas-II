@@ -18,7 +18,7 @@ namespace DromundKaasII.GameObjects.Tiles
         }
 
         public double TraversalCost { get; set; }
-        public Actor Occupant { get; set; }
+        public IActor Occupant { get; set; }
         public TileTypeOptions TileType { get; set; }
     }
 }

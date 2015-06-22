@@ -39,7 +39,7 @@ namespace DromundKaasII.Graphics
                     engine.Update();
                 }
             },
-            int.MaxValue, (ulong)engine.GameState.GameSpeed).StartAsync();
+            int.MaxValue, (ulong)engine.GameSpeed).StartAsync();
         }
 
         public override void Run()
@@ -84,36 +84,36 @@ namespace DromundKaasII.Graphics
 
             if (input.IsPressed(GameInputs.Up))
             {
-                engine.GameState.Player.DesiredAction = GameInputs.Up;
+                engine.Player.DesiredAction = GameInputs.Up;
             }
             else if (input.IsPressed(GameInputs.Down))
             {
-                engine.GameState.Player.DesiredAction = GameInputs.Down;
+                engine.Player.DesiredAction = GameInputs.Down;
             }
             else if (input.IsPressed(GameInputs.Left))
             {
-                engine.GameState.Player.DesiredAction = GameInputs.Left;
+                engine.Player.DesiredAction = GameInputs.Left;
             }
             else if (input.IsPressed(GameInputs.Right))
             {
-                engine.GameState.Player.DesiredAction = GameInputs.Right;
+                engine.Player.DesiredAction = GameInputs.Right;
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 playerOffset = -engine.GameState.Player.MapPosition;
+            Vector2 playerOffset = -engine.Player.MapPosition;
             Vector2 pixelOffset = new Vector2((ScreenManager.Instance.Dimensions.X - 64) / 2, (ScreenManager.Instance.Dimensions.Y - 64) / 2);
 
             spriteBatch.Draw(background, Vector2.Zero + (playerOffset * 64) / 10, Color.White);
 
-            for (int i = 0; i < engine.GameState.Map.GetLength(0); i++)
+            for (int i = 0; i < engine.Map.GetLength(0); i++)
             {
-                for (int j = 0; j < engine.GameState.Map.GetLength(1); j++)
+                for (int j = 0; j < engine.Map.GetLength(1); j++)
                 {
                     Vector2 destination = new Vector2((j + playerOffset.X) * 64, (i + playerOffset.Y) * 64) + pixelOffset;
                     Texture2D ToDraw = mytile;
-                    switch (engine.GameState.Map[i, j].TileType)
+                    switch (engine.Map[i, j].TileType)
                     {
                         case TileTypeOptions.Ground:
                             ToDraw = ground;
@@ -132,7 +132,7 @@ namespace DromundKaasII.Graphics
                             break;
                     }
                     spriteBatch.Draw(ToDraw, destination);
-                    if (engine.GameState.Map[i, j].Occupant != null)
+                    if (engine.Map[i, j].Occupant != null)
                     {
                         spriteBatch.Draw(mychar, destination);
                     }

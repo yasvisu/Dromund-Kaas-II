@@ -84,7 +84,14 @@ namespace DromundKaasII.Graphics
             TitleFont = Content.Load<SpriteFont>("Fonts/TitleFont");
             TextFont = Content.Load<SpriteFont>("Fonts/TextFont");
 
-            Options.Background = Play.Background;
+            // starry background from http://amzwall.com/starry-background-image/
+            Image Background = new Image()
+            {
+                Path = "starry_background",
+            };
+            Background.LoadContent();
+
+            Options.Background = Play.Background = Credits.Background = Background;
         }
 
         public void UnloadContent()

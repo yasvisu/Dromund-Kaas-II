@@ -28,8 +28,6 @@ namespace DromundKaasII.Graphics
 
         public IEngineOptions EngineOptions { get; set; }
 
-        public Image Background { get; set; }
-
         private int ActiveIndex
         {
             get
@@ -126,10 +124,7 @@ namespace DromundKaasII.Graphics
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Background != null)
-            {
-                Background.Draw(spriteBatch);
-            }
+            base.Draw(spriteBatch);
 
             Point penPoint = (ScreenManager.Instance.Dimensions * new Vector2(0.10f, 0.10f)).ToPoint();
             Point sizePoint = (ScreenManager.Instance.Dimensions * new Vector2(0.80f, 0.20f)).ToPoint();

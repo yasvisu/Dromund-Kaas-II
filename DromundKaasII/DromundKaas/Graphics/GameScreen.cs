@@ -16,6 +16,8 @@ namespace DromundKaasII.Graphics
         protected ContentManager content;
         protected InputManager input;
 
+        public Image Background { get; set; }
+
         public bool IsSwitchReady { get; set; }
 
         public virtual void Run()
@@ -30,9 +32,9 @@ namespace DromundKaasII.Graphics
 
         public virtual void Pause()
         {
-            
+
         }
-        
+
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
@@ -50,6 +52,10 @@ namespace DromundKaasII.Graphics
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            if (Background != null)
+            {
+                Background.Draw(spriteBatch);
+            }
         }
     }
 }

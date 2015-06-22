@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DromundKaasII.GameObjects.Enums;
 using DromundKaasII.Graphics.UI;
 using DromundKaasII.Input;
 using DromundKaasII.Interfaces;
@@ -52,10 +53,10 @@ namespace DromundKaasII.Graphics
         {
             base.LoadContent();
             this.buttons = new List<Button>();
-            this.buttons.Add(new Button("Toggle Speed", () => { this.TintColor = Color.Red; }, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button("Toggle Speed", this.CycleSpeed, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
 
 
-            this.buttons.Add(new Button("Toggle Difficulty", () => { this.TintColor = Color.Green; }, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button("Toggle Difficulty", this.CycleDifficulty, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
 
 
             this.TintColor = Color.Red;
@@ -74,6 +75,7 @@ namespace DromundKaasII.Graphics
         {
             base.Update(gameTime);
 
+            // React to button clicks
             if (this.buttonToggleActive)
             {
                 if (input.IsPressed(GameInputs.Up))
@@ -111,6 +113,11 @@ namespace DromundKaasII.Graphics
                     }
                 }
             }
+
+            // Refresh button text
+            buttons[0].Text = string.Format("Toggle Speed: {0}", EngineOptions.GameSpeed.ToString());
+            buttons[1].Text = string.Format("Toggle Difficulty: {0}", EngineOptions.GameDifficulty.ToString());
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -130,6 +137,38 @@ namespace DromundKaasII.Graphics
 
 
                 penPoint.Y += (int)(0.30 * ScreenManager.Instance.Dimensions.Y);
+            }
+        }
+
+        private void CycleSpeed()
+        {
+            switch(this.EngineOptions.GameSpeed)
+            {
+                case GameSpeedOptions.Fast:
+                    this.EngineOptions.GameSpeed = GameSpeedOptions.Slow;
+                    break;
+                case GameSpeedOptions.Normal:
+                    this.EngineOptions.GameSpeed = GameSpeedOptions.Fast;
+                    break;
+                case GameSpeedOptions.Slow:
+                    this.EngineOptions.GameSpeed = GameSpeedOptions.Normal;
+                    break;
+            }
+        }
+
+        private void CycleDifficulty()
+        {
+            switch(this.EngineOptions.GameDifficulty)
+            {
+                case GameDifficultyOptions.Hard:
+                    this.EngineOptions.GameDifficulty = GameDifficultyOptions.Easy;
+                    break;
+                case GameDifficultyOptions.Medium:
+                    this.EngineOptions.GameDifficulty = GameDifficultyOptions.Hard;
+                    break;
+                case GameDifficultyOptions.Easy:
+                    this.EngineOptions.GameDifficulty = GameDifficultyOptions.Medium;
+                    break;
             }
         }
     }

@@ -8,15 +8,13 @@ using DromundKaasII.GameObjects.Enums;
 
 namespace DromundKaasII.Interfaces
 {
-    public interface IEngine
+    public interface IEngine : IEngineOptions
     {
         bool IsRunning { get; set; }
         bool IsPaused { get; set; }
 
         IPlayer Player { get; }
         Queue<ActorStateEvent> TranspiredEvents { get; }
-        GameSpeedOptions GameSpeed { get; set; }
-        GameDifficultyOptions GameDifficulty { get; set; }
         IEnumerable<IActor> Actors { get; }
         IPathable[,] Map { get; }
         int MapHeight { get; }

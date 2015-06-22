@@ -98,6 +98,7 @@
     <Compile Include="Input\KeyboardInputScheme.cs" />
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="Interfaces\IEngineOptions.cs" />
     <Compile Include="Interfaces\IPathable.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Program.cs" />

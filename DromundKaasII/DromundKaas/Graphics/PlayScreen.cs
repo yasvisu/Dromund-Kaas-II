@@ -17,6 +17,7 @@ namespace DromundKaasII.Graphics
         Texture2D image;
         string path;
         Task engineTask;
+        IEngine engine;
 
         Texture2D mytex;
         Texture2D mychar;
@@ -28,34 +29,40 @@ namespace DromundKaasII.Graphics
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
 
-        public IEngine Engine { get; private set; }
+        public IEngineOptions EngineOptions
+        {
+            get
+            {
+                return this.engine;
+            }
+        }
 
         public void Initialize()
         {
-            this.Engine = new Engine.Engine();
+            this.engine = new Engine.Engine();
             engineTask = new AsyncTimer(() =>
             {
-                if (!Engine.IsPaused && Engine.IsRunning)
+                if (!engine.IsPaused && engine.IsRunning)
                 {
-                    Engine.Update();
+                    engine.Update();
                 }
             },
-            int.MaxValue, (ulong)Engine.GameSpeed).StartAsync();
+            int.MaxValue, (ulong)engine.GameSpeed).StartAsync();
         }
 
         public override void Run()
         {
             base.Run();
-            if (Engine == null)
+            if (engine == null)
             {
                 this.Initialize();
             }
-            Engine.IsPaused = false;
+            engine.IsPaused = false;
         }
 
         public override void Pause()
         {
-            Engine.IsPaused = true;
+            engine.IsPaused = true;
         }
 
         public override void LoadContent()
@@ -85,36 +92,36 @@ namespace DromundKaasII.Graphics
 
             if (input.IsPressed(GameInputs.Up))
             {
-                Engine.Player.DesiredAction = GameInputs.Up;
+                engine.Player.DesiredAction = GameInputs.Up;
             }
             else if (input.IsPressed(GameInputs.Down))
             {
-                Engine.Player.DesiredAction = GameInputs.Down;
+                engine.Player.DesiredAction = GameInputs.Down;
             }
             else if (input.IsPressed(GameInputs.Left))
             {
-                Engine.Player.DesiredAction = GameInputs.Left;
+                engine.Player.DesiredAction = GameInputs.Left;
             }
             else if (input.IsPressed(GameInputs.Right))
             {
-                Engine.Player.DesiredAction = GameInputs.Right;
+                engine.Player.DesiredAction = GameInputs.Right;
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 playerOffset = -Engine.Player.MapPosition;
+            Vector2 playerOffset = -engine.Player.MapPosition;
             Vector2 pixelOffset = new Vector2((ScreenManager.Instance.Dimensions.X - 64) / 2, (ScreenManager.Instance.Dimensions.Y - 64) / 2);
 
             spriteBatch.Draw(background, Vector2.Zero + (playerOffset * 64) / 10, Color.White);
 
-            for (int i = 0; i < Engine.Map.GetLength(0); i++)
+            for (int i = 0; i < engine.Map.GetLength(0); i++)
             {
-                for (int j = 0; j < Engine.Map.GetLength(1); j++)
+                for (int j = 0; j < engine.Map.GetLength(1); j++)
                 {
                     Vector2 destination = new Vector2((j + playerOffset.X) * 64, (i + playerOffset.Y) * 64) + pixelOffset;
                     Texture2D ToDraw = mytile;
-                    switch (Engine.Map[i, j].TileType)
+                    switch (engine.Map[i, j].TileType)
                     {
                         case TileTypeOptions.Ground:
                             ToDraw = ground;
@@ -133,7 +140,7 @@ namespace DromundKaasII.Graphics
                             break;
                     }
                     spriteBatch.Draw(ToDraw, destination);
-                    if (Engine.Map[i, j].Occupant != null)
+                    if (engine.Map[i, j].Occupant != null)
                     {
                         spriteBatch.Draw(mychar, destination);
                     }

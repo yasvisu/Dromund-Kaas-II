@@ -13,9 +13,7 @@ namespace DromundKaasII.Graphics
     public class ScreenManager
     {
         private static ScreenManager instance;
-        public Vector2 Dimensions { private set; get; }
-        public ContentManager Content { private set; get; }
-        public InputManager Input { private set; get; }
+
 
         GameScreen[] Screens;
 
@@ -30,8 +28,6 @@ namespace DromundKaasII.Graphics
         public GraphicsDevice GraphicsDevice;
         public SpriteBatch SpriteBatch;
 
-        public SpriteFont TitleFont;
-        public SpriteFont TextFont;
 
 
         public ScreenManager()
@@ -67,6 +63,15 @@ namespace DromundKaasII.Graphics
                 return instance;
             }
         }
+
+        public SpriteFont TitleFont { get; private set; }
+        public SpriteFont TextFont { get; private set; }
+
+        public Vector2 Dimensions { private set; get; }
+        public ContentManager Content { private set; get; }
+        public InputManager Input { private set; get; }
+
+        public bool PlayCredits { get; set; }
 
         public void LoadContent(ContentManager Content, InputManager Input)
         {
@@ -111,13 +116,17 @@ namespace DromundKaasII.Graphics
                     this.SwitchScreen(Play);
                     Options.EngineOptions = Play.EngineOptions;
                 }
-                else if (currentScreen is PlayScreen && Input.IsPressed(GameInputs.Pause))
+                else if ((currentScreen is PlayScreen || currentScreen is CreditsScreen) && Input.IsPressed(GameInputs.Pause))
                 {
                     this.SwitchScreen(Options, true);
                 }
                 else if (currentScreen is OptionsScreen && Input.IsPressed(GameInputs.Pause))
                 {
                     this.SwitchScreen(Play);
+                }
+                else if (!(currentScreen is CreditsScreen) && PlayCredits)
+                {
+                    this.SwitchScreen(Credits);
                 }
             }
         }

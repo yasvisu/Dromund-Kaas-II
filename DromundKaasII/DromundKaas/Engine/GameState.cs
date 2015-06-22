@@ -9,6 +9,7 @@ using System.Text;
 using DromundKaasII.GameObjects;
 using DromundKaasII.Input;
 using DromundKaasII.GameObjects.Actors.Players;
+using DromundKaasII.Interfaces;
 
 namespace DromundKaasII.Engine
 {
@@ -23,7 +24,7 @@ namespace DromundKaasII.Engine
             this.TranspiredEvents = new Queue<ActorStateEvent>();
         }
 
-        public Player Player { get; set; }
+        public IPlayer Player { get; set; }
         public Queue<ActorStateEvent> TranspiredEvents { get; private set; }
         public GameSpeedOptions GameSpeed { get; set; }
         public GameDifficultyOptions GameDifficulty { get; set; }

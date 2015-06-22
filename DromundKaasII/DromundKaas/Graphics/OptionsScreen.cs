@@ -20,6 +20,8 @@ namespace DromundKaasII.Graphics
 
         private int buttonTimeout;
 
+        Texture2D fadeout;
+
         private int ActiveIndex
         {
             get
@@ -47,11 +49,17 @@ namespace DromundKaasII.Graphics
         {
             base.LoadContent();
             this.buttons = new List<Button>();
-            this.buttons.Add(new Button("Button One", () => { this.TintColor = Color.Red; }, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
-            this.buttons.Add(new Button("Button Two", () => { this.TintColor = Color.Green; }, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button("Toggle Speed", () => { this.TintColor = Color.Red; }, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
+
+
+            this.buttons.Add(new Button("Toggle Difficulty", () => { this.TintColor = Color.Green; }, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
+
+
             this.TintColor = Color.Red;
             this.buttonToggleActive = true;
             this.buttonTimeout = 150;
+
+            this.fadeout = content.Load<Texture2D>("fadeout");
         }
 
         public override void UnloadContent()
@@ -62,6 +70,7 @@ namespace DromundKaasII.Graphics
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
             if (this.buttonToggleActive)
             {
                 if (input.IsPressed(GameInputs.Up))
@@ -103,10 +112,21 @@ namespace DromundKaasII.Graphics
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            Point penPoint = (ScreenManager.Instance.Dimensions * new Vector2(0.10f, 0.10f)).ToPoint();
+            Point sizePoint = (ScreenManager.Instance.Dimensions * new Vector2(0.80f, 0.20f)).ToPoint();
             for (int i = 0; i < buttons.Count; i++)
             {
-                spriteBatch.Draw(buttons[i].Texture, buttons[i].Location, (i == activeIndex ? this.TintColor : Color.White));
-                spriteBatch.DrawString(ScreenManager.Instance.TitleFont, buttons[i].Text, buttons[i].Location, (i == activeIndex ? this.TintColor : Color.White));
+                Color tempTint = (i == activeIndex ? this.TintColor : Color.White);
+                spriteBatch.Draw(fadeout, new Rectangle(penPoint, sizePoint), tempTint);
+
+                Vector2 textPosition = penPoint.ToVector2() + (sizePoint.ToVector2() - ScreenManager.Instance.TitleFont.MeasureString(buttons[i].Text))/2;
+
+                spriteBatch.DrawString(ScreenManager.Instance.TitleFont,buttons[i].Text,
+                    textPosition,
+                    tempTint);
+
+
+                penPoint.Y += (int)(0.30 * ScreenManager.Instance.Dimensions.Y);
             }
         }
     }

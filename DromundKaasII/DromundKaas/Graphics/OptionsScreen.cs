@@ -15,6 +15,8 @@ namespace DromundKaasII.Graphics
 {
     public class OptionsScreen : GameScreen
     {
+        private const float buttonTransparency = 0.50f;
+
         private List<Button> buttons;
         private int activeIndex;
         private bool buttonToggleActive;
@@ -134,7 +136,7 @@ namespace DromundKaasII.Graphics
             for (int i = 0; i < buttons.Count; i++)
             {
                 Color tempTint = (i == activeIndex ? this.TintColor : Color.White);
-                spriteBatch.Draw(fadeout, new Rectangle(penPoint, sizePoint), tempTint);
+                spriteBatch.Draw(fadeout, new Rectangle(penPoint, sizePoint), tempTint * buttonTransparency);
 
                 Vector2 textPosition = penPoint.ToVector2() + (sizePoint.ToVector2() - ScreenManager.Instance.TitleFont.MeasureString(buttons[i].Text)) / 2;
 

@@ -78,6 +78,8 @@ namespace DromundKaasII.Graphics
             }
             TitleFont = Content.Load<SpriteFont>("Fonts/TitleFont");
             TextFont = Content.Load<SpriteFont>("Fonts/TextFont");
+
+            Options.Background = Play.Background;
         }
 
         public void UnloadContent()

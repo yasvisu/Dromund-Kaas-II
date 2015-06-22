@@ -26,6 +26,8 @@ namespace DromundKaasII.Graphics
 
         public IEngineOptions EngineOptions { get; set; }
 
+        public Image Background { get; set; }
+
         private int ActiveIndex
         {
             get
@@ -122,6 +124,11 @@ namespace DromundKaasII.Graphics
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (Background != null)
+            {
+                Background.Draw(spriteBatch);
+            }
+
             Point penPoint = (ScreenManager.Instance.Dimensions * new Vector2(0.10f, 0.10f)).ToPoint();
             Point sizePoint = (ScreenManager.Instance.Dimensions * new Vector2(0.80f, 0.20f)).ToPoint();
             for (int i = 0; i < buttons.Count; i++)
@@ -142,7 +149,7 @@ namespace DromundKaasII.Graphics
 
         private void CycleSpeed()
         {
-            switch(this.EngineOptions.GameSpeed)
+            switch (this.EngineOptions.GameSpeed)
             {
                 case GameSpeedOptions.Fast:
                     this.EngineOptions.GameSpeed = GameSpeedOptions.Slow;
@@ -158,7 +165,7 @@ namespace DromundKaasII.Graphics
 
         private void CycleDifficulty()
         {
-            switch(this.EngineOptions.GameDifficulty)
+            switch (this.EngineOptions.GameDifficulty)
             {
                 case GameDifficultyOptions.Hard:
                     this.EngineOptions.GameDifficulty = GameDifficultyOptions.Easy;

@@ -63,6 +63,7 @@
     <Compile Include="Engine\GameObjects\Actors\NPCs\Npc.cs" />
     <Compile Include="Engine\GameObjects\Actors\NPCs\ZombieFriend.cs" />
     <Compile Include="Engine\GameObjects\Skills\SkillTargetPermissions.cs" />
+    <Compile Include="Engine\Interfaces\IPathable.cs" />
     <Compile Include="Graphics\CreditsScreen.cs" />
     <Compile Include="Graphics\Image.cs" />
     <Compile Include="Graphics\OptionsScreen.cs" />

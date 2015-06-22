@@ -8,7 +8,6 @@ namespace DromundKaasII.Interfaces
 {
     public interface ITile
     {
-        double TraversalCost { get; }
         IActor Occupant { get; }
         TileTypeOptions TileType { get; }
     }

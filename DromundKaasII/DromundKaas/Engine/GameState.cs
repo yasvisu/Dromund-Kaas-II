@@ -11,6 +11,7 @@ using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Enums;
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Tiles;
+using DromundKaasII.Engine.Interfaces;
 
 namespace DromundKaasII.Engine
 {
@@ -30,7 +31,7 @@ namespace DromundKaasII.Engine
         public GameSpeedOptions GameSpeed { get; set; }
         public GameDifficultyOptions GameDifficulty { get; set; }
         public List<Actor> Actors { get; set; }
-        public Tile[,] Map { get; set; }
+        public IPathable[,] Map { get; set; }
         public int MapHeight
         {
             get

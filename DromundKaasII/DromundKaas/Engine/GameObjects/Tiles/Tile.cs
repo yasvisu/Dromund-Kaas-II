@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DromundKaasII.Engine.Interfaces;
 using DromundKaasII.Interfaces;
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Tiles
 {
-    public class Tile : ITile
+    public class Tile : IPathable
     {
         public Tile(double TraversalCost, TileTypeOptions TileType)
         {

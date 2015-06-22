@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
 namespace DromundKaasII.Input
 {
+    /// <summary>
+    /// Input scheme of a Keyboard.
+    /// </summary>
     public class KeyboardInputScheme
     {
         #region Defaults
@@ -30,6 +29,9 @@ namespace DromundKaasII.Input
         public const Keys default_Quit = Keys.Escape;
         #endregion
 
+        /// <summary>
+        /// Default constructor setting all the keys to their default values.
+        /// </summary>
         public KeyboardInputScheme()
         {
             this.Up = default_Up;

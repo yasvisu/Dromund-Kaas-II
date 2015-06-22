@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DromundKaasII.Input
+﻿namespace DromundKaasII.Input
 {
+    /// <summary>
+    /// Modes of input, by device.
+    /// </summary>
     public enum InputModes
     {
+        /// <summary>
+        /// Input by keyboard.
+        /// </summary>
         Keyboard,
+
+        /// <summary>
+        /// Input by GamePad.
+        /// </summary>
         GamePad
     }
 }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
 namespace DromundKaasII.Input
 {
+    /// <summary>
+    /// Input scheme of a GamePad.
+    /// </summary>
     public class GamePadInputScheme
     {
         #region Defaults
@@ -30,6 +29,9 @@ namespace DromundKaasII.Input
         public const Buttons default_Quit = Buttons.Back | Buttons.Start;
         #endregion
 
+        /// <summary>
+        /// Default constructor setting all the keys to their default values.
+        /// </summary>
         public GamePadInputScheme()
         {
             this.Up = default_Up;

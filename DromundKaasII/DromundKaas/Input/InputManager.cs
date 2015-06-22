@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Input;
+﻿using DromundKaasII.Engine.Exceptions;
+
 using Microsoft.Xna.Framework;
-using DromundKaasII.Engine.Exceptions;
+using Microsoft.Xna.Framework.Input;
 
 namespace DromundKaasII.Input
 {
+    /// <summary>
+    /// Manager for input device abstraction.
+    /// </summary>
     public class InputManager
     {
+        /// <summary>
+        /// Default constructor for PlayerIndex.One and default Keyboard InputMode.
+        /// </summary>
         public InputManager()
         {
             this.InputMode = InputModes.Keyboard;
@@ -20,15 +23,41 @@ namespace DromundKaasII.Input
             this.CurrentGamePad = GamePad.GetState(CurrentPlayerIndex);
         }
 
+        /// <summary>
+        /// The current device the manager is listening to.
+        /// </summary>
         public InputModes InputMode { get; set; }
 
+        /// <summary>
+        /// The Keyboard key scheme the manager is listening to and mapping to GameInputs
+        /// </summary>
         public KeyboardInputScheme KeyboardScheme { get; set; }
+
+        /// <summary>
+        /// The last retrieved state of the keyboard.
+        /// </summary>
         public KeyboardState CurrentKeyboard { get; set; }
 
+
+        /// <summary>
+        /// The Keyboard key scheme the manager is listening to and mapping to GameInputs
+        /// </summary>
         public GamePadInputScheme GamePadScheme { get; set; }
+
+        /// <summary>
+        /// The last retrieved state of the keyboard.
+        /// </summary>
         public GamePadState CurrentGamePad { get; set; }
+
+        /// <summary>
+        /// The current PlayerIndex GamePad being listened to.
+        /// </summary>
         public PlayerIndex CurrentPlayerIndex { get; set; }
 
+
+        /// <summary>
+        /// Whether the GamePad is connected.
+        /// </summary>
         public bool GamePadConnected
         {
             get
@@ -37,6 +66,9 @@ namespace DromundKaasII.Input
             }
         }
 
+        /// <summary>
+        /// Updates the states of the input devices the manager is checking.
+        /// </summary>
         public void UpdateInput()
         {
             if (InputMode == InputModes.Keyboard)
@@ -49,6 +81,11 @@ namespace DromundKaasII.Input
             }
         }
 
+        /// <summary>
+        /// Checks whether the button the GameInput corresponds to is being pressed on the current device.
+        /// </summary>
+        /// <param name="Input">The GameInput to map and check.</param>
+        /// <returns></returns>
         public bool IsPressed(GameInputs Input)
         {
             switch (Input)

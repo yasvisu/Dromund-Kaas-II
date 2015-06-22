@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace DromundKaasII.GameObjects.Actors.Players.Tier1
+namespace DromundKaasII.Engine.GameObjects.Actors.Players.Tier1
 {
     public abstract class Tier1 : Player
     {

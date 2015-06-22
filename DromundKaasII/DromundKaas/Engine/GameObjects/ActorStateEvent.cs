@@ -1,11 +1,11 @@
-﻿using DromundKaasII.GameObjects.Actors;
-using DromundKaasII.GameObjects.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DromundKaasII.Engine.GameObjects.Enums;
+using DromundKaasII.Engine.GameObjects.Actors;
 
-namespace DromundKaasII.GameObjects
+namespace DromundKaasII.Engine.GameObjects
 {
     public class ActorStateEvent
     {

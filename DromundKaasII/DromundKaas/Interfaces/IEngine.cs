@@ -1,10 +1,9 @@
-﻿using DromundKaasII.Engine;
-using DromundKaasII.GameObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DromundKaasII.GameObjects.Enums;
+using DromundKaasII.Engine;
+using DromundKaasII.Engine.GameObjects;
 
 namespace DromundKaasII.Interfaces
 {

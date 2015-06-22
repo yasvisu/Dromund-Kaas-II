@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace DromundKaasII.GameObjects.Actors.NPCs
+namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
 {
     public abstract class Npc : Actor
     {

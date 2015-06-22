@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DromundKaasII.GameObjects.Enums
+namespace DromundKaasII.Engine.GameObjects.Enums
 {
     /// <summary>
     /// Game Speed options, for the rate at which the Engine is updated.

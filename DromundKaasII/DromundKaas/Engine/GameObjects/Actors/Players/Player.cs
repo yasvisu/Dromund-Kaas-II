@@ -6,9 +6,9 @@ using DromundKaasII.Input;
 using DromundKaasII.Interfaces;
 using Microsoft.Xna.Framework;
 
-namespace DromundKaasII.GameObjects.Actors.Players
+namespace DromundKaasII.Engine.GameObjects.Actors.Players
 {
-    using DromundKaasII.GameObjects.Skills;
+    using DromundKaasII.Engine.GameObjects.Skills;
 
     public abstract class Player : Actor, IPlayer
     {
@@ -28,7 +28,7 @@ namespace DromundKaasII.GameObjects.Actors.Players
 
         public Skill[] PlayerSkills { get; protected set; }
 
-        public override void Act(Engine.GameState G)
+        public override void Act(GameState G)
         {
             base.Act(G);
         }

@@ -1,15 +1,16 @@
-﻿using DromundKaasII.GameObjects.Actors;
-using DromundKaasII.GameObjects.Enums;
-using DromundKaasII.GameObjects.Tiles;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DromundKaasII.GameObjects;
+
+using Microsoft.Xna.Framework;
+
 using DromundKaasII.Input;
-using DromundKaasII.GameObjects.Actors.Players;
 using DromundKaasII.Interfaces;
+using DromundKaasII.Engine.GameObjects;
+using DromundKaasII.Engine.GameObjects.Enums;
+using DromundKaasII.Engine.GameObjects.Actors;
+using DromundKaasII.Engine.GameObjects.Tiles;
 
 namespace DromundKaasII.Engine
 {

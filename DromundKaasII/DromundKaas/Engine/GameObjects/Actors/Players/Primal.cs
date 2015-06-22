@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using DromundKaasII.Engine.GameObjects.Skills;
 
-namespace DromundKaasII.GameObjects.Actors.Players
+namespace DromundKaasII.Engine.GameObjects.Actors.Players
 {
-    using DromundKaasII.GameObjects.Skills;
+
 
     public class Primal : Player 
     {

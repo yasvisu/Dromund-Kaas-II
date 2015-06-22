@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DromundKaasII.GameObjects.Skills
+namespace DromundKaasII.Engine.GameObjects.Skills
 {
     [Flags]
     public enum SkillTargetPermissions

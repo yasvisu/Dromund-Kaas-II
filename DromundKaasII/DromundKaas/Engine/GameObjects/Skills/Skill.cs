@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DromundKaasII.GameObjects.Actors;
 using Microsoft.Xna.Framework;
 
-namespace DromundKaasII.GameObjects.Skills
+namespace DromundKaasII.Engine.GameObjects.Skills
 {
     public class Skill
     {

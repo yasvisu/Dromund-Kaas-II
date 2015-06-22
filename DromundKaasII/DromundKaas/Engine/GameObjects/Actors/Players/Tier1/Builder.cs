@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace DromundKaasII.GameObjects.Actors.Players.Tier1
+namespace DromundKaasII.Engine.GameObjects.Actors.Players.Tier1
 {
-    class Apprentice : Tier1
+    class Builder : Tier1
     {
-        public Apprentice(Vector2 MapPosition)
+        public Builder(Vector2 MapPosition)
             : base(MapPosition)
         {
 
         }
 
-        public Apprentice(Primal candidate)
+        public Builder(Primal candidate)
             : base(candidate)
         {
             candidate.Stats.Dexterity += 1;
-            candidate.Stats.Intelligence += 2;
-            candidate.Stats.Psychic += 2;
+            candidate.Stats.Constitution += 2;
+            candidate.Stats.Wisdom += 2;
         }
     }
 }

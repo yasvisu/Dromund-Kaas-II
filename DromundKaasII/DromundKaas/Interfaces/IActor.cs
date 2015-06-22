@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DromundKaasII.Engine;
-using DromundKaasII.GameObjects.Actors;
+using DromundKaasII.Engine.GameObjects.Actors;
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Interfaces

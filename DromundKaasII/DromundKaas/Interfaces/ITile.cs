@@ -1,9 +1,8 @@
-﻿using DromundKaasII.GameObjects.Actors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DromundKaasII.GameObjects.Tiles;
+using DromundKaasII.Engine.GameObjects.Tiles;
 
 namespace DromundKaasII.Interfaces
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DromundKaasII.GameObjects.Tiles
+namespace DromundKaasII.Engine.GameObjects.Tiles
 {
     /// <summary>
     /// Options for tile type.

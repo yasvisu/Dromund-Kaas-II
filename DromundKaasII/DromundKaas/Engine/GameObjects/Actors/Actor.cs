@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DromundKaasII.GameObjects.Enums;
 using DromundKaasII.Engine;
 using DromundKaasII.Input;
+using DromundKaasII.Engine.GameObjects.Enums;
 
-namespace DromundKaasII.GameObjects.Actors
+namespace DromundKaasII.Engine.GameObjects.Actors
 {
     public abstract class Actor : IActor
     {

@@ -5,7 +5,7 @@ using System.Text;
 using DromundKaasII.Input;
 using Microsoft.Xna.Framework;
 
-namespace DromundKaasII.GameObjects.Actors.NPCs
+namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
 {
     public class ZombieFriend : Npc
     {
@@ -32,7 +32,7 @@ namespace DromundKaasII.GameObjects.Actors.NPCs
 
         }
 
-        public override void Act(Engine.GameState G)
+        public override void Act(GameState G)
         {
             this.DesiredAction = GameInputs.Up;
 

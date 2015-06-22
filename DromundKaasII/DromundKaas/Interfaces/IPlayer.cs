@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Collections;
-using DromundKaasII.GameObjects.Skills;
 using DromundKaasII.Input;
+using DromundKaasII.Engine.GameObjects.Skills;
 
 namespace DromundKaasII.Interfaces
 {

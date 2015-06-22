@@ -58,11 +58,11 @@
     <Compile Include="Engine\Exceptions\PlayerAlreadyExistsException.cs" />
     <Compile Include="Engine\Exceptions\SpawnOccupiedException.cs" />
     <Compile Include="Engine\Exceptions\UnsupportedKeyException.cs" />
-    <Compile Include="GameObjects\Actors\ActionTypeOptions.cs" />
-    <Compile Include="GameObjects\Actors\Directions.cs" />
-    <Compile Include="GameObjects\Actors\NPCs\Npc.cs" />
-    <Compile Include="GameObjects\Actors\NPCs\ZombieFriend.cs" />
-    <Compile Include="GameObjects\Skills\SkillTargetPermissions.cs" />
+    <Compile Include="Engine\GameObjects\Actors\ActionTypeOptions.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Directions.cs" />
+    <Compile Include="Engine\GameObjects\Actors\NPCs\Npc.cs" />
+    <Compile Include="Engine\GameObjects\Actors\NPCs\ZombieFriend.cs" />
+    <Compile Include="Engine\GameObjects\Skills\SkillTargetPermissions.cs" />
     <Compile Include="Graphics\CreditsScreen.cs" />
     <Compile Include="Graphics\Image.cs" />
     <Compile Include="Graphics\OptionsScreen.cs" />
@@ -74,23 +74,23 @@
     <Compile Include="Engine\Engine.cs" />
     <Compile Include="Engine\GameState.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="GameObjects\Actors\Actor.cs" />
-    <Compile Include="GameObjects\Actors\Players\Player.cs" />
-    <Compile Include="GameObjects\Actors\Players\Primal.cs" />
-    <Compile Include="GameObjects\Actors\Players\Tier1\Apprentice.cs" />
-    <Compile Include="GameObjects\Actors\Players\Tier1\Builder.cs" />
-    <Compile Include="GameObjects\Actors\Players\Tier1\Fighter.cs" />
-    <Compile Include="GameObjects\Actors\Players\Tier1\Tier1.cs" />
-    <Compile Include="GameObjects\Enums\ActorEvents.cs" />
-    <Compile Include="GameObjects\ActorStateEvent.cs" />
-    <Compile Include="GameObjects\Enums\GameDifficultyOptions.cs" />
-    <Compile Include="GameObjects\Enums\GameSpeedOptions.cs" />
-    <Compile Include="GameObjects\Enums\StatusEffects.cs" />
-    <Compile Include="GameObjects\Tiles\TileTypeOptions.cs" />
-    <Compile Include="GameObjects\Skills\Skill.cs" />
-    <Compile Include="GameObjects\Actors\Statblock.cs" />
-    <Compile Include="GameObjects\Skills\SkillManager.cs" />
-    <Compile Include="GameObjects\Tiles\Tile.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Actor.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Players\Player.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Players\Primal.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Players\Tier1\Apprentice.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Players\Tier1\Builder.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Players\Tier1\Fighter.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Players\Tier1\Tier1.cs" />
+    <Compile Include="Engine\GameObjects\Enums\ActorEvents.cs" />
+    <Compile Include="Engine\GameObjects\ActorStateEvent.cs" />
+    <Compile Include="Engine\GameObjects\Enums\GameDifficultyOptions.cs" />
+    <Compile Include="Engine\GameObjects\Enums\GameSpeedOptions.cs" />
+    <Compile Include="Engine\GameObjects\Enums\StatusEffects.cs" />
+    <Compile Include="Engine\GameObjects\Tiles\TileTypeOptions.cs" />
+    <Compile Include="Engine\GameObjects\Skills\Skill.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Statblock.cs" />
+    <Compile Include="Engine\GameObjects\Skills\SkillManager.cs" />
+    <Compile Include="Engine\GameObjects\Tiles\Tile.cs" />
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Graphics\ScreenManager.cs" />
     <Compile Include="Graphics\SplashScreen.cs" />
@@ -125,8 +125,8 @@
   <ItemGroup>
     <Folder Include="Engine\AI\Pathfinding\" />
     <Folder Include="Engine\AI\Targetting\" />
-    <Folder Include="GameObjects\Actors\Debris\" />
-    <Folder Include="GameObjects\Professions\" />
+    <Folder Include="Engine\GameObjects\Actors\Debris\" />
+    <Folder Include="Engine\GameObjects\Professions\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

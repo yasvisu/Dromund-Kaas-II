@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.Graphics.UI;
 using DromundKaasII.Input;
+using DromundKaasII.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,6 +22,8 @@ namespace DromundKaasII.Graphics
         private int buttonTimeout;
 
         Texture2D fadeout;
+
+        public IEngineOptions EngineOptions { get; set; }
 
         private int ActiveIndex
         {
@@ -119,9 +122,9 @@ namespace DromundKaasII.Graphics
                 Color tempTint = (i == activeIndex ? this.TintColor : Color.White);
                 spriteBatch.Draw(fadeout, new Rectangle(penPoint, sizePoint), tempTint);
 
-                Vector2 textPosition = penPoint.ToVector2() + (sizePoint.ToVector2() - ScreenManager.Instance.TitleFont.MeasureString(buttons[i].Text))/2;
+                Vector2 textPosition = penPoint.ToVector2() + (sizePoint.ToVector2() - ScreenManager.Instance.TitleFont.MeasureString(buttons[i].Text)) / 2;
 
-                spriteBatch.DrawString(ScreenManager.Instance.TitleFont,buttons[i].Text,
+                spriteBatch.DrawString(ScreenManager.Instance.TitleFont, buttons[i].Text,
                     textPosition,
                     tempTint);
 

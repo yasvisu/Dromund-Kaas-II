@@ -6,7 +6,7 @@ using System.Text;
 namespace DromundKaasII.GameObjects.Enums
 {
     /// <summary>
-    /// Game Speed options.
+    /// Game Speed options, for the rate at which the Engine is updated.
     /// </summary>
     public enum GameSpeedOptions
     {

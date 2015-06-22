@@ -55,11 +55,16 @@ namespace DromundKaasII.Graphics
         {
             base.LoadContent();
             this.buttons = new List<Button>();
-            this.buttons.Add(new Button("Toggle Speed", this.CycleSpeed, new Vector2(5, 5), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button("Toggle Speed", this.CycleSpeed, new Vector2(5, 5),true));
 
 
-            this.buttons.Add(new Button("Toggle Difficulty", this.CycleDifficulty, new Vector2(60, 60), content.Load<Texture2D>("button-sample"), true));
+            this.buttons.Add(new Button("Toggle Difficulty", this.CycleDifficulty, new Vector2(60, 60), true));
 
+            this.buttons.Add(new Button("Credits", () =>
+            {
+                ScreenManager.Instance.PlayCredits = true;
+            }, 
+            new Vector2(60, 60), true));
 
             this.TintColor = Color.Red;
             this.buttonToggleActive = true;

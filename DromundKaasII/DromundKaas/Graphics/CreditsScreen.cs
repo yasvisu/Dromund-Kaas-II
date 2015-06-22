@@ -19,10 +19,17 @@ namespace DromundKaasII.Graphics
 
         Vector2 initialPosition;
         Vector2 creditsPosition;
+        Vector2 bgOffset;
+
         float finalThresholdY;
 
-        Vector2 idleScroll;
-        Vector2 activeScroll;
+        private static readonly Vector2 idleScroll = new Vector2(0, -0.5f);
+        private static readonly Vector2 activeScroll = new Vector2(0, 3);
+
+        private static readonly Vector2 bgScroll = new Vector2(0, -0.5f);
+        private static readonly Vector2 bgIdleScroll = bgScroll * new Vector2(idleScroll.X,Math.Abs(idleScroll.Y));
+        private static readonly Vector2 bgActiveScroll = bgScroll * activeScroll;
+
 
         bool scroll;
         bool done;
@@ -42,7 +49,7 @@ namespace DromundKaasII.Graphics
             this.done = false;
 
             this.creditsPosition = initialPosition;
-
+            this.bgOffset = Background.Position;
         }
 
         public override void LoadContent()
@@ -54,8 +61,7 @@ namespace DromundKaasII.Graphics
             initialPosition = (ScreenManager.Instance.Dimensions - new Vector2(textSize.X, 0)) / 2;
             this.finalThresholdY = ScreenManager.Instance.Dimensions.Y / 2 - textSize.Y;
 
-            idleScroll = new Vector2(0, -0.5f);
-            activeScroll = new Vector2(0, 3);
+
         }
 
         public override void UnloadContent()
@@ -70,6 +76,7 @@ namespace DromundKaasII.Graphics
                 if (this.creditsPosition.Y < initialPosition.Y)
                 {
                     this.creditsPosition += activeScroll;
+                    this.bgOffset -= bgActiveScroll;
                 }
             }
             else if (input.IsPressed(GameInputs.Down))
@@ -77,11 +84,13 @@ namespace DromundKaasII.Graphics
                 if (this.creditsPosition.Y > this.finalThresholdY)
                 {
                     this.creditsPosition -= activeScroll;
+                    this.bgOffset += bgActiveScroll;
                 }
             }
             else if (scroll == true)
             {
                 this.creditsPosition += idleScroll;
+                bgOffset += bgIdleScroll;
             }
 
             if (!done && this.creditsPosition.Y < this.finalThresholdY)
@@ -93,7 +102,10 @@ namespace DromundKaasII.Graphics
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            var temp = this.Background.Position;
+            this.Background.Position = bgOffset;
             base.Draw(spriteBatch);
+            this.Background.Position = temp;
             spriteBatch.DrawString(ScreenManager.Instance.TextFont, text, creditsPosition, Color.Yellow);
         }
     }

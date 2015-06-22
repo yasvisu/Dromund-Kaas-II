@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using DromundKaasII.Exceptions;
+using DromundKaasII.Engine.Exceptions;
 
 namespace DromundKaasII.Input
 {

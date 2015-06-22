@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DromundKaasII.Exceptions;
+using DromundKaasII.Engine.Exceptions;
 using DromundKaasII.GameObjects.Actors.NPCs;
 using DromundKaasII.GameObjects.Actors.Players;
 using Microsoft.Xna.Framework;

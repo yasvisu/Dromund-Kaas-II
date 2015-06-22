@@ -55,9 +55,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Engine\ActorFactory.cs" />
-    <Compile Include="Exceptions\PlayerAlreadyExistsException.cs" />
-    <Compile Include="Exceptions\SpawnOccupiedException.cs" />
-    <Compile Include="Exceptions\UnsupportedKeyException.cs" />
+    <Compile Include="Engine\Exceptions\PlayerAlreadyExistsException.cs" />
+    <Compile Include="Engine\Exceptions\SpawnOccupiedException.cs" />
+    <Compile Include="Engine\Exceptions\UnsupportedKeyException.cs" />
     <Compile Include="GameObjects\Actors\ActionTypeOptions.cs" />
     <Compile Include="GameObjects\Actors\Directions.cs" />
     <Compile Include="GameObjects\Actors\NPCs\Npc.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IEngineOptions.cs" />
-    <Compile Include="Interfaces\IPathable.cs" />
+    <Compile Include="Interfaces\ITile.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Input;
@@ -38,14 +39,14 @@ namespace DromundKaasII.Graphics
         public void Initialize()
         {
             this.engine = new Engine.Engine();
-            engineTask = new AsyncTimer(() =>
-            {
-                if (!engine.IsPaused && engine.IsRunning)
+            engineTask = Task.Factory.StartNew(() =>
                 {
-                    engine.Update();
-                }
-            },
-            int.MaxValue, (ulong)engine.GameSpeed).StartAsync();
+                    while (this.engine.IsRunning)
+                    {
+                        Thread.Sleep((int)this.engine.GameSpeed);
+                        this.engine.Update();
+                    }
+                });
         }
 
         public override void Run()

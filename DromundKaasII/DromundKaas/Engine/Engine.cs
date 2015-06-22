@@ -67,10 +67,9 @@ namespace DromundKaasII.Engine
             actorFactory.CreateNpc(z);
         }
 
-        #region Public Interface
-
         protected GameState gameState { get; set; }
 
+        #region Public Interface
         public bool IsRunning { get; set; }
 
         public bool IsPaused { get; set; }

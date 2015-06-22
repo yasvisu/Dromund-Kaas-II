@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace DromundKaasII.Tools
 {
+    [Obsolete]
     public class AsyncTimer
     {
         Action action;

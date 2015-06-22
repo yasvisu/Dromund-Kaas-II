@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DromundKaasII.GameObjects.Tiles;
 using DromundKaasII.Input;
+using DromundKaasII.Interfaces;
 using DromundKaasII.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +16,7 @@ namespace DromundKaasII.Graphics
     {
         Texture2D image;
         string path;
-        Engine.Engine engine;
+        IEngine engine;
         Task engineTask;
 
         Texture2D mytex;

@@ -32,7 +32,7 @@ namespace DromundKaasII.GameObjects.Actors
         public Vector2 GroundTarget { get; protected set; }
         public GameInputs DesiredAction { get; set; }
 
-        public Directions ActorDirection { get; set; }
+        public Directions Direction { get; set; }
 
         public Statblock Stats { get; set; }
 
@@ -40,7 +40,21 @@ namespace DromundKaasII.GameObjects.Actors
 
         public virtual void Act(GameState G)
         {
-            throw new NotImplementedException("Not implemented.");
+            switch(this.DesiredAction)
+            {
+                case GameInputs.Up:
+                    this.Direction = Directions.North;
+                    break;
+                case GameInputs.Down:
+                    this.Direction = Directions.South;
+                    break;
+                case GameInputs.Left:
+                    this.Direction = Directions.West;
+                    break;
+                case GameInputs.Right:
+                    this.Direction = Directions.East;
+                    break;
+            }
         }
 
         public virtual void RemoveExpiredStatusEffects()

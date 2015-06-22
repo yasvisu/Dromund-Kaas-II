@@ -52,7 +52,7 @@ namespace DromundKaasII.GameObjects.Actors.NPCs
             {
                 this.DesiredAction = GameInputs.Left;
             }
-
+            base.Act(G);
         }
     }
 }

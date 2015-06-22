@@ -30,7 +30,7 @@ namespace DromundKaasII.GameObjects.Actors.Players
 
         public override void Act(Engine.GameState G)
         {
-            
+            base.Act(G);
         }
     }
 }

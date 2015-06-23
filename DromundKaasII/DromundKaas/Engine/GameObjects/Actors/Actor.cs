@@ -13,16 +13,16 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 {
     public abstract class Actor : IActor
     {
-        protected Actor(Vector2 MapPosition)
+        protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain):this(MapPosition,SkillChain,null)
+        {
+
+        }
+
+        protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain,Statblock Stats)
         {
             this.MapPosition = MapPosition;
             this.StatusEffects = new Dictionary<StatusEffects, TimeSpan>();
             this.DesiredAction = GameInputs.None;
-        }
-
-        protected Actor(Vector2 MapPosition, Statblock Stats)
-            : this(MapPosition)
-        {
             this.Stats = Stats;
         }
 
@@ -43,7 +43,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
         public virtual void Act(GameState G)
         {
-            switch(this.DesiredAction)
+            switch (this.DesiredAction)
             {
                 case GameInputs.Up:
                     this.Direction = Directions.North;

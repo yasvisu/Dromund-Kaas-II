@@ -5,6 +5,7 @@ using System.Text;
 using DromundKaasII.Engine.Exceptions;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
 using DromundKaasII.Engine.GameObjects.Actors.Players;
+using DromundKaasII.Engine.GameObjects.Skills;
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine

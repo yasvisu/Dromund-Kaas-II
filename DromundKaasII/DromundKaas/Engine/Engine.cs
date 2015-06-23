@@ -40,7 +40,7 @@ namespace DromundKaasII.Engine
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
-            actorFactory = new ActorFactory(gameState);
+            this.actorFactory = new ActorFactory(this.gameState);
 
             for (int i = 0; i < this.gameState.Map.GetLength(0); i++)
             {
@@ -232,7 +232,7 @@ namespace DromundKaasII.Engine
         private void EnactSkill(Actor parent)
         {
             Skill toEnact;
-            switch(parent.DesiredAction)
+            switch (parent.DesiredAction)
             {
                 case GameInputs.A1:
                     toEnact = parent.Skills[0];

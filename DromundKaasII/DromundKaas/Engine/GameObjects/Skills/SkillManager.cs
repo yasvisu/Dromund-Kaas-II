@@ -18,15 +18,20 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         void LoadSkills()
         {
             // Load all skills here
-            this.Skills["Hit"] = new Skill()
-                {
-                    Name = "Hit",
-                    ManaCost = 0,
-                    FocusCost = 5,
-                    Range = 1,
-                    TargetPermissions = SkillTargetPermissions.All
-                };
+            this.Skills["None"] = new Skill()
+            {
+                Name = "None",
+                TargetPermissions = SkillTargetPermissions.None,
+            };
 
+            this.Skills["Hit"] = new Skill()
+            {
+                Name = "Hit",
+                ManaCost = 0,
+                FocusCost = 5,
+                Range = 1,
+                TargetPermissions = SkillTargetPermissions.All
+            };
             this.Skills["Throw Rock"] = new Skill()
             {
                 Name = "Throw Rock",
@@ -51,7 +56,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 Range = 3,
                 TargetPermissions = SkillTargetPermissions.All
             };
-            
+
 
 
             // Ice bolt...

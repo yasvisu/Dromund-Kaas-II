@@ -26,8 +26,6 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             set { throw new NotImplementedException(); }
         }
 
-        public Skill[] PlayerSkills { get; protected set; }
-
         public override void Act(GameState G)
         {
             base.Act(G);

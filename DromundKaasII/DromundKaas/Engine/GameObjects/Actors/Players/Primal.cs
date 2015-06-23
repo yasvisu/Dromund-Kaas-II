@@ -33,7 +33,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             this.Stats.Mana = this.Stats.MaxMana;
             this.Stats.Focus = this.Stats.MaxFocus;
 
-            this.PlayerSkills = new Skill[5];
+            this.Skills = new Skill[5];
             
  
         }

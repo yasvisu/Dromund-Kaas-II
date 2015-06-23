@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using DromundKaasII.Engine.Exceptions;
 using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
@@ -230,7 +231,27 @@ namespace DromundKaasII.Engine
 
         private void EnactSkill(Actor parent)
         {
-            throw new NotImplementedException();
+            Skill toEnact;
+            switch(parent.DesiredAction)
+            {
+                case GameInputs.A1:
+                    toEnact = parent.Skills[0];
+                    break;
+                case GameInputs.A2:
+                    toEnact = parent.Skills[1];
+                    break;
+                case GameInputs.A3:
+                    toEnact = parent.Skills[2];
+                    break;
+                case GameInputs.A4:
+                    toEnact = parent.Skills[3];
+                    break;
+                case GameInputs.A5:
+                    toEnact = parent.Skills[4];
+                    break;
+                default:
+                    throw new UnsupportedKeyException("Invalid key corresponding to skill.");
+            }
         }
 
         private void MoveActor(Actor parent, Vector2 target)
@@ -247,7 +268,6 @@ namespace DromundKaasII.Engine
                 parent.MapPosition = target;
                 gameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
             }
-
         }
         #endregion
     }

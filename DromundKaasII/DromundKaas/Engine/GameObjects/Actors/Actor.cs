@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using DromundKaasII.Engine;
 using DromundKaasII.Input;
+using System.Collections;
+using DromundKaasII.Engine.GameObjects.Skills;
 
 namespace DromundKaasII.Engine.GameObjects.Actors
 {
@@ -36,6 +38,8 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         public Statblock Stats { get; set; }
 
         public Dictionary<StatusEffects, TimeSpan> StatusEffects { get; set; }
+
+        public Skill[] Skills { get; protected set; }
 
         public virtual void Act(GameState G)
         {

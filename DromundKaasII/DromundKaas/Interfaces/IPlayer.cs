@@ -16,7 +16,7 @@ namespace DromundKaasII.Interfaces
         /// <summary>
         /// A collection of the skills the player has.
         /// </summary>
-        Skill[] PlayerSkills { get; }
+        Skill[] Skills { get; }
 
         /// <summary>
         /// The current desired action, based on input.

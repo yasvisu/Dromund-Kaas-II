@@ -26,8 +26,8 @@ namespace DromundKaasII.Engine
         Hit,
 
         /// <summary>
-        /// Raised when an Actor casts a spell.
+        /// Raised when an Actor uses a skill.
         /// </summary>
-        SpellCast
+        SkillUse
     }
 }

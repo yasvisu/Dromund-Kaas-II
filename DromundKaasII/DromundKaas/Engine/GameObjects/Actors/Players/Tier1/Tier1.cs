@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DromundKaasII.Engine.GameObjects.Skills;
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Actors.Players.Tier1
 {
     public abstract class Tier1 : Player
     {
-        protected Tier1(Vector2 MapPosition)
-            : base(MapPosition)
+        protected Tier1(Vector2 MapPosition, Dictionary<string, Skill> SkillChain)
+            : base(MapPosition,SkillChain)
         {
 
         }

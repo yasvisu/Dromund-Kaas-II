@@ -57,10 +57,10 @@ namespace DromundKaasII.Engine
             this.gameState.Map[1, 3] = new Tile(700, TileTypeOptions.Wall);
             this.gameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree);
 
-            Player p = new Primal(new Vector2(2, 2));
+            Player p = new Primal(new Vector2(2, 2), SkillManager.Skills);
             actorFactory.CreatePlayer(p);
 
-            ZombieFriend z = new ZombieFriend(new Vector2(5, 5));
+            ZombieFriend z = new ZombieFriend(new Vector2(5, 5), SkillManager.Skills);
             actorFactory.CreateNpc(z);
         }
 

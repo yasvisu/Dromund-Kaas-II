@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DromundKaasII.Engine.GameObjects.Skills;
 using DromundKaasII.Input;
 using Microsoft.Xna.Framework;
 
@@ -9,8 +10,8 @@ namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
 {
     public class ZombieFriend : Npc
     {
-        public ZombieFriend(Vector2 MapPosition)
-            : base(MapPosition)
+        public ZombieFriend(Vector2 MapPosition, Dictionary<string,Skill> SkillChain)
+            : base(MapPosition,SkillChain)
         {
             this.Stats = new Statblock()
             {

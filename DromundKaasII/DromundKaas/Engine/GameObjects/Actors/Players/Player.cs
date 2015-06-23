@@ -16,6 +16,10 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
 
         public Player(Vector2 MapPosition)
             : base(MapPosition)
+        { }
+
+        public Player(Vector2 MapPosition, Dictionary<string, Skill> SkillChain)
+            : base(MapPosition, SkillChain)
         {
 
         }

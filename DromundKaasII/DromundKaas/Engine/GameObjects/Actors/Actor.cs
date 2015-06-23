@@ -13,19 +13,21 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 {
     public abstract class Actor : IActor
     {
-        protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain):this(MapPosition,SkillChain,null)
-        {
+        protected Actor(Vector2 MapPosition)
+            : this(MapPosition, null, null)
+        { }
 
-        }
+        protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain)
+            : this(MapPosition, SkillChain, null)
+        { }
 
-        protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain,Statblock Stats)
+        protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain, Statblock Stats)
         {
             this.MapPosition = MapPosition;
             this.StatusEffects = new Dictionary<StatusEffects, TimeSpan>();
             this.DesiredAction = GameInputs.None;
             this.Stats = Stats;
         }
-
 
         public Vector2 MapPosition { get; set; }
 

@@ -10,7 +10,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         public SkillManager()
         {
             this.Skills = new Dictionary<string, Skill>();
-            LoadSkills();
+            this.LoadSkills();
         }
 
         public Dictionary<string, Skill> Skills { get; private set; }
@@ -18,9 +18,6 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         void LoadSkills()
         {
             // Load all skills here
-            // ...
-
-
             this.Skills["Hit"] = new Skill()
                 {
                     Name = "Hit",

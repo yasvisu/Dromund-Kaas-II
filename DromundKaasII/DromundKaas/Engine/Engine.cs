@@ -172,6 +172,13 @@ namespace DromundKaasII.Engine
                     case GameInputs.Right:
                         MoveActor(a, a.MapPosition + RightV);
                         break;
+                    case GameInputs.A1:
+                    case GameInputs.A2:
+                    case GameInputs.A3:
+                    case GameInputs.A4:
+                    case GameInputs.A5:
+                        EnactSkill(a);
+                        break;
                     default:
                         break;
                 }
@@ -203,15 +210,8 @@ namespace DromundKaasII.Engine
         #endregion
 
         #region State Changers
-        private void EnactSkill(Actor parent, Vector2 target)
+        private void EnactSkill(Actor parent)
         {
-            // Check whether Skill can target ground, then enact Skill.
-            throw new NotImplementedException();
-        }
-
-        private void EnactSkill(Actor parent, Actor target)
-        {
-            // Check whether Actor is within range of other Actor (by Skill), then enact skill.
             throw new NotImplementedException();
         }
 

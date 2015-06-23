@@ -101,6 +101,7 @@
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IEngineOptions.cs" />
+    <Compile Include="Interfaces\ISkill.cs" />
     <Compile Include="Interfaces\ITile.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Program.cs" />

@@ -2,7 +2,6 @@
 
 using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
-using DromundKaasII.Engine.GameObjects.Enums;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Engine.Interfaces;
 using DromundKaasII.Interfaces;

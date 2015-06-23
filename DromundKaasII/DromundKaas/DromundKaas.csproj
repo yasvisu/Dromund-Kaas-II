@@ -83,11 +83,11 @@
     <Compile Include="Engine\GameObjects\Actors\Players\Tier1\Builder.cs" />
     <Compile Include="Engine\GameObjects\Actors\Players\Tier1\Fighter.cs" />
     <Compile Include="Engine\GameObjects\Actors\Players\Tier1\Tier1.cs" />
-    <Compile Include="Engine\GameObjects\Enums\ActorEvents.cs" />
-    <Compile Include="Engine\GameObjects\ActorStateEvent.cs" />
-    <Compile Include="Engine\GameObjects\Enums\GameDifficultyOptions.cs" />
-    <Compile Include="Engine\GameObjects\Enums\GameSpeedOptions.cs" />
-    <Compile Include="Engine\GameObjects\Enums\StatusEffects.cs" />
+    <Compile Include="Engine\ActorEvents.cs" />
+    <Compile Include="Engine\ActorStateEvent.cs" />
+    <Compile Include="Engine\GameDifficultyOptions.cs" />
+    <Compile Include="Engine\GameSpeedOptions.cs" />
+    <Compile Include="Engine\StatusEffects.cs" />
     <Compile Include="Engine\GameObjects\Tiles\TileTypeOptions.cs" />
     <Compile Include="Engine\GameObjects\Skills\Skill.cs" />
     <Compile Include="Engine\GameObjects\Actors\Statblock.cs" />
@@ -127,6 +127,7 @@
     <Folder Include="Engine\AI\Pathfinding\" />
     <Folder Include="Engine\AI\Targetting\" />
     <Folder Include="Engine\GameObjects\Actors\Debris\" />
+    <Folder Include="Engine\GameObjects\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

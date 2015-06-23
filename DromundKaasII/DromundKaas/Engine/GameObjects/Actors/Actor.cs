@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using DromundKaasII.Engine;
 using DromundKaasII.Input;
-using DromundKaasII.Engine.GameObjects.Enums;
 
 namespace DromundKaasII.Engine.GameObjects.Actors
 {

@@ -1,4 +1,4 @@
-﻿using DromundKaasII.Engine.GameObjects.Enums;
+﻿using DromundKaasII.Engine;
 
 namespace DromundKaasII.Interfaces
 {

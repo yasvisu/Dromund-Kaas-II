@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DromundKaasII.Engine.GameObjects;
+using DromundKaasII.Engine;
 
 namespace DromundKaasII.Interfaces
 {

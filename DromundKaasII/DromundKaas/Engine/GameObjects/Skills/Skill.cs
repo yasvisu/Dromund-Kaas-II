@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Skills
 {
-    public delegate void ActorAffectorDelegate(Actor target);
+    public delegate void ActorAffectorDelegate(Actor target, Statblock effect);
 
     public class Skill
     {

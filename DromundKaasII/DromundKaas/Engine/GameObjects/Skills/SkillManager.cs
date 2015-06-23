@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DromundKaasII.Engine.GameObjects.Actors;
 
 namespace DromundKaasII.Engine.GameObjects.Skills
 {
@@ -61,6 +62,16 @@ namespace DromundKaasII.Engine.GameObjects.Skills
 
             // Ice bolt...
             // Electric shock...
+        }
+    
+        void Augment(Actor target, Statblock effect)
+        {
+            target.Stats += effect;
+        }
+
+        void Damage(Actor target, Statblock effect)
+        {
+            target.Stats -= effect;
         }
     }
 }

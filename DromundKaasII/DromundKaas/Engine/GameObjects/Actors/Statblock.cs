@@ -100,5 +100,20 @@ namespace DromundKaasII.Engine.GameObjects.Actors
                 Psychic = a.Psychic + b.Psychic,
             };
         }
+
+        public static Statblock operator -(Statblock a, Statblock b)
+        {
+            return new Statblock()
+            {
+                Strength = a.Strength - b.Strength,
+                Dexterity = a.Dexterity - b.Dexterity,
+                Constitution = a.Constitution - b.Constitution,
+                Intelligence = a.Intelligence - b.Intelligence,
+
+                Wisdom = a.Wisdom - b.Wisdom,
+                Charisma = a.Charisma - b.Charisma,
+                Psychic = a.Psychic - b.Psychic,
+            };
+        }
     }
 }

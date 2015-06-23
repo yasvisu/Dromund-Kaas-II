@@ -182,15 +182,22 @@ namespace DromundKaasII.Engine
 
 
             // Prune dead actors
+            Stack<Npc> NpcGarbageCan = new Stack<Npc>();
+
             foreach (Actor a in this.gameState.Actors)
             {
                 if (a.Stats.Health <= 0)
                 {
                     if (a is Npc)
                     {
-                        actorFactory.RemoveNpc(a as Npc);
+                        NpcGarbageCan.Push(a as Npc);
                     }
                 }
+            }
+
+            while (NpcGarbageCan.Count > 0)
+            {
+                actorFactory.RemoveNpc(NpcGarbageCan.Pop());
             }
         }
 

@@ -188,6 +188,7 @@ namespace DromundKaasII.Engine
                 {
                     if (a is Npc)
                     {
+                        this.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, a));
                         NpcGarbageCan.Push(a as Npc);
                     }
                 }

@@ -107,6 +107,26 @@ namespace DromundKaasII.Graphics
             {
                 engine.Player.DesiredAction = GameInputs.Right;
             }
+            else if (input.IsPressed(GameInputs.A1))
+            {
+                engine.Player.DesiredAction = GameInputs.A1;
+            }
+            else if (input.IsPressed(GameInputs.A2))
+            {
+                engine.Player.DesiredAction = GameInputs.A2;
+            }
+            else if (input.IsPressed(GameInputs.A3))
+            {
+                engine.Player.DesiredAction = GameInputs.A3;
+            }
+            else if (input.IsPressed(GameInputs.A4))
+            {
+                engine.Player.DesiredAction = GameInputs.A4;
+            }
+            else if (input.IsPressed(GameInputs.A5))
+            {
+                engine.Player.DesiredAction = GameInputs.A5;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Tiles;
@@ -23,7 +23,7 @@ namespace DromundKaasII.Engine
             this.GameSpeed = GameSpeedOptions.Fast;
             this.Actors = new List<Actor>();
             this.Map = new Tile[X, Y];
-            this.TranspiredEvents = new Queue<ActorStateEvent>();
+            this.TranspiredEvents = new ConcurrentQueue<ActorStateEvent>();
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace DromundKaasII.Engine
         /// <summary>
         /// A collection of events that have occurred.
         /// </summary>
-        public Queue<ActorStateEvent> TranspiredEvents { get; private set; }
+        public ConcurrentQueue<ActorStateEvent> TranspiredEvents { get; private set; }
 
         /// <summary>
         /// The speed option of the GameState.

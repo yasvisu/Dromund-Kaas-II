@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-
 using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
@@ -9,7 +9,6 @@ using DromundKaasII.Engine.GameObjects.Skills;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Input;
 using DromundKaasII.Interfaces;
-
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
@@ -88,7 +87,7 @@ namespace DromundKaasII.Engine
                 return this.gameState.Player;
             }
         }
-        public Queue<ActorStateEvent> TranspiredEvents
+        public ConcurrentQueue<ActorStateEvent> TranspiredEvents
         {
             get
             {

@@ -127,7 +127,6 @@
     <Folder Include="Engine\AI\Pathfinding\" />
     <Folder Include="Engine\AI\Targetting\" />
     <Folder Include="Engine\GameObjects\Actors\Debris\" />
-    <Folder Include="Engine\GameObjects\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

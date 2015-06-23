@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using DromundKaasII.Engine;
 
 namespace DromundKaasII.Interfaces
@@ -26,7 +27,7 @@ namespace DromundKaasII.Interfaces
         /// <summary>
         /// The events that have occurred so far.
         /// </summary>
-        Queue<ActorStateEvent> TranspiredEvents { get; }
+        ConcurrentQueue<ActorStateEvent> TranspiredEvents { get; }
 
         /// <summary>
         /// A collection of actors that are in the game state.

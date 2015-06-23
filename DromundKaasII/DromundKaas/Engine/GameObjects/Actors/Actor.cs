@@ -83,5 +83,16 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         {
             return Math.Sqrt((other.MapPosition.X - this.MapPosition.X) * (other.MapPosition.X - this.MapPosition.X) + (other.MapPosition.Y - this.MapPosition.Y) * (other.MapPosition.Y - this.MapPosition.Y));
         }
+
+        public void SpendSkill(Skill toEnact)
+        {
+            this.Stats.Focus -= toEnact.FocusCost;
+            this.Stats.Mana -= toEnact.ManaCost;
+        }
+
+        internal void ReactToSkill(Skill toEnact)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

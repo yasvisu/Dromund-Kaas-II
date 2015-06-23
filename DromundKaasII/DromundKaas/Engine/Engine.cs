@@ -252,6 +252,49 @@ namespace DromundKaasII.Engine
                 default:
                     throw new UnsupportedKeyException("Invalid key corresponding to skill.");
             }
+
+            if (toEnact == null || toEnact.Name == "None")
+            {
+                return;
+            }
+
+            parent.SpendSkill(toEnact);
+
+            Vector2 skillEffectLocation = GetGroundTarget(parent.MapPosition, DirectionToUnitVector(parent.Direction), toEnact.Range);
+
+            if (skillEffectLocation.X < 0 || skillEffectLocation.X > this.gameState.MapWidth ||
+                skillEffectLocation.Y < 0 || skillEffectLocation.Y > this.gameState.MapHeight)
+            {
+                return;
+            }
+
+            Actor target = this.gameState.Map[(int)skillEffectLocation.Y, (int)skillEffectLocation.X].Occupant as Actor;
+            if (target != null)
+            {
+                target.ReactToSkill(toEnact);
+            }
+        }
+
+        private Vector2 DirectionToUnitVector(Directions D)
+        {
+            switch (D)
+            {
+                case Directions.North:
+                    return UpV;
+                case Directions.South:
+                    return DownV;
+                case Directions.East:
+                    return RightV;
+                case Directions.West:
+                    return LeftV;
+                default:
+                    return Vector2.Zero;
+            }
+        }
+
+        private Vector2 GetGroundTarget(Vector2 Current, Vector2 Movement, int Range)
+        {
+            return Current + Movement * Range;
         }
 
         private void MoveActor(Actor parent, Vector2 target)

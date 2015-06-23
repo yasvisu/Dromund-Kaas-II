@@ -148,13 +148,32 @@ namespace DromundKaasII.Engine
         public void Update()
         {
             cycleCounter++;
-            // Tell all actors to think of a next move
+
+            ProcessAllActors();
+
+            ActAllActors();
+
+            PruneAllActors();
+        }
+
+        #endregion
+
+
+
+        #region State Changers
+
+        private void ProcessAllActors()
+        {
             foreach (Actor a in this.gameState.Actors)
             {
                 a.RemoveExpiredStatusEffects();
+                // Tell all actors to think of a next move
                 a.Act(this.gameState);
             }
+        }
 
+        private void ActAllActors()
+        {
             // Move / act all actors based on their desired move
             foreach (Actor a in this.gameState.Actors)
             {
@@ -184,8 +203,10 @@ namespace DromundKaasII.Engine
                 }
                 a.DesiredAction = GameInputs.None;
             }
+        }
 
-
+        private void PruneAllActors()
+        {
             // Prune dead actors
             Stack<Npc> NpcGarbageCan = new Stack<Npc>();
 
@@ -207,9 +228,6 @@ namespace DromundKaasII.Engine
             }
         }
 
-        #endregion
-
-        #region State Changers
         private void EnactSkill(Actor parent)
         {
             throw new NotImplementedException();

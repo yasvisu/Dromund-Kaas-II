@@ -31,7 +31,9 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 ManaCost = 0,
                 FocusCost = 5,
                 Range = 1,
-                TargetPermissions = SkillTargetPermissions.All
+                TargetPermissions = SkillTargetPermissions.All,
+                Affect = Damage,
+                SkillType = SkillTypes.Physical
             };
             this.Skills["Throw Rock"] = new Skill()
             {
@@ -39,7 +41,9 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 ManaCost = 0,
                 FocusCost = 10,
                 Range = 5,
-                TargetPermissions = SkillTargetPermissions.All
+                TargetPermissions = SkillTargetPermissions.All,
+                Affect = Damage,
+                SkillType = SkillTypes.Physical
             };
             this.Skills["Huddle"] = new Skill()
             {
@@ -47,7 +51,9 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 ManaCost = 0,
                 FocusCost = 5,
                 Range = 0,
-                TargetPermissions = SkillTargetPermissions.All
+                TargetPermissions = SkillTargetPermissions.All,
+                Affect = Augment,
+                SkillType = SkillTypes.Physical
             };
             this.Skills["Start Fire"] = new Skill()
             {
@@ -55,7 +61,9 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 ManaCost = 10,
                 FocusCost = 10,
                 Range = 3,
-                TargetPermissions = SkillTargetPermissions.All
+                TargetPermissions = SkillTargetPermissions.All,
+                Affect = Augment,
+                SkillType = SkillTypes.Summon
             };
 
 
@@ -63,12 +71,11 @@ namespace DromundKaasII.Engine.GameObjects.Skills
             // Ice bolt...
             // Electric shock...
         }
-    
+
         void Augment(Actor target, Statblock effect)
         {
             target.Stats += effect;
         }
-
         void Damage(Actor target, Statblock effect)
         {
             target.Stats -= effect;

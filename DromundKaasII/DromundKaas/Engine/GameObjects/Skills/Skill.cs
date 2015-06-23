@@ -14,6 +14,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         // add appropriate constructors and properties for the fields
         // ...
 
+        public SkillTypes SkillType { get; set; }
         public string Name { get; set; }
         public int ManaCost { get; set; }
         public int FocusCost { get; set; }

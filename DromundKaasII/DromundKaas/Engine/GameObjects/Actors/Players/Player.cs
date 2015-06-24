@@ -38,6 +38,10 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
 
         public override void Act(GameState G)
         {
+            if(this.Stats.Experience>this.Stats.Level*100)
+            {
+                this.LevelUp = true;
+            }
             base.Act(G);
         }
     }

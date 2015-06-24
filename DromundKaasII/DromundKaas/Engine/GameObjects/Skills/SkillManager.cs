@@ -33,7 +33,8 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 Range = 1,
                 TargetPermissions = SkillTargetPermissions.All,
                 Affect = Damage,
-                SkillType = SkillTypes.Physical
+                SkillType = SkillTypes.Physical,
+                Damage = 50
             };
             this.Skills["Throw Rock"] = new Skill()
             {
@@ -43,7 +44,8 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 Range = 5,
                 TargetPermissions = SkillTargetPermissions.All,
                 Affect = Damage,
-                SkillType = SkillTypes.Physical
+                SkillType = SkillTypes.Physical,
+                Damage = 50
             };
             this.Skills["Huddle"] = new Skill()
             {

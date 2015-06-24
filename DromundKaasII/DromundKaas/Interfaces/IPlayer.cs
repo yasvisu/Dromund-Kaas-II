@@ -13,6 +13,8 @@ namespace DromundKaasII.Interfaces
         /// </summary>
         int Score { get; }
 
+        bool LevelUp { get; }
+
         /// <summary>
         /// A collection of the skills the player has.
         /// </summary>

@@ -30,6 +30,12 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             set { throw new NotImplementedException(); }
         }
 
+        public bool LevelUp
+        {
+            get;
+            set;
+        }
+
         public override void Act(GameState G)
         {
             base.Act(G);

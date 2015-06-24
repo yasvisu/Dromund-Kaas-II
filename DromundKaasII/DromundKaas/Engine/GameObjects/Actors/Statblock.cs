@@ -48,7 +48,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
         // Experience
         public int Experience { get; set; }
-        public byte Level { get; set; }
+        public int Level { get; set; }
 
         // Primary stats
         public int MaxHealth
@@ -90,6 +90,13 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         {
             return new Statblock()
             {
+                Health = a.Health + b.Health,
+                Mana = a.Mana + b.Mana,
+                Focus = a.Focus + b.Focus,
+
+                Experience = a.Experience + b.Experience,
+                Level = a.Level + b.Level,
+
                 Strength = a.Strength + b.Strength,
                 Dexterity = a.Dexterity + b.Dexterity,
                 Constitution = a.Constitution + b.Constitution,
@@ -98,6 +105,10 @@ namespace DromundKaasII.Engine.GameObjects.Actors
                 Wisdom = a.Wisdom + b.Wisdom,
                 Charisma = a.Charisma + b.Charisma,
                 Psychic = a.Psychic + b.Psychic,
+
+
+
+                TraversalPower = a.TraversalPower + b.TraversalPower,
             };
         }
 
@@ -105,6 +116,13 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         {
             return new Statblock()
             {
+                Health = a.Health - b.Health,
+                Mana = a.Mana - b.Mana,
+                Focus = a.Focus - b.Focus,
+
+                Experience = a.Experience - b.Experience,
+                Level = a.Level - b.Level,
+
                 Strength = a.Strength - b.Strength,
                 Dexterity = a.Dexterity - b.Dexterity,
                 Constitution = a.Constitution - b.Constitution,
@@ -113,6 +131,11 @@ namespace DromundKaasII.Engine.GameObjects.Actors
                 Wisdom = a.Wisdom - b.Wisdom,
                 Charisma = a.Charisma - b.Charisma,
                 Psychic = a.Psychic - b.Psychic,
+
+
+
+                TraversalPower = a.TraversalPower - b.TraversalPower,
+
             };
         }
     }

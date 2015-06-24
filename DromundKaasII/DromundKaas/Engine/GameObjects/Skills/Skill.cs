@@ -19,7 +19,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         public int ManaCost { get; set; }
         public int FocusCost { get; set; }
         public int Range { get; set; }
-        public int Damage { get; set; }
+        public Statblock Effect { get; set; }
         public ActorAffectorDelegate Affect { get; set; }
 
         public SkillTargetPermissions TargetPermissions { get; set; }

@@ -92,7 +92,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
         internal void ReactToSkill(Skill toEnact)
         {
-            this.Stats.Health -= toEnact.Damage;
+            toEnact.Affect(this, toEnact.Effect);
         }
     }
 }

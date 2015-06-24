@@ -34,7 +34,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 TargetPermissions = SkillTargetPermissions.All,
                 Affect = Damage,
                 SkillType = SkillTypes.Physical,
-                Damage = 50
+                Effect = new Statblock() { Health = 50 }
             };
             this.Skills["Throw Rock"] = new Skill()
             {
@@ -45,7 +45,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 TargetPermissions = SkillTargetPermissions.All,
                 Affect = Damage,
                 SkillType = SkillTypes.Physical,
-                Damage = 50
+                Effect = new Statblock() { Health = 20 }
             };
             this.Skills["Huddle"] = new Skill()
             {
@@ -55,7 +55,8 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 Range = 0,
                 TargetPermissions = SkillTargetPermissions.All,
                 Affect = Augment,
-                SkillType = SkillTypes.Physical
+                SkillType = SkillTypes.Physical,
+                Effect = new Statblock() { Health = 30 }
             };
             this.Skills["Start Fire"] = new Skill()
             {

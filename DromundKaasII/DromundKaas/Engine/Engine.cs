@@ -219,6 +219,7 @@ namespace DromundKaasII.Engine
                     {
                         this.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, a));
                         NpcGarbageCan.Push(a as Npc);
+                        AwardExp(this.Player as Player, a);
                     }
                 }
             }
@@ -227,6 +228,12 @@ namespace DromundKaasII.Engine
             {
                 actorFactory.RemoveNpc(NpcGarbageCan.Pop());
             }
+        }
+
+        private void AwardExp(Player player, Actor a)
+        {
+            // player.Stats.Experience += Calculator.CalculateExperience(a, player);
+            player.Stats.Experience += 100;
         }
 
         private void EnactSkill(Actor parent)

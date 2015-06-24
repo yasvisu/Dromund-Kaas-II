@@ -262,8 +262,8 @@ namespace DromundKaasII.Engine
 
             Vector2 skillEffectLocation = GetGroundTarget(parent.MapPosition, DirectionToUnitVector(parent.Direction), toEnact.Range);
 
-            if (skillEffectLocation.X < 0 || skillEffectLocation.X > this.gameState.MapWidth ||
-                skillEffectLocation.Y < 0 || skillEffectLocation.Y > this.gameState.MapHeight)
+            if (skillEffectLocation.X < 0 || skillEffectLocation.X >= this.gameState.MapWidth ||
+                skillEffectLocation.Y < 0 || skillEffectLocation.Y >= this.gameState.MapHeight)
             {
                 return;
             }

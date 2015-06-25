@@ -48,8 +48,8 @@ namespace DromundKaasII.Graphics.UI
             this.focus.FillRatio = (float)this.Player.Stats.Focus / this.Player.Stats.MaxFocus;
 
             this.health.Bounds = new Rectangle(this.health.Bounds.X, this.health.Bounds.Y, (int)(this.health.MaxWidth * this.health.FillRatio), this.health.Bounds.Height);
-            this.mana.Bounds = new Rectangle(this.mana.Bounds.X, this.mana.Bounds.Y, this.mana.MaxWidth , (int)(this.mana.Bounds.Height* this.mana.FillRatio));
-            this.focus.Bounds = new Rectangle(this.focus.Bounds.X, this.focus.Bounds.Y, this.focus.Bounds.Width, (int)(this.focus.Bounds.Height* this.focus.FillRatio));
+            this.mana.Bounds = new Rectangle(this.mana.Bounds.X, this.mana.Bounds.Y, this.mana.MaxWidth, (int)(this.mana.MaxHeight * this.mana.FillRatio));
+            this.focus.Bounds = new Rectangle(this.focus.Bounds.X, this.focus.Bounds.Y, this.focus.Bounds.Width, (int)(this.focus.MaxHeight * this.focus.FillRatio));
 
         }
 
@@ -58,6 +58,7 @@ namespace DromundKaasII.Graphics.UI
             foreach (var bar in bars)
             {
                 spriteBatch.Draw(whiteFadeout, bar.Bounds, bar.Color);
+                spriteBatch.DrawString(ScreenManager.Instance.TextFont, bar.FillRatio.ToString(), new Vector2(bar.Bounds.X, bar.Bounds.Y), Color.White);
             }
         }
     }

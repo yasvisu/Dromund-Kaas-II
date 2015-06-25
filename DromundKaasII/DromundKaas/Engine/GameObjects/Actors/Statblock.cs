@@ -86,57 +86,18 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         // Movement
         public int TraversalPower { get; set; }
 
-        public static Statblock operator +(Statblock a, Statblock b)
+        public void Add(Statblock target)
         {
-            return new Statblock()
-            {
-                Health = a.Health + b.Health,
-                Mana = a.Mana + b.Mana,
-                Focus = a.Focus + b.Focus,
-
-                Experience = a.Experience + b.Experience,
-                Level = a.Level + b.Level,
-
-                Strength = a.Strength + b.Strength,
-                Dexterity = a.Dexterity + b.Dexterity,
-                Constitution = a.Constitution + b.Constitution,
-                Intelligence = a.Intelligence + b.Intelligence,
-
-                Wisdom = a.Wisdom + b.Wisdom,
-                Charisma = a.Charisma + b.Charisma,
-                Psychic = a.Psychic + b.Psychic,
-
-
-
-                TraversalPower = a.TraversalPower + b.TraversalPower,
-            };
+            this.Health += target.Health;
+            this.Mana += target.Mana;
+            this.Focus += target.Focus;
         }
 
-        public static Statblock operator -(Statblock a, Statblock b)
+        public void Remove(Statblock target)
         {
-            return new Statblock()
-            {
-                Health = a.Health - b.Health,
-                Mana = a.Mana - b.Mana,
-                Focus = a.Focus - b.Focus,
-
-                Experience = a.Experience - b.Experience,
-                Level = a.Level - b.Level,
-
-                Strength = a.Strength - b.Strength,
-                Dexterity = a.Dexterity - b.Dexterity,
-                Constitution = a.Constitution - b.Constitution,
-                Intelligence = a.Intelligence - b.Intelligence,
-
-                Wisdom = a.Wisdom - b.Wisdom,
-                Charisma = a.Charisma - b.Charisma,
-                Psychic = a.Psychic - b.Psychic,
-
-
-
-                TraversalPower = a.TraversalPower - b.TraversalPower,
-
-            };
+            this.Health -= target.Health;
+            this.Mana -= target.Mana;
+            this.Focus -= target.Focus;
         }
     }
 }

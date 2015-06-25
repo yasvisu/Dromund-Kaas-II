@@ -77,11 +77,11 @@ namespace DromundKaasII.Engine.GameObjects.Skills
 
         void Augment(Actor target, Statblock effect)
         {
-            target.Stats += effect;
+            target.Stats.Add(effect);
         }
         void Damage(Actor target, Statblock effect)
         {
-            target.Stats -= effect;
+            target.Stats.Remove(effect);
         }
     }
 }

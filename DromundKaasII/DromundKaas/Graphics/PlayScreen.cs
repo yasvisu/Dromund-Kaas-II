@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.Engine.GameObjects.Tiles;
+using DromundKaasII.Graphics.UI;
 using DromundKaasII.Input;
 using DromundKaasII.Interfaces;
 using DromundKaasII.Tools;
@@ -24,6 +25,8 @@ namespace DromundKaasII.Graphics
         Texture2D mychar;
         Texture2D mytile;
         Texture2D ground, tree, hole, water, wall;
+
+        HudScreen Hud;
 
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures;
@@ -50,6 +53,8 @@ namespace DromundKaasII.Graphics
                         }
                     }
                 });
+
+            this.Hud.Player = this.engine.Player;
         }
 
         public override void Run()
@@ -71,6 +76,8 @@ namespace DromundKaasII.Graphics
         {
             base.LoadContent();
 
+            this.Hud = new HudScreen();
+
             mychar = this.content.Load<Texture2D>("Actors/placeholderChar");
             mytile = this.content.Load<Texture2D>("Tiles/placeholderTile");
             ground = this.content.Load<Texture2D>("Tiles/default/ground");
@@ -78,6 +85,8 @@ namespace DromundKaasII.Graphics
             hole = this.content.Load<Texture2D>("Tiles/default/hole");
             water = this.content.Load<Texture2D>("Tiles/default/water");
             wall = this.content.Load<Texture2D>("Tiles/default/wall");
+
+            this.Hud.LoadContent();
         }
 
         public override void UnloadContent()
@@ -127,6 +136,8 @@ namespace DromundKaasII.Graphics
             {
                 engine.Player.DesiredAction = GameInputs.A5;
             }
+
+            Hud.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -167,6 +178,8 @@ namespace DromundKaasII.Graphics
                     }
                 }
             }
+
+            this.Hud.Draw(spriteBatch);
         }
     }
 }

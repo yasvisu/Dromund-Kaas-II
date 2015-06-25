@@ -71,6 +71,8 @@
     <Compile Include="Graphics\OptionsScreen.cs" />
     <Compile Include="Graphics\PlayScreen.cs" />
     <Compile Include="Graphics\UI\Button.cs" />
+    <Compile Include="Graphics\UI\HudScreen.cs" />
+    <Compile Include="Graphics\UI\StatusBar.cs" />
     <Compile Include="Input\GameInputs.cs" />
     <Compile Include="Input\GamePadInputScheme.cs" />
     <Compile Include="Input\InputManager.cs" />

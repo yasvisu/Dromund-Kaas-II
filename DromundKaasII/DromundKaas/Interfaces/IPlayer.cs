@@ -1,4 +1,5 @@
-﻿using DromundKaasII.Engine.GameObjects.Skills;
+﻿using DromundKaasII.Engine.GameObjects.Actors;
+using DromundKaasII.Engine.GameObjects.Skills;
 using DromundKaasII.Input;
 
 namespace DromundKaasII.Interfaces
@@ -14,6 +15,12 @@ namespace DromundKaasII.Interfaces
         int Score { get; }
 
         bool LevelUp { get; }
+
+
+        /// <summary>
+        /// The player stats.
+        /// </summary>
+        Statblock Stats { get; }
 
         /// <summary>
         /// A collection of the skills the player has.

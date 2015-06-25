@@ -157,3 +157,14 @@
 /processorParam:TextureFormat=Color
 /build:starry_background.jpg
 
+#begin w_Fadeout.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:w_Fadeout.png
+

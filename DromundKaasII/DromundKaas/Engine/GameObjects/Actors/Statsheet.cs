@@ -30,6 +30,9 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         // Movement
         public int TraversalPower { get; set; }
 
+        // Sight
+        public float IlluminationRange { get; set; }
+
         public void Add(IStatsheet target)
         {
             this.Health += target.Health;

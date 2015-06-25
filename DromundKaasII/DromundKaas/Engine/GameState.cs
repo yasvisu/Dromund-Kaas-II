@@ -22,6 +22,7 @@ namespace DromundKaasII.Engine
         {
             this.GameSpeed = GameSpeedOptions.Fast;
             this.Actors = new List<Actor>();
+            this.Illuminators = new List<IIlluminator>();
             this.Map = new Tile[X, Y];
             this.TranspiredEvents = new ConcurrentQueue<ActorStateEvent>();
         }
@@ -50,6 +51,8 @@ namespace DromundKaasII.Engine
         /// A list of the actors in the GameState.
         /// </summary>
         public List<Actor> Actors { get; set; }
+
+        public List<IIlluminator> Illuminators { get; set; }
 
         /// <summary>
         /// The map of the GameState.

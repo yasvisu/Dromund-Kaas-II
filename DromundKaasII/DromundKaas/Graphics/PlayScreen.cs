@@ -151,6 +151,7 @@ namespace DromundKaasII.Graphics
             {
                 for (int j = 0; j < engine.Map.GetLength(1); j++)
                 {
+                    var currentTile = engine.Map[i, j];
                     Vector2 destination = new Vector2((j + playerOffset.X) * 64, (i + playerOffset.Y) * 64) + pixelOffset;
                     Texture2D ToDraw = mytile;
                     switch (engine.Map[i, j].TileType)
@@ -171,10 +172,10 @@ namespace DromundKaasII.Graphics
                             ToDraw = wall;
                             break;
                     }
-                    spriteBatch.Draw(ToDraw, destination);
+                    spriteBatch.Draw(ToDraw, destination,currentTile.Illumination);
                     if (engine.Map[i, j].Occupant != null)
                     {
-                        spriteBatch.Draw(mychar, destination);
+                        spriteBatch.Draw(mychar, destination,currentTile.Illumination);
                     }
                 }
             }

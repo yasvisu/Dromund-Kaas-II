@@ -7,7 +7,7 @@ namespace DromundKaasII.Interfaces
     /// <summary>
     /// Exposes player score, skills, and desired action.
     /// </summary>
-    public interface IPlayer : IActor
+    public interface IPlayer : IActor, IIlluminator
     {
         /// <summary>
         /// The score accumulated so far in the game.

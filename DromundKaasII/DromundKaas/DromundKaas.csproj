@@ -107,6 +107,8 @@
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IEngineOptions.cs" />
+    <Compile Include="Interfaces\IIlluminator.cs" />
+    <Compile Include="Interfaces\IPlaceable.cs" />
     <Compile Include="Interfaces\ISkill.cs" />
     <Compile Include="Interfaces\IStatblock.cs" />
     <Compile Include="Interfaces\IStatsheet.cs" />

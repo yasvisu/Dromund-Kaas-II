@@ -124,6 +124,13 @@ namespace DromundKaasII.Engine
                 return this.gameState.Actors;
             }
         }
+        public IEnumerable<IIlluminator> Illuminators
+        {
+            get
+            {
+                return this.gameState.Illuminators;
+            }
+        }
         public ITile[,] Map
         {
             get

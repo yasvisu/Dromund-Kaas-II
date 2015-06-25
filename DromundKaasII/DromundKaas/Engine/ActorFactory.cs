@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DromundKaasII.Engine.Exceptions;
+using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
 using DromundKaasII.Engine.GameObjects.Actors.Players;
 using DromundKaasII.Engine.GameObjects.Skills;
+using DromundKaasII.Interfaces;
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
@@ -29,10 +31,9 @@ namespace DromundKaasII.Engine
             {
                 throw new SpawnOccupiedException();
             }
-
-            this.GameState.Actors.Add(Player);
             this.GameState.Player = Player;
-            this.GameState.Map[(int)Player.MapPosition.Y, (int)Player.MapPosition.X].Occupant = Player;
+
+            this.PutOnGameState(Player);
         }
 
         public void CreateNpc(Npc Npc)
@@ -42,8 +43,7 @@ namespace DromundKaasII.Engine
                 throw new SpawnOccupiedException();
             }
 
-            this.GameState.Actors.Add(Npc);
-            this.GameState.Map[(int)Npc.MapPosition.Y, (int)Npc.MapPosition.X].Occupant = Npc;
+            this.PutOnGameState(Npc);
         }
 
         public void RemovePlayer()
@@ -53,8 +53,27 @@ namespace DromundKaasII.Engine
 
         public void RemoveNpc(Npc Npc)
         {
-            GameState.Map[(int)Npc.MapPosition.Y, (int)Npc.MapPosition.X].Occupant = null;
-            GameState.Actors.Remove(Npc);
+            RemoveFromGameState(Npc);
+        }
+
+        private void PutOnGameState(Actor a)
+        {
+            this.GameState.Actors.Add(a);
+            this.GameState.Map[(int)a.MapPosition.Y, (int)a.MapPosition.X].Occupant = a;
+            if (a is IIlluminator)
+            {
+                this.GameState.Illuminators.Add(a as IIlluminator);
+            }
+        }
+
+        private void RemoveFromGameState(Actor a)
+        {
+            GameState.Map[(int)a.MapPosition.Y, (int)a.MapPosition.X].Occupant = null;
+            GameState.Actors.Remove(a);
+            if (a is IIlluminator)
+            {
+                this.GameState.Illuminators.Remove(a as IIlluminator);
+            }
         }
     }
 }

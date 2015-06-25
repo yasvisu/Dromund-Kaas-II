@@ -32,16 +32,35 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
 
         public bool LevelUp { get; set; }
 
+        // Illumination
+        public Color IlluminationColor { get; set; }
+        public float IlluminationRange
+        {
+            get
+            {
+                return this.Stats.IlluminationRange;
+            }
+        }
+        public bool HasIlluminated
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public override void Act(GameState G)
         {
             this.Stats.Health--;
             this.Stats.Mana++;
             this.Stats.Focus++;
-            if (this.Stats.Experience > (this.Stats.Level+1) * 100)
+            if (this.Stats.Experience > (this.Stats.Level + 1) * 100)
             {
                 this.LevelUp = true;
             }
             base.Act(G);
         }
+
+
     }
 }

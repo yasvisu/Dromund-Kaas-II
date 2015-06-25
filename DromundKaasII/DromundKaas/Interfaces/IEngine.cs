@@ -34,6 +34,8 @@ namespace DromundKaasII.Interfaces
         /// </summary>
         IEnumerable<IActor> Actors { get; }
 
+        IEnumerable<IIlluminator> Illuminators { get; }
+
         /// <summary>
         /// The matrix of tiles which are the game map.
         /// </summary>

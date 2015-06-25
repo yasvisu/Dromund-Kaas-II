@@ -29,6 +29,9 @@ namespace DromundKaasII.Interfaces
         // Movement
         int TraversalPower { get; set; }
 
+        // Sight
+        float IlluminationRange { get; set; }
+
         void Add(IStatsheet target);
 
         void Remove(IStatsheet target);

@@ -161,6 +161,8 @@ namespace DromundKaasII.Engine
 
             ProcessAllActors();
 
+            ProcessAllIlluminators();
+
             ActAllActors();
         }
 
@@ -169,6 +171,39 @@ namespace DromundKaasII.Engine
 
 
         #region State Changers
+
+
+        private void PruneAllActors()
+        {
+            // Prune dead actors
+            Stack<Npc> NpcGarbageCan = new Stack<Npc>();
+
+            foreach (Actor a in this.gameState.Actors)
+            {
+                if (a.Stats.Health <= 0)
+                {
+                    if (a is Npc)
+                    {
+                        this.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, a));
+                        NpcGarbageCan.Push(a as Npc);
+
+                        AwardExp(this.Player as Player, a);
+
+                        if (a is IIlluminator)
+                        {
+                            RemoveIllumination(a as IIlluminator);
+                        }
+                    }
+                }
+            }
+
+            while (NpcGarbageCan.Count > 0)
+            {
+                actorFactory.RemoveNpc(NpcGarbageCan.Pop());
+
+            }
+        }
+
 
         private void ProcessAllActors()
         {
@@ -180,6 +215,17 @@ namespace DromundKaasII.Engine
             }
         }
 
+        private void ProcessAllIlluminators()
+        {
+            foreach (var illum in this.Illuminators)
+            {
+                if (!illum.HasIlluminated)
+                {
+                    IlluminateMap(illum);
+                }
+            }
+        }
+        
         private void ActAllActors()
         {
             // Move / act all actors based on their desired move
@@ -213,29 +259,6 @@ namespace DromundKaasII.Engine
             }
         }
 
-        private void PruneAllActors()
-        {
-            // Prune dead actors
-            Stack<Npc> NpcGarbageCan = new Stack<Npc>();
-
-            foreach (Actor a in this.gameState.Actors)
-            {
-                if (a.Stats.Health <= 0)
-                {
-                    if (a is Npc)
-                    {
-                        this.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, a));
-                        NpcGarbageCan.Push(a as Npc);
-                        AwardExp(this.Player as Player, a);
-                    }
-                }
-            }
-
-            while (NpcGarbageCan.Count > 0)
-            {
-                actorFactory.RemoveNpc(NpcGarbageCan.Pop());
-            }
-        }
 
         private void AwardExp(Player player, Actor a)
         {
@@ -326,10 +349,55 @@ namespace DromundKaasII.Engine
             if (parent.Stats.TraversalPower >= gameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
                 gameState.Map[(int)target.Y, (int)target.X].Occupant == null)
             {
+                if(parent is IIlluminator)
+                {
+                    RemoveIllumination(parent as IIlluminator);
+                }
+
                 gameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
                 parent.MapPosition = target;
                 gameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
+
+                if (parent is IIlluminator)
+                {
+                    IlluminateMap(parent as IIlluminator);
+                }
             }
+        }
+
+        private void IlluminateMap(IIlluminator I)
+        {
+            Point topLeft = new Point((int)(I.MapPosition.X - I.IlluminationRange), (int)(I.MapPosition.Y - I.IlluminationRange));
+            Point bottomRight = new Point((int)(I.MapPosition.X + I.IlluminationRange), (int)(I.MapPosition.Y + I.IlluminationRange));
+
+            Rectangle IllumRect = new Rectangle(topLeft, bottomRight);
+
+
+            for (int i = IllumRect.Top; i < IllumRect.Bottom; i++)
+            {
+                for (int j = IllumRect.Left; j < IllumRect.Right; j++)
+                {
+                    if (i >= 0 && i < this.MapHeight &&
+                        j >= 0 && j < this.MapWidth &&
+                        Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
+                    {
+                        this.gameState.Map[i, j].Illumination = I.IlluminationColor;
+                    }
+                }
+            }
+        }
+
+        private double Distance(Vector2 a, Vector2 b)
+        {
+            return Math.Sqrt((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y));
+        }
+
+        private void RemoveIllumination(IIlluminator I)
+        {
+            Illuminator blackLight = new Illuminator(I);
+            blackLight.IlluminationColor = Color.Black;
+
+            IlluminateMap(blackLight);
         }
         #endregion
     }

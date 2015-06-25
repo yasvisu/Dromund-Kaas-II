@@ -18,6 +18,6 @@ namespace DromundKaasII.Interfaces
         /// </summary>
         TileTypeOptions TileType { get; }
 
-        Color Illumination { get; }
+        Color Illumination { get; set; }
     }
 }

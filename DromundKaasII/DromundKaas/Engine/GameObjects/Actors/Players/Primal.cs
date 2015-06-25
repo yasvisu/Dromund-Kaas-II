@@ -29,6 +29,9 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             this.Skills[3] = SkillChain["Start Fire"];
             this.Skills[4] = SkillChain["None"];
 
+            this.Stats.IlluminationRange = 2;
+            this.IlluminationColor = Color.LightSteelBlue;
+
         }
     }
 }

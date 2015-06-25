@@ -65,6 +65,7 @@
     <Compile Include="Engine\GameObjects\Actors\NPCs\Npc.cs" />
     <Compile Include="Engine\GameObjects\Actors\NPCs\ZombieFriend.cs" />
     <Compile Include="Engine\GameObjects\Actors\Statsheet.cs" />
+    <Compile Include="Engine\GameObjects\Illuminator.cs" />
     <Compile Include="Engine\GameObjects\Skills\SkillTargetOptions.cs" />
     <Compile Include="Engine\GameObjects\Skills\SkillTargetPermissions.cs" />
     <Compile Include="Engine\GameObjects\Skills\SkillTypes.cs" />

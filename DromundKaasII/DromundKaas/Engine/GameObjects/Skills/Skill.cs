@@ -15,7 +15,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         // add appropriate constructors and properties for the fields
         // ...
 
-        public Skill(string name, int manaCost, int focusCost, int range, SkillTypes skillType, IStatsheet effect, ActorAffectorDelegate affect, SkillTargetPermissions targetPermissions)
+        public Skill(string name, int manaCost, int focusCost, int range, SkillTypes skillType, IStatsheet effect, ActorAffectorDelegate affect, SkillTargetOptions targetOptions, SkillTargetPermissions targetPermissions)
         {
             this.Name = name;
             this.ManaCost = manaCost;
@@ -24,6 +24,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
             this.SkillType = skillType;
             this.Effect = effect;
             this.Affect = affect;
+            this.TargetOptions = targetOptions;
             this.TargetPermissions = targetPermissions;
         }
 
@@ -37,6 +38,8 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         public IStatsheet Effect { get; set; }
         public ActorAffectorDelegate Affect { get; set; }
 
+
+        public SkillTargetOptions TargetOptions { get; set; }
         public SkillTargetPermissions TargetPermissions { get; set; }
     }
 }

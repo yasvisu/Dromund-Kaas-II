@@ -20,7 +20,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         void LoadSkills()
         {
             // Load all skills here
-            this.Skills["None"] = new Skill("None", 0, 0, 0, SkillTypes.Physical, null, Augment, SkillTargetPermissions.None);
+            this.Skills["None"] = new Skill("None", 0, 0, 0, SkillTypes.Physical, null, Augment, SkillTargetOptions.Directional, SkillTargetPermissions.None);
 
             this.Skills["Hit"] = new Skill(
                 "Hit",
@@ -29,6 +29,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 SkillTypes.Physical,
                 new Statsheet() { Health = 50 },
                 Damage,
+                SkillTargetOptions.Directional,
                 SkillTargetPermissions.All);
 
             this.Skills["Throw Rock"] = new Skill(
@@ -38,6 +39,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 SkillTypes.Physical,
                 new Statsheet() { Health = 20 },
                 Damage,
+                SkillTargetOptions.Directional,
                 SkillTargetPermissions.All);
 
             this.Skills["Huddle"] = new Skill(
@@ -47,6 +49,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 SkillTypes.Physical,
                 new Statsheet() { Health = 30 },
                 Augment,
+                SkillTargetOptions.Directional,
                 SkillTargetPermissions.All);
 
             this.Skills["Start Fire"] = new Skill(
@@ -56,6 +59,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 SkillTypes.Summon,
                 new Statblock(8, 0),
                 Augment,
+                SkillTargetOptions.Directional,
                 SkillTargetPermissions.Ground);
 
 

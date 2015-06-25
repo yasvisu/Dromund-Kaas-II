@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DromundKaasII.Engine.GameObjects.Actors;
+using DromundKaasII.Interfaces;
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Skills
 {
-    public delegate void ActorAffectorDelegate(Actor target, Statblock effect);
+    public delegate void ActorAffectorDelegate(Actor target, IStatsheet effect);
 
     public class Skill
     {
@@ -19,7 +20,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
         public int ManaCost { get; set; }
         public int FocusCost { get; set; }
         public int Range { get; set; }
-        public Statblock Effect { get; set; }
+        public IStatsheet Effect { get; set; }
         public ActorAffectorDelegate Affect { get; set; }
 
         public SkillTargetPermissions TargetPermissions { get; set; }

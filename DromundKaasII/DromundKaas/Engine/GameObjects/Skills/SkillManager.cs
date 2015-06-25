@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DromundKaasII.Engine.GameObjects.Actors;
+using DromundKaasII.Interfaces;
 
 namespace DromundKaasII.Engine.GameObjects.Skills
 {
@@ -34,7 +35,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 TargetPermissions = SkillTargetPermissions.All,
                 Affect = Damage,
                 SkillType = SkillTypes.Physical,
-                Effect = new Statblock() { Health = 50 }
+                Effect = new Statsheet() { Health = 50 }
             };
             this.Skills["Throw Rock"] = new Skill()
             {
@@ -45,7 +46,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 TargetPermissions = SkillTargetPermissions.All,
                 Affect = Damage,
                 SkillType = SkillTypes.Physical,
-                Effect = new Statblock() { Health = 20 }
+                Effect = new Statsheet() { Health = 20 }
             };
             this.Skills["Huddle"] = new Skill()
             {
@@ -75,11 +76,11 @@ namespace DromundKaasII.Engine.GameObjects.Skills
             // Electric shock...
         }
 
-        void Augment(Actor target, Statblock effect)
+        void Augment(Actor target, IStatsheet effect)
         {
             target.Stats.Add(effect);
         }
-        void Damage(Actor target, Statblock effect)
+        void Damage(Actor target, IStatsheet effect)
         {
             target.Stats.Remove(effect);
         }

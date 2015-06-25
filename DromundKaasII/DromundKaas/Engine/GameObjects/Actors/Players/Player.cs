@@ -38,7 +38,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
 
         public override void Act(GameState G)
         {
-            this.Stats.Health++;
+            this.Stats.Health--;
             this.Stats.Mana++;
             this.Stats.Focus++;
             if (this.Stats.Experience > this.Stats.Level * 100)

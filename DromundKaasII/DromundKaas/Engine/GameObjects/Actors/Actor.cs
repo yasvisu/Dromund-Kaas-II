@@ -90,7 +90,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             this.Stats.Mana -= toEnact.ManaCost;
         }
 
-        internal void ReactToSkill(Skill toEnact)
+        public void ReactToSkill(Skill toEnact)
         {
             toEnact.Affect(this, toEnact.Effect);
         }

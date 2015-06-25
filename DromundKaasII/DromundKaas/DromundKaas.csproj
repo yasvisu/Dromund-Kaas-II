@@ -63,6 +63,7 @@
     <Compile Include="Engine\GameObjects\Actors\Directions.cs" />
     <Compile Include="Engine\GameObjects\Actors\NPCs\Npc.cs" />
     <Compile Include="Engine\GameObjects\Actors\NPCs\ZombieFriend.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Statsheet.cs" />
     <Compile Include="Engine\GameObjects\Skills\SkillTargetPermissions.cs" />
     <Compile Include="Engine\GameObjects\Skills\SkillTypes.cs" />
     <Compile Include="Engine\Interfaces\IPathable.cs" />
@@ -105,6 +106,8 @@
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IEngineOptions.cs" />
     <Compile Include="Interfaces\ISkill.cs" />
+    <Compile Include="Interfaces\IStatblock.cs" />
+    <Compile Include="Interfaces\IStatsheet.cs" />
     <Compile Include="Interfaces\ITile.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Program.cs" />

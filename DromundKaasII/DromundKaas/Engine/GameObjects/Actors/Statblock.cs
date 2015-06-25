@@ -2,17 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DromundKaasII.Interfaces;
 
 namespace DromundKaasII.Engine.GameObjects.Actors
 {
-    public class Statblock
+    public class Statblock : Statsheet, IStatblock
     {
+        public const float DEFAULT_PRIMARY_STAT = 8f;
+        public const int DEFAULT_TRAVERSAL_POWER = 100;
+
         int health;
         int mana;
         int focus;
 
+        public Statblock(float defaultPrimaryStat = DEFAULT_PRIMARY_STAT, int traversalPower = DEFAULT_TRAVERSAL_POWER)
+            : this(defaultPrimaryStat, defaultPrimaryStat, defaultPrimaryStat, defaultPrimaryStat, traversalPower)
+        { }
+
+        public Statblock(float strength, float dexterity, float constitution, float intelligence, int traversalPower)
+        {
+            this.Strength = strength;
+            this.Dexterity = dexterity;
+            this.Constitution = constitution;
+            this.Intelligence = intelligence;
+            this.TraversalPower = traversalPower;
+        }
+
         // Combat
-        public int Health
+        public override int Health
         {
             get
             {
@@ -24,7 +41,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
                 this.health = Math.Min(this.MaxHealth, this.health);
             }
         }
-        public int Mana
+        public override int Mana
         {
             get
             {
@@ -36,7 +53,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
                 this.mana = Math.Min(this.MaxMana, this.mana);
             }
         }
-        public int Focus
+        public override int Focus
         {
             get
             {
@@ -49,11 +66,6 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             }
         }
 
-        // Experience
-        public int Experience { get; set; }
-        public int Level { get; set; }
-
-        // Primary stats
         public int MaxHealth
         {
             get
@@ -74,33 +86,6 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             {
                 return (int)(this.Dexterity * 10 + Level * 10);
             }
-        }
-
-        public float Strength { get; set; }
-        public float Dexterity { get; set; }
-        public float Constitution { get; set; }
-        public float Intelligence { get; set; }
-
-        // Secondary stats
-        public float Wisdom { get; set; }
-        public float Charisma { get; set; }
-        public float Psychic { get; set; }
-
-        // Movement
-        public int TraversalPower { get; set; }
-
-        public void Add(Statblock target)
-        {
-            this.Health += target.Health;
-            this.Mana += target.Mana;
-            this.Focus += target.Focus;
-        }
-
-        public void Remove(Statblock target)
-        {
-            this.Health -= target.Health;
-            this.Mana -= target.Mana;
-            this.Focus -= target.Focus;
         }
     }
 }

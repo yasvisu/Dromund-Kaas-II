@@ -264,6 +264,11 @@ namespace DromundKaasII.Engine
             {
                 return;
             }
+            
+            if(toEnact.FocusCost>Player.Stats.Focus || toEnact.ManaCost>Player.Stats.Mana)
+            {
+                return;
+            }
 
             parent.SpendSkill(toEnact);
 

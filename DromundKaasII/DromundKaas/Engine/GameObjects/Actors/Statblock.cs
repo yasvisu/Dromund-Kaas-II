@@ -21,7 +21,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             set
             {
                 this.health = Math.Max(value, 0);
-                this.health = Math.Min(this.MaxHealth, value);
+                this.health = Math.Min(this.MaxHealth, this.health);
             }
         }
         public int Mana
@@ -33,7 +33,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             set
             {
                 this.mana = Math.Max(value, 0);
-                this.mana = Math.Min(this.MaxMana, value);
+                this.mana = Math.Min(this.MaxMana, this.mana);
             }
         }
         public int Focus
@@ -45,7 +45,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             set
             {
                 this.focus = Math.Max(value, 0);
-                this.focus = Math.Min(this.MaxFocus, value);
+                this.focus = Math.Min(this.MaxFocus, this.focus);
             }
         }
 

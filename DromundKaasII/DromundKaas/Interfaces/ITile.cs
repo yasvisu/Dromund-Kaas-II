@@ -1,4 +1,5 @@
 ﻿using DromundKaasII.Engine.GameObjects.Tiles;
+using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Interfaces
 {
@@ -16,5 +17,7 @@ namespace DromundKaasII.Interfaces
         /// The type of the tile.
         /// </summary>
         TileTypeOptions TileType { get; }
+
+        Color Illumination { get; }
     }
 }

@@ -30,18 +30,14 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             set { throw new NotImplementedException(); }
         }
 
-        public bool LevelUp
-        {
-            get;
-            set;
-        }
+        public bool LevelUp { get; set; }
 
         public override void Act(GameState G)
         {
             this.Stats.Health--;
             this.Stats.Mana++;
             this.Stats.Focus++;
-            if (this.Stats.Experience > this.Stats.Level * 100)
+            if (this.Stats.Experience > (this.Stats.Level+1) * 100)
             {
                 this.LevelUp = true;
             }

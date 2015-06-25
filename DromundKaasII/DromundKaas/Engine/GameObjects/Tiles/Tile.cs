@@ -14,10 +14,12 @@ namespace DromundKaasII.Engine.GameObjects.Tiles
         {
             this.TraversalCost = TraversalCost;
             this.TileType = TileType;
+            this.Illumination = Color.Black;
         }
 
         public double TraversalCost { get; set; }
         public IActor Occupant { get; set; }
         public TileTypeOptions TileType { get; set; }
+        public Color Illumination { get; set; }
     }
 }

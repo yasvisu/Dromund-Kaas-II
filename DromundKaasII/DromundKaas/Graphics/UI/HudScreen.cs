@@ -43,13 +43,13 @@ namespace DromundKaasII.Graphics.UI
 
         public override void Update(GameTime gameTime)
         {
-            this.health.FillRatio = this.Player.Stats.Health / this.Player.Stats.MaxHealth;
-            this.mana.FillRatio = this.Player.Stats.Mana / this.Player.Stats.MaxMana;
-            this.focus.FillRatio = this.Player.Stats.Focus / this.Player.Stats.MaxFocus;
+            this.health.FillRatio = (float)this.Player.Stats.Health / this.Player.Stats.MaxHealth;
+            this.mana.FillRatio = (float)this.Player.Stats.Mana / this.Player.Stats.MaxMana;
+            this.focus.FillRatio = (float)this.Player.Stats.Focus / this.Player.Stats.MaxFocus;
 
             this.health.Bounds = new Rectangle(this.health.Bounds.X, this.health.Bounds.Y, (int)(this.health.MaxWidth * this.health.FillRatio), this.health.Bounds.Height);
-            this.mana.Bounds = new Rectangle(this.mana.Bounds.X, this.mana.Bounds.Y, (int)(this.mana.MaxWidth * this.mana.FillRatio), this.mana.Bounds.Height);
-            this.focus.Bounds = new Rectangle(this.focus.Bounds.X, this.focus.Bounds.Y, (int)(this.focus.MaxWidth * this.focus.FillRatio), this.focus.Bounds.Height);
+            this.mana.Bounds = new Rectangle(this.mana.Bounds.X, this.mana.Bounds.Y, this.mana.MaxWidth , (int)(this.mana.Bounds.Height* this.mana.FillRatio));
+            this.focus.Bounds = new Rectangle(this.focus.Bounds.X, this.focus.Bounds.Y, this.focus.Bounds.Width, (int)(this.focus.Bounds.Height* this.focus.FillRatio));
 
         }
 

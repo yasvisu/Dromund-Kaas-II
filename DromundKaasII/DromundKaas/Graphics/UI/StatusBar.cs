@@ -15,6 +15,7 @@ namespace DromundKaasII.Graphics.UI
             this.FillRatio = FillRatio;
             this.Color = Color;
             this.MaxWidth = Bounds.Width;
+            this.MaxHeight = Bounds.Height;
         }
 
         public Rectangle Bounds { get; set; }
@@ -22,5 +23,6 @@ namespace DromundKaasII.Graphics.UI
         public Color Color { get; set; }
 
         public int MaxWidth { get; private set; }
+        public int MaxHeight { get; private set; }
     }
 }

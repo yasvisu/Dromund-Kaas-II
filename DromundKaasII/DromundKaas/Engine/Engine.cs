@@ -367,15 +367,15 @@ namespace DromundKaasII.Engine
 
         private void IlluminateMap(IIlluminator I)
         {
-            Point topLeft = new Point((int)(I.MapPosition.X - I.IlluminationRange), (int)(I.MapPosition.Y - I.IlluminationRange));
-            Point bottomRight = new Point((int)(I.MapPosition.X + I.IlluminationRange), (int)(I.MapPosition.Y + I.IlluminationRange));
+            Vector2 topLeft = new Vector2(I.MapPosition.X - I.IlluminationRange, I.MapPosition.Y - I.IlluminationRange);
+            Vector2 bottomRight = new Vector2(I.MapPosition.X + I.IlluminationRange, I.MapPosition.Y + I.IlluminationRange);
 
-            Rectangle IllumRect = new Rectangle(topLeft, bottomRight);
+            Rectangle IllumRect = new Rectangle(topLeft.ToPoint(), bottomRight.ToPoint());
 
 
-            for (int i = IllumRect.Top; i < IllumRect.Bottom; i++)
+            for (int i = IllumRect.Top; i <= IllumRect.Bottom; i++)
             {
-                for (int j = IllumRect.Left; j < IllumRect.Right; j++)
+                for (int j = IllumRect.Left; j <= IllumRect.Right; j++)
                 {
                     if (i >= 0 && i < this.MapHeight &&
                         j >= 0 && j < this.MapWidth &&

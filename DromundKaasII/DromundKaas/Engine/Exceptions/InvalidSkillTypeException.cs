@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DromundKaasII.Engine.Exceptions
 {
-    public class InvalidSkillTypeException : Exception
+    public class InvalidSkillTypeException : ApplicationException
     {
         public InvalidSkillTypeException()
             : base()

@@ -72,6 +72,7 @@
     <Compile Include="Engine\GameObjects\Skills\SkillTypes.cs" />
     <Compile Include="Engine\Interfaces\IPathable.cs" />
     <Compile Include="Graphics\CreditsScreen.cs" />
+    <Compile Include="Graphics\Exceptions\EngineFailureException.cs" />
     <Compile Include="Graphics\Image.cs" />
     <Compile Include="Graphics\OptionsScreen.cs" />
     <Compile Include="Graphics\PlayScreen.cs" />

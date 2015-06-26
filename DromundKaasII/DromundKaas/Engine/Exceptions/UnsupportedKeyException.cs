@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DromundKaasII.Engine.Exceptions
 {
-    public class UnsupportedKeyException : Exception
+    public class UnsupportedKeyException : ApplicationException
     {
         public UnsupportedKeyException()
             : base()

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DromundKaasII.Engine.Exceptions
 {
-    public class SpawnOccupiedException : Exception
+    public class SpawnOccupiedException : ApplicationException
     {
         public SpawnOccupiedException()
             : base()

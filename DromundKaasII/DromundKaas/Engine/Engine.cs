@@ -170,6 +170,8 @@ namespace DromundKaasII.Engine
 
             PruneAllActors();
 
+            SpawnNewActors();
+
             ProcessAllActors();
 
             ProcessAllIlluminators();
@@ -211,6 +213,19 @@ namespace DromundKaasII.Engine
             {
                 actorFactory.RemoveActor(NpcGarbageCan.Pop());
 
+            }
+        }
+
+        private void SpawnNewActors()
+        {
+            while (this.GameState.SpawnQueue.Count > 0)
+            {
+                Actor candidate;
+                bool success = this.GameState.SpawnQueue.TryDequeue(out candidate);
+                if (success && candidate != null)
+                {
+                    this.actorFactory.CreateActor(candidate);
+                }
             }
         }
 
@@ -379,13 +394,8 @@ namespace DromundKaasII.Engine
             // Works for campfires.
             if (toEnact.Name == "Start Fire")
             {
-                try
-                {
-                    var fire = new Campfire(spawnLocation, toEnact.Effect as Statblock);
-                    this.actorFactory.CreateActor(fire);
-                }
-                catch (SpawnOccupiedException soe)
-                { }
+                var fire = new Campfire(spawnLocation, toEnact.Effect as Statblock);
+                this.GameState.SpawnQueue.Enqueue(fire);
             }
 
             return true;

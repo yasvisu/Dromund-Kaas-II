@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.Engine.GameObjects.Tiles;
+using DromundKaasII.Graphics.Exceptions;
 using DromundKaasII.Graphics.UI;
 using DromundKaasII.Input;
 using DromundKaasII.Interfaces;
@@ -98,6 +99,11 @@ namespace DromundKaasII.Graphics
         {
             base.Update(gameTime);
 
+            if(this.engineTask.IsFaulted)
+            {
+                throw new EngineFailureException("Engine failed!",this.engineTask.Exception);
+            }
+
             this.Background.Position = Vector2.Zero + (-engine.Player.MapPosition * 64) / 10;
 
             if (input.IsPressed(GameInputs.Up))
@@ -178,7 +184,6 @@ namespace DromundKaasII.Graphics
                     {
                         spriteBatch.Draw(mychar, destination, currentTile.Illumination);
                     }
-
                 }
             }
 

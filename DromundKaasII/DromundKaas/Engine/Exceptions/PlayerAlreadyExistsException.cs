@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DromundKaasII.Engine.Exceptions
 {
-    public class PlayerAlreadyExistsException : Exception
+    public class PlayerAlreadyExistsException : ApplicationException
     {
         public PlayerAlreadyExistsException()
             : base()

@@ -59,6 +59,8 @@ namespace DromundKaasII.Engine.GameObjects.Actors
                 case GameInputs.Right:
                     this.Direction = Directions.East;
                     break;
+                default: 
+                    break;
             }
         }
 

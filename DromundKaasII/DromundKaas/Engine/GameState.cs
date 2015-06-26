@@ -5,6 +5,7 @@ using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Engine.Interfaces;
 using DromundKaasII.Interfaces;
+using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
 {
@@ -25,6 +26,7 @@ namespace DromundKaasII.Engine
             this.Illuminators = new List<IIlluminator>();
             this.Map = new Tile[X, Y];
             this.TranspiredEvents = new ConcurrentQueue<ActorStateEvent>();
+            this.FogOfWar = Color.Black;
         }
 
         /// <summary>
@@ -80,5 +82,7 @@ namespace DromundKaasII.Engine
                 return this.Map.GetLength(1);
             }
         }
+
+        public Color FogOfWar { get; set; }
     }
 }

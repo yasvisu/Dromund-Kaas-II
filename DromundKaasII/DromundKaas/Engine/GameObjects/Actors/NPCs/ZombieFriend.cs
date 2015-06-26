@@ -13,24 +13,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
         public ZombieFriend(Vector2 MapPosition, Dictionary<string,Skill> SkillChain)
             : base(MapPosition,SkillChain)
         {
-            this.Stats = new Statblock()
-            {
-                Strength = 8,
-                Dexterity = 8,
-                Constitution = 8,
-                Intelligence = 8,
-
-                Wisdom = 8,
-                Charisma = 8,
-                Psychic = 8,
-
-                TraversalPower = 100,
-            };
-
-            this.Stats.Health = this.Stats.MaxHealth;
-            this.Stats.Mana = this.Stats.MaxMana;
-            this.Stats.Focus = this.Stats.MaxFocus;
-
+            this.Stats = new Statblock(8);
         }
 
         public override void Act(GameState G)

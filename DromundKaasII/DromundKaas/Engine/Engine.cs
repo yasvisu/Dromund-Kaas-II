@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DromundKaasII.Engine.Exceptions;
 using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
+using DromundKaasII.Engine.GameObjects.Actors.Debris;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
 using DromundKaasII.Engine.GameObjects.Actors.Players;
 using DromundKaasII.Engine.GameObjects.Skills;
@@ -34,37 +35,40 @@ namespace DromundKaasII.Engine
 
         public Engine()
         {
-            this.gameState = new GameState(7, 7);
-            this.gameState.GameSpeed = GameSpeedOptions.Fast;
+            this.GameState = new GameState(7, 7);
+            this.GameState.GameSpeed = GameSpeedOptions.Fast;
             this.IsRunning = true;
             this.cycleCounter = 0;
             this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
-            this.actorFactory = new ActorFactory(this.gameState);
+            this.actorFactory = new ActorFactory(this.GameState);
 
-            for (int i = 0; i < this.gameState.Map.GetLength(0); i++)
+            for (int i = 0; i < this.GameState.Map.GetLength(0); i++)
             {
-                for (int j = 0; j < this.gameState.Map.GetLength(1); j++)
+                for (int j = 0; j < this.GameState.Map.GetLength(1); j++)
                 {
-                    Tile temp = new Tile(100, TileTypeOptions.Ground);
-                    this.gameState.Map[i, j] = temp;
+                    Tile temp = new Tile(100, TileTypeOptions.Ground, this.GameState.FogOfWar);
+                    this.GameState.Map[i, j] = temp;
                 }
             }
 
             // Sample water tile!
-            this.gameState.Map[1, 1] = new Tile(200, TileTypeOptions.Water);
-            this.gameState.Map[3, 1] = new Tile(1000, TileTypeOptions.Hole);
-            this.gameState.Map[1, 3] = new Tile(700, TileTypeOptions.Wall);
-            this.gameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree);
+            this.GameState.Map[1, 1] = new Tile(200, TileTypeOptions.Water, this.GameState.FogOfWar);
+            this.GameState.Map[3, 1] = new Tile(1000, TileTypeOptions.Hole, this.GameState.FogOfWar);
+            this.GameState.Map[1, 3] = new Tile(700, TileTypeOptions.Wall, this.GameState.FogOfWar);
+            this.GameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree, this.GameState.FogOfWar);
 
             Player p = new Primal(new Vector2(2, 2), SkillManager.Skills);
             actorFactory.CreatePlayer(p);
 
             ZombieFriend z = new ZombieFriend(new Vector2(5, 5), SkillManager.Skills);
-            actorFactory.CreateNpc(z);
+            actorFactory.CreateActor(z);
+
+            Campfire c = new Campfire(new Vector2(6, 6), new Statblock(8));
+            actorFactory.CreateActor(c);
         }
 
-        protected GameState gameState { get; set; }
+        protected GameState GameState { get; set; }
 
         #region Public Interface
         public bool IsRunning { get; set; }
@@ -85,71 +89,78 @@ namespace DromundKaasII.Engine
         {
             get
             {
-                return this.gameState.Player;
+                return this.GameState.Player;
             }
         }
         public ConcurrentQueue<ActorStateEvent> TranspiredEvents
         {
             get
             {
-                return this.gameState.TranspiredEvents;
+                return this.GameState.TranspiredEvents;
             }
         }
         public GameSpeedOptions GameSpeed
         {
             get
             {
-                return this.gameState.GameSpeed;
+                return this.GameState.GameSpeed;
             }
             set
             {
-                this.gameState.GameSpeed = value;
+                this.GameState.GameSpeed = value;
             }
         }
         public GameDifficultyOptions GameDifficulty
         {
             get
             {
-                return this.gameState.GameDifficulty;
+                return this.GameState.GameDifficulty;
             }
             set
             {
-                this.gameState.GameDifficulty = value;
+                this.GameState.GameDifficulty = value;
             }
         }
         public IEnumerable<IActor> Actors
         {
             get
             {
-                return this.gameState.Actors;
+                return this.GameState.Actors;
             }
         }
         public IEnumerable<IIlluminator> Illuminators
         {
             get
             {
-                return this.gameState.Illuminators;
+                return this.GameState.Illuminators;
             }
         }
         public ITile[,] Map
         {
             get
             {
-                return this.gameState.Map;
+                return this.GameState.Map;
             }
         }
         public int MapHeight
         {
             get
             {
-                return this.gameState.MapHeight;
+                return this.GameState.MapHeight;
             }
         }
         public int MapWidth
         {
             get
             {
-                return this.gameState.MapWidth;
+                return this.GameState.MapWidth;
+            }
+        }
+        public Color FogOfWar
+        {
+            get
+            {
+                return this.GameState.FogOfWar;
             }
         }
 
@@ -169,7 +180,6 @@ namespace DromundKaasII.Engine
         #endregion
 
 
-
         #region State Changers
 
 
@@ -178,7 +188,7 @@ namespace DromundKaasII.Engine
             // Prune dead actors
             Stack<Npc> NpcGarbageCan = new Stack<Npc>();
 
-            foreach (Actor a in this.gameState.Actors)
+            foreach (Actor a in this.GameState.Actors)
             {
                 if (a.Stats.Health <= 0)
                 {
@@ -199,19 +209,18 @@ namespace DromundKaasII.Engine
 
             while (NpcGarbageCan.Count > 0)
             {
-                actorFactory.RemoveNpc(NpcGarbageCan.Pop());
+                actorFactory.RemoveActor(NpcGarbageCan.Pop());
 
             }
         }
 
-
         private void ProcessAllActors()
         {
-            foreach (Actor a in this.gameState.Actors)
+            foreach (Actor a in this.GameState.Actors)
             {
                 a.RemoveExpiredStatusEffects();
                 // Tell all actors to think of a next move
-                a.Act(this.gameState);
+                a.Act(this.GameState);
             }
         }
 
@@ -225,11 +234,11 @@ namespace DromundKaasII.Engine
                 }
             }
         }
-        
+
         private void ActAllActors()
         {
             // Move / act all actors based on their desired move
-            foreach (Actor a in this.gameState.Actors)
+            foreach (Actor a in this.GameState.Actors)
             {
                 switch (a.DesiredAction)
                 {
@@ -304,13 +313,24 @@ namespace DromundKaasII.Engine
 
             Vector2 skillEffectLocation = GetGroundTarget(parent.MapPosition, DirectionToUnitVector(parent.Direction), toEnact.Range);
 
-            if (skillEffectLocation.X < 0 || skillEffectLocation.X >= this.gameState.MapWidth ||
-                skillEffectLocation.Y < 0 || skillEffectLocation.Y >= this.gameState.MapHeight)
+            if (skillEffectLocation.X < 0 || skillEffectLocation.X >= this.GameState.MapWidth ||
+                skillEffectLocation.Y < 0 || skillEffectLocation.Y >= this.GameState.MapHeight)
             {
                 return;
             }
 
-            Actor target = this.gameState.Map[(int)skillEffectLocation.Y, (int)skillEffectLocation.X].Occupant as Actor;
+
+
+            if (toEnact.SkillType == SkillTypes.Summon)
+            {
+                bool summoningResult = HandleSummonSkill(toEnact, skillEffectLocation);
+                if (!summoningResult)
+                {
+                    return;
+                }
+            }
+
+            Actor target = this.GameState.Map[(int)skillEffectLocation.Y, (int)skillEffectLocation.X].Occupant as Actor;
             if (target != null)
             {
                 target.ReactToSkill(toEnact);
@@ -339,24 +359,56 @@ namespace DromundKaasII.Engine
             return Current + Movement * Range;
         }
 
+        private bool HandleSummonSkill(Skill toEnact, Vector2 spawnLocation)
+        {
+            if (toEnact == null)
+            {
+                throw new ArgumentNullException("Skill cannot be null.");
+            }
+
+            if (toEnact.SkillType != SkillTypes.Summon)
+            {
+                throw new InvalidSkillTypeException("Cannot handle non-summon skill.");
+            }
+
+            if (this.GameState.Map[(int)spawnLocation.X, (int)spawnLocation.Y].Occupant != null)
+            {
+                return false;
+            }
+
+            // Works for campfires.
+            if (toEnact.Name == "Start Fire")
+            {
+                try
+                {
+                    var fire = new Campfire(spawnLocation, toEnact.Effect as Statblock);
+                    this.actorFactory.CreateActor(fire);
+                }
+                catch (SpawnOccupiedException soe)
+                { }
+            }
+
+            return true;
+        }
+
         private void MoveActor(Actor parent, Vector2 target)
         {
             // Check whether Actor can move on tile, then move Actor.
-            if (target.X < 0 || target.X >= gameState.MapWidth || target.Y < 0 || target.Y >= gameState.MapHeight)
+            if (target.X < 0 || target.X >= GameState.MapWidth || target.Y < 0 || target.Y >= GameState.MapHeight)
             {
                 return;
             }
-            if (parent.Stats.TraversalPower >= gameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
-                gameState.Map[(int)target.Y, (int)target.X].Occupant == null)
+            if (parent.Stats.TraversalPower >= GameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
+                GameState.Map[(int)target.Y, (int)target.X].Occupant == null)
             {
-                if(parent is IIlluminator)
+                if (parent is IIlluminator)
                 {
                     RemoveIllumination(parent as IIlluminator);
                 }
 
-                gameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
+                GameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
                 parent.MapPosition = target;
-                gameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
+                GameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
 
                 if (parent is IIlluminator)
                 {
@@ -365,8 +417,18 @@ namespace DromundKaasII.Engine
             }
         }
 
+
+
+        // Illumination
+
         private void IlluminateMap(IIlluminator I)
         {
+            if (I.HasIlluminated)
+            {
+                return;
+            }
+            I.HasIlluminated = true;
+
             Vector2 topLeft = new Vector2(I.MapPosition.X - I.IlluminationRange, I.MapPosition.Y - I.IlluminationRange);
             Vector2 bottomRight = new Vector2(I.MapPosition.X + I.IlluminationRange, I.MapPosition.Y + I.IlluminationRange);
 
@@ -381,7 +443,10 @@ namespace DromundKaasII.Engine
                         j >= 0 && j < this.MapWidth &&
                         Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
                     {
-                        this.gameState.Map[i, j].Illumination = I.IlluminationColor;
+                        if (this.GameState.Map[i, j].Illumination == this.GameState.FogOfWar)
+                        {
+                            this.GameState.Map[i, j].Illumination = I.IlluminationColor;
+                        }
                     }
                 }
             }
@@ -394,11 +459,40 @@ namespace DromundKaasII.Engine
 
         private void RemoveIllumination(IIlluminator I)
         {
-            Illuminator blackLight = new Illuminator(I);
-            blackLight.IlluminationColor = Color.Black;
+            if (!I.HasIlluminated)
+            {
+                return;
+            }
 
-            IlluminateMap(blackLight);
+            Vector2 topLeft = new Vector2(I.MapPosition.X - I.IlluminationRange, I.MapPosition.Y - I.IlluminationRange);
+            Vector2 bottomRight = new Vector2(I.MapPosition.X + I.IlluminationRange, I.MapPosition.Y + I.IlluminationRange);
+
+            Rectangle IllumRect = new Rectangle(topLeft.ToPoint(), bottomRight.ToPoint());
+
+
+            for (int i = IllumRect.Top; i <= IllumRect.Bottom; i++)
+            {
+                for (int j = IllumRect.Left; j <= IllumRect.Right; j++)
+                {
+                    if (i >= 0 && i < this.MapHeight &&
+                        j >= 0 && j < this.MapWidth &&
+                        Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
+                    {
+                        var tempColor = this.GameState.Map[i, j].Illumination;
+                        if (tempColor == I.IlluminationColor)
+                        {
+                            this.GameState.Map[i, j].Illumination = this.GameState.FogOfWar;
+                        }
+                    }
+                }
+            }
+            I.HasIlluminated = false;
         }
+
+
+
+
+
         #endregion
     }
 }

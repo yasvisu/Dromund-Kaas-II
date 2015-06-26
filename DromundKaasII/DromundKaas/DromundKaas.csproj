@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Engine\ActorFactory.cs" />
     <Compile Include="Engine\Calculator.cs" />
+    <Compile Include="Engine\Exceptions\InvalidSkillTypeException.cs" />
     <Compile Include="Engine\Exceptions\PlayerAlreadyExistsException.cs" />
     <Compile Include="Engine\Exceptions\SpawnOccupiedException.cs" />
     <Compile Include="Engine\Exceptions\UnsupportedKeyException.cs" />

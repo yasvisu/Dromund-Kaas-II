@@ -10,6 +10,6 @@ namespace DromundKaasII.Interfaces
     {
         Color IlluminationColor { get; }
         float IlluminationRange { get; }
-        bool HasIlluminated { get; }
+        bool HasIlluminated { get; set; }
     }
 }

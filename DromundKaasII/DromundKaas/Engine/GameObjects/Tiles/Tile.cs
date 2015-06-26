@@ -10,11 +10,11 @@ namespace DromundKaasII.Engine.GameObjects.Tiles
 {
     public class Tile : IPathable
     {
-        public Tile(double TraversalCost, TileTypeOptions TileType)
+        public Tile(double TraversalCost, TileTypeOptions TileType, Color Illumination)
         {
             this.TraversalCost = TraversalCost;
             this.TileType = TileType;
-            this.Illumination = Color.Black;
+            this.Illumination = Illumination;
         }
 
         public double TraversalCost { get; set; }

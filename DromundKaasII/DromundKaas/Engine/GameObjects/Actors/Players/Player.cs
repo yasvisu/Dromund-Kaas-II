@@ -41,13 +41,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
                 return this.Stats.IlluminationRange;
             }
         }
-        public bool HasIlluminated
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool HasIlluminated { get; set; }
 
         public override void Act(GameState G)
         {

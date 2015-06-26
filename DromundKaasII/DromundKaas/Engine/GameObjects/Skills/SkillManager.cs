@@ -55,7 +55,7 @@ namespace DromundKaasII.Engine.GameObjects.Skills
             this.Skills["Start Fire"] = new Skill(
                 "Start Fire",
                 10, 10,
-                3,
+                1,
                 SkillTypes.Summon,
                 new Statblock(8, 0),
                 Augment,

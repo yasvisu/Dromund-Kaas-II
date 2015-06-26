@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DromundKaasII.Engine.Exceptions;
 using DromundKaasII.Engine.GameObjects.Actors;
+using DromundKaasII.Engine.GameObjects.Actors.Debris;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
 using DromundKaasII.Engine.GameObjects.Actors.Players;
 using DromundKaasII.Engine.GameObjects.Skills;
@@ -36,14 +37,14 @@ namespace DromundKaasII.Engine
             this.PutOnGameState(Player);
         }
 
-        public void CreateNpc(Npc Npc)
+        public void CreateActor(Actor a)
         {
-            if (this.GameState.Map[(int)Npc.MapPosition.X, (int)Npc.MapPosition.Y].Occupant != null)
+            if (this.GameState.Map[(int)a.MapPosition.X, (int)a.MapPosition.Y].Occupant != null)
             {
                 throw new SpawnOccupiedException();
             }
 
-            this.PutOnGameState(Npc);
+            this.PutOnGameState(a);
         }
 
         public void RemovePlayer()
@@ -51,9 +52,9 @@ namespace DromundKaasII.Engine
             throw new NotImplementedException();
         }
 
-        public void RemoveNpc(Npc Npc)
+        public void RemoveActor(Actor a)
         {
-            RemoveFromGameState(Npc);
+            RemoveFromGameState(a);
         }
 
         private void PutOnGameState(Actor a)

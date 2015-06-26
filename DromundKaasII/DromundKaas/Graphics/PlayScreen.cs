@@ -172,11 +172,13 @@ namespace DromundKaasII.Graphics
                             ToDraw = wall;
                             break;
                     }
-                    spriteBatch.Draw(ToDraw, destination,currentTile.Illumination);
+
+                    spriteBatch.Draw(ToDraw, destination, currentTile.Illumination);
                     if (engine.Map[i, j].Occupant != null)
                     {
-                        spriteBatch.Draw(mychar, destination,currentTile.Illumination);
+                        spriteBatch.Draw(mychar, destination, currentTile.Illumination);
                     }
+
                 }
             }
 

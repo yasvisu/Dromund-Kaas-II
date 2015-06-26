@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using DromundKaasII.Engine;
+using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Interfaces
 {
@@ -50,6 +51,8 @@ namespace DromundKaasII.Interfaces
         /// The width of the game map.
         /// </summary>
         int MapWidth { get; }
+
+        Color FogOfWar { get; }
 
         /// <summary>
         /// Updates the engine game state.

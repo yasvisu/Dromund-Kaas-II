@@ -26,6 +26,10 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             this.Constitution = constitution;
             this.Intelligence = intelligence;
             this.TraversalPower = traversalPower;
+
+            this.Health = this.MaxHealth;
+            this.Mana = this.MaxMana;
+            this.Focus = this.MaxFocus;
         }
 
         // Combat

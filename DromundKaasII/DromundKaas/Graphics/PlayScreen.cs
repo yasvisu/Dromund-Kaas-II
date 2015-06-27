@@ -98,7 +98,7 @@ namespace DromundKaasII.Graphics
 
             this.TypeTextures2D[typeof(Primal)] = this.content.Load<Texture2D>("Actors/Primal/ChovecheHorizontal");
             this.TypeTextures2D[typeof(Campfire)] = this.content.Load<Texture2D>("Actors/Debris/campfire");
-            this.TypeTextures2D[typeof(ZombieFriend)] = this.content.Load<Texture2D>("Actors/placeholderChar");
+            this.TypeTextures2D[typeof(ZombieFriend)] = mychar;
 
             foreach (StatusEffects se in Enum.GetValues(typeof(StatusEffects)))
             {

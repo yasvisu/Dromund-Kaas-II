@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Actors.Debris
 {
-    public class Campfire : Actor, IIlluminator
+    public class Campfire : Debris, IIlluminator
     {
         public Campfire(Vector2 MapPosition, Statblock Stats)
             : base(MapPosition, null, Stats)

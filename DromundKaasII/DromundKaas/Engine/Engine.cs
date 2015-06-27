@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using DromundKaasII.Engine.Exceptions;
 using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
@@ -35,7 +36,7 @@ namespace DromundKaasII.Engine
 
         public Engine()
         {
-            this.GameState = new GameState(100, 100);
+            this.GameState = new GameState(7, 7);
             this.GameState.GameSpeed = GameSpeedOptions.Fast;
             this.IsRunning = true;
             this.cycleCounter = 0;
@@ -241,12 +242,11 @@ namespace DromundKaasII.Engine
 
         private void ProcessAllIlluminators()
         {
+            this.GameState.Illuminators = this.GameState.Illuminators.OrderBy((x) => x.IlluminationRange).ToList();
+
             foreach (var illum in this.Illuminators)
             {
-                if (true || !illum.HasIlluminated)
-                {
-                    IlluminateMap(illum);
-                }
+                IlluminateMap(illum);
             }
         }
 
@@ -280,6 +280,11 @@ namespace DromundKaasII.Engine
                         break;
                 }
                 a.DesiredAction = GameInputs.None;
+
+                if (IsAloneInTheDark(a) && !(a is Debris))
+                {
+                    a.Inflict(StatusEffects.Fear);
+                }
             }
         }
 
@@ -396,7 +401,10 @@ namespace DromundKaasII.Engine
             // Works for campfires.
             if (toEnact.Name == "Start Fire")
             {
-                var fire = new Campfire(spawnLocation, toEnact.Effect as Statblock);
+                var fireStats = new Statblock();
+                fireStats.CopyValues(toEnact.Effect);
+
+                var fire = new Campfire(spawnLocation, fireStats);
                 this.GameState.SpawnQueue.Enqueue(fire);
             }
 
@@ -435,10 +443,6 @@ namespace DromundKaasII.Engine
 
         private void IlluminateMap(IIlluminator I)
         {
-            if (I.HasIlluminated)
-            {
-                return;
-            }
             I.HasIlluminated = true;
 
             Vector2 topLeft = new Vector2(I.MapPosition.X - I.IlluminationRange, I.MapPosition.Y - I.IlluminationRange);
@@ -455,7 +459,10 @@ namespace DromundKaasII.Engine
                         j >= 0 && j < this.MapWidth &&
                         Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
                     {
-                        if (this.GameState.Map[i, j].Illumination == this.GameState.FogOfWar)
+                        var currentTileIllumination = this.GameState.Map[i, j].Illumination;
+                        if (currentTileIllumination == this.GameState.FogOfWar ||
+                            new[] { currentTileIllumination.R, currentTileIllumination.G, currentTileIllumination.B }.Max() < 
+                            new[] { I.IlluminationColor.R, I.IlluminationColor.G, I.IlluminationColor.B }.Max())
                         {
                             this.GameState.Map[i, j].Illumination = I.IlluminationColor;
                         }
@@ -501,7 +508,19 @@ namespace DromundKaasII.Engine
             I.HasIlluminated = false;
         }
 
+        private bool IsAloneInTheDark(IActor a)
+        {
+            var currentTileIllumination = this.GameState.Map[(int)a.MapPosition.Y, (int)a.MapPosition.X].Illumination;
 
+            bool result = currentTileIllumination == this.FogOfWar;
+
+            if (a is IIlluminator)
+            {
+                result = result || currentTileIllumination == (a as IIlluminator).IlluminationColor;
+            }
+
+            return result;
+        }
 
 
 

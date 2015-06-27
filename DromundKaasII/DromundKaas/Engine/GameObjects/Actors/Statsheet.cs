@@ -46,5 +46,28 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             this.Mana -= target.Mana;
             this.Focus -= target.Focus;
         }
+
+        public void CopyValues(IStatsheet target)
+        {
+            this.Level = target.Level;
+            this.Experience = target.Experience;
+
+            this.Strength = target.Strength;
+            this.Dexterity = target.Dexterity;
+            this.Constitution = target.Constitution;
+            this.Charisma = target.Charisma;
+            this.Intelligence = target.Intelligence;
+
+            this.Psychic = target.Psychic;
+            this.Wisdom = target.Wisdom;
+
+            this.Health = target.Health;
+            this.Mana = target.Mana;
+            this.Focus = target.Focus;
+
+            this.TraversalPower = target.TraversalPower;
+
+            this.IlluminationRange = target.IlluminationRange;
+        }
     }
 }

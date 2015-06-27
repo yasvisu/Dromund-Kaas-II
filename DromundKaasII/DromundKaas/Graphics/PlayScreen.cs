@@ -206,7 +206,7 @@ namespace DromundKaasII.Graphics
                         Texture2D temp = TypeTextures2D[currentTile.Occupant.GetType()];
                         
                         spriteBatch.Draw(temp, destination, originRect, currentTile.Illumination);
-                        foreach(StatusEffects status in currentTile.Occupant.Status)
+                        foreach(StatusEffects status in currentTile.Occupant.Status.ToList())
                         {
                             temp = StatusEffectTextures2D[status];
                             spriteBatch.Draw(temp, destination, currentTile.Illumination);

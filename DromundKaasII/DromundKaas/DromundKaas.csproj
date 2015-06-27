@@ -62,6 +62,7 @@
     <Compile Include="Engine\Exceptions\UnsupportedKeyException.cs" />
     <Compile Include="Engine\GameObjects\Actors\ActionTypeOptions.cs" />
     <Compile Include="Engine\GameObjects\Actors\Debris\Campfire.cs" />
+    <Compile Include="Engine\GameObjects\Actors\Debris\Debris.cs" />
     <Compile Include="Engine\GameObjects\Actors\Directions.cs" />
     <Compile Include="Engine\GameObjects\Actors\NPCs\Npc.cs" />
     <Compile Include="Engine\GameObjects\Actors\NPCs\ZombieFriend.cs" />

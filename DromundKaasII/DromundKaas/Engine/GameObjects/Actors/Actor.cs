@@ -24,7 +24,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain, Statblock Stats)
         {
             this.MapPosition = MapPosition;
-            this.StatusEffects = new Dictionary<StatusEffects, TimeSpan>();
+            this.ActorStatusEffects = new Dictionary<StatusEffects, uint>();
             this.DesiredAction = GameInputs.None;
             this.Stats = Stats;
         }
@@ -37,14 +37,23 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
         public Directions Direction { get; set; }
 
+
+        public Statsheet Regen { get; set; }
         public Statblock Stats { get; set; }
 
-        public Dictionary<StatusEffects, TimeSpan> StatusEffects { get; set; }
+        public Dictionary<StatusEffects, uint> ActorStatusEffects { get; set; }
 
         public Skill[] Skills { get; protected set; }
 
         public virtual void Act(GameState G)
         {
+            this.Regen = new Statsheet();
+            this.Regen.Mana++;
+            this.Regen.Focus++;
+
+
+            this.ApplyRegeneration();
+
             switch (this.DesiredAction)
             {
                 case GameInputs.Up:
@@ -59,26 +68,79 @@ namespace DromundKaasII.Engine.GameObjects.Actors
                 case GameInputs.Right:
                     this.Direction = Directions.East;
                     break;
-                default: 
+                default:
                     break;
             }
         }
 
-        public virtual void RemoveExpiredStatusEffects()
+        public virtual void Inflict(StatusEffects StatusEffect)
+        {
+            if (!this.ActorStatusEffects.ContainsKey(StatusEffect))
+            {
+                this.ActorStatusEffects[StatusEffect] = 1;
+            }
+            else
+            {
+                this.ActorStatusEffects[StatusEffect]++;
+            }
+        }
+
+        public virtual void ProcessStatusEffects()
+        {
+            this.RefreshRegeneration();
+
+            this.RemoveExpiredStatusEffects();
+
+            foreach (var effect in this.ActorStatusEffects)
+            {
+                switch (effect.Key)
+                {
+                    case StatusEffects.Fear:
+                        this.Fear();
+                        this.ActorStatusEffects[StatusEffects.Fear]--;
+                        break;
+                    default:
+                        throw new NotImplementedException("Status effect not implemented.");
+                }
+            }
+        }
+
+        protected virtual void RefreshRegeneration()
+        {
+            this.Regen = new Statsheet();
+            this.Regen.Mana++;
+            this.Regen.Health++;
+        }
+
+        protected virtual void RemoveExpiredStatusEffects()
         {
             Stack<StatusEffects> GarbageCan = new Stack<StatusEffects>();
 
-            foreach (var kvp in this.StatusEffects)
+            foreach (var kvp in this.ActorStatusEffects)
             {
-                if (kvp.Value.TotalMilliseconds <= 0)
+                if (kvp.Value <= 0)
                 {
                     GarbageCan.Push(kvp.Key);
                 }
             }
             while (GarbageCan.Count > 0)
             {
-                this.StatusEffects.Remove(GarbageCan.Pop());
+                this.ActorStatusEffects.Remove(GarbageCan.Pop());
             }
+        }
+
+        protected virtual void Fear()
+        {
+            this.Regen.Health--;
+            this.Regen.Mana--;
+            this.Regen.Focus--;
+        }
+
+        protected virtual void ApplyRegeneration()
+        {
+            this.Stats.Health += this.Regen.Health;
+            this.Stats.Mana += this.Regen.Mana;
+            this.Stats.Focus += this.Regen.Focus;
         }
 
         public double DistanceTo(Actor other)
@@ -86,13 +148,13 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             return Math.Sqrt((other.MapPosition.X - this.MapPosition.X) * (other.MapPosition.X - this.MapPosition.X) + (other.MapPosition.Y - this.MapPosition.Y) * (other.MapPosition.Y - this.MapPosition.Y));
         }
 
-        public void SpendSkill(Skill toEnact)
+        public virtual void SpendSkill(Skill toEnact)
         {
             this.Stats.Focus -= toEnact.FocusCost;
             this.Stats.Mana -= toEnact.ManaCost;
         }
 
-        public void ReactToSkill(Skill toEnact)
+        public virtual void ReactToSkill(Skill toEnact)
         {
             toEnact.Affect(this, toEnact.Effect);
         }

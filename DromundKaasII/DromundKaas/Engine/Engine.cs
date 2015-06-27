@@ -35,7 +35,7 @@ namespace DromundKaasII.Engine
 
         public Engine()
         {
-            this.GameState = new GameState(7, 7);
+            this.GameState = new GameState(100, 100);
             this.GameState.GameSpeed = GameSpeedOptions.Fast;
             this.IsRunning = true;
             this.cycleCounter = 0;
@@ -233,7 +233,7 @@ namespace DromundKaasII.Engine
         {
             foreach (Actor a in this.GameState.Actors)
             {
-                a.RemoveExpiredStatusEffects();
+                a.ProcessStatusEffects();
                 // Tell all actors to think of a next move
                 a.Act(this.GameState);
             }

@@ -14,6 +14,7 @@ namespace DromundKaasII.Engine
         Stun=0x6,
         Confusion=0x8,
         Weakened=0x10,
-        Fear=0x20
+        Fear=0x20,
+        Regeneration=0x40
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DromundKaasII.Engine;
 using DromundKaasII.Engine.GameObjects.Actors.Debris;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
 using DromundKaasII.Engine.GameObjects.Actors.Players;
@@ -34,6 +35,7 @@ namespace DromundKaasII.Graphics
 
         // Use this to map types to textures.
         Dictionary<Type, Texture2D> TypeTextures2D;
+        Dictionary<StatusEffects, Texture2D> StatusEffectTextures2D;
 
         public IEngineOptions EngineOptions
         {
@@ -82,6 +84,7 @@ namespace DromundKaasII.Graphics
 
             this.Hud = new HudScreen();
             this.TypeTextures2D = new Dictionary<Type, Texture2D>();
+            this.StatusEffectTextures2D = new Dictionary<StatusEffects, Texture2D>();
 
             mytile = this.content.Load<Texture2D>("Tiles/placeholderTile");
             ground = this.content.Load<Texture2D>("Tiles/default/ground");
@@ -96,6 +99,12 @@ namespace DromundKaasII.Graphics
             this.TypeTextures2D[typeof(Primal)] = this.content.Load<Texture2D>("Actors/Primal/ChovecheHorizontal");
             this.TypeTextures2D[typeof(Campfire)] = this.content.Load<Texture2D>("Actors/Debris/campfire");
             this.TypeTextures2D[typeof(ZombieFriend)] = this.content.Load<Texture2D>("Actors/placeholderChar");
+
+            foreach (StatusEffects se in Enum.GetValues(typeof(StatusEffects)))
+            {
+                this.StatusEffectTextures2D[se] = this.content.Load<Texture2D>("StatusEffects/" + se.ToString());
+            }
+
             this.Hud.LoadContent();
         }
 

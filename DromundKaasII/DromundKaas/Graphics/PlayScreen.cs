@@ -204,7 +204,13 @@ namespace DromundKaasII.Graphics
                     {
                         originRect.Offset(new Point(64 * (int)currentTile.Occupant.Direction, 0));
                         Texture2D temp = TypeTextures2D[currentTile.Occupant.GetType()];
+                        
                         spriteBatch.Draw(temp, destination, originRect, currentTile.Illumination);
+                        foreach(StatusEffects status in currentTile.Occupant.Status)
+                        {
+                            temp = StatusEffectTextures2D[status];
+                            spriteBatch.Draw(temp, destination, currentTile.Illumination);
+                        }
                     }
                 }
             }

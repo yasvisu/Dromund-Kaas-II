@@ -13,6 +13,8 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 {
     public abstract class Actor : IActor
     {
+        protected HashSet<StatusEffects> currentStatusEffects;
+
         protected Actor(Vector2 MapPosition)
             : this(MapPosition, null, null)
         { }
@@ -23,8 +25,15 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
         protected Actor(Vector2 MapPosition, Dictionary<string, Skill> SkillChain, Statblock Stats)
         {
+            this.currentStatusEffects = new HashSet<StatusEffects>();
+
             this.MapPosition = MapPosition;
             this.ActorStatusEffects = new Dictionary<StatusEffects, uint>();
+            foreach (StatusEffects se in Enum.GetValues(typeof(StatusEffects)))
+            {
+                this.ActorStatusEffects[se] = 0;
+            }
+
             this.DesiredAction = GameInputs.None;
             this.Stats = Stats;
         }
@@ -36,22 +45,23 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         public GameInputs DesiredAction { get; set; }
 
         public Directions Direction { get; set; }
-
+        public IEnumerable<StatusEffects> Status
+        {
+            get
+            {
+                return this.currentStatusEffects;
+            }
+        }
 
         public Statsheet Regen { get; set; }
         public Statblock Stats { get; set; }
 
-        public Dictionary<StatusEffects, uint> ActorStatusEffects { get; set; }
+        public Dictionary<StatusEffects, uint> ActorStatusEffects { get; private set; }
 
         public Skill[] Skills { get; protected set; }
 
         public virtual void Act(GameState G)
         {
-            this.Regen = new Statsheet();
-            this.Regen.Mana++;
-            this.Regen.Focus++;
-
-
             this.ApplyRegeneration();
 
             switch (this.DesiredAction)
@@ -75,14 +85,12 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
         public virtual void Inflict(StatusEffects StatusEffect)
         {
-            if (!this.ActorStatusEffects.ContainsKey(StatusEffect))
-            {
-                this.ActorStatusEffects[StatusEffect] = 1;
-            }
-            else
-            {
-                this.ActorStatusEffects[StatusEffect]++;
-            }
+            this.Inflict(StatusEffect, 1);
+        }
+
+        public virtual void Inflict(StatusEffects StatusEffect, uint durationInCycles)
+        {
+            this.ActorStatusEffects[StatusEffect] += durationInCycles;
         }
 
         public virtual void ProcessStatusEffects()
@@ -91,41 +99,52 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
             this.RemoveExpiredStatusEffects();
 
-            foreach (var effect in this.ActorStatusEffects)
+            foreach (var key in this.ActorStatusEffects.Keys.ToList())
             {
-                switch (effect.Key)
+                if (this.ActorStatusEffects[key] == 0)
                 {
-                    case StatusEffects.Fear:
-                        this.Fear();
-                        this.ActorStatusEffects[StatusEffects.Fear]--;
-                        break;
-                    default:
-                        throw new NotImplementedException("Status effect not implemented.");
+                    this.currentStatusEffects.Remove(key);
+                }
+                else if (this.ActorStatusEffects[key] >= 1)
+                {
+                    this.currentStatusEffects.Add(key);
+                    this.ActorStatusEffects[key]--;
                 }
             }
+
+            this.ApplyStatusEffects();
         }
 
         protected virtual void RefreshRegeneration()
         {
             this.Regen = new Statsheet();
             this.Regen.Mana++;
-            this.Regen.Health++;
+            this.Regen.Focus++;
         }
 
         protected virtual void RemoveExpiredStatusEffects()
         {
-            Stack<StatusEffects> GarbageCan = new Stack<StatusEffects>();
-
             foreach (var kvp in this.ActorStatusEffects)
             {
                 if (kvp.Value <= 0)
                 {
-                    GarbageCan.Push(kvp.Key);
+                    this.currentStatusEffects.Remove(kvp.Key);
                 }
             }
-            while (GarbageCan.Count > 0)
+        }
+
+        protected virtual void ApplyStatusEffects()
+        {
+            foreach (var effect in this.currentStatusEffects)
             {
-                this.ActorStatusEffects.Remove(GarbageCan.Pop());
+                switch (effect)
+                {
+                    case StatusEffects.Fear:
+                        this.Fear();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -141,6 +160,8 @@ namespace DromundKaasII.Engine.GameObjects.Actors
             this.Stats.Health += this.Regen.Health;
             this.Stats.Mana += this.Regen.Mana;
             this.Stats.Focus += this.Regen.Focus;
+
+            
         }
 
         public double DistanceTo(Actor other)

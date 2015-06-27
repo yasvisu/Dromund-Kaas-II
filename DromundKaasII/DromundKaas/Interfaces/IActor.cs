@@ -1,4 +1,6 @@
-﻿using DromundKaasII.Engine.GameObjects.Actors;
+﻿using System.Collections.Generic;
+using DromundKaasII.Engine;
+using DromundKaasII.Engine.GameObjects.Actors;
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Interfaces
@@ -14,6 +16,8 @@ namespace DromundKaasII.Interfaces
         /// The direction of the actor.
         /// </summary>
         Directions Direction { get; set; }
+
+        IEnumerable<StatusEffects> Status { get; }
 
     }
 }

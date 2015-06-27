@@ -243,7 +243,7 @@ namespace DromundKaasII.Engine
         {
             foreach (var illum in this.Illuminators)
             {
-                if (true||!illum.HasIlluminated)
+                if (true || !illum.HasIlluminated)
                 {
                     IlluminateMap(illum);
                 }

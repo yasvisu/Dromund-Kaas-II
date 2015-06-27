@@ -7,9 +7,9 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 {
     public enum Directions
     {
-        South = 1,
-        North = 2,
-        East = 3,
-        West = 4
+        South = 0,
+        North = 1,
+        East = 2,
+        West = 3
     }
 }

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DromundKaasII.Engine.GameObjects.Actors.Debris;
+using DromundKaasII.Engine.GameObjects.Actors.NPCs;
+using DromundKaasII.Engine.GameObjects.Actors.Players;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Graphics.Exceptions;
 using DromundKaasII.Graphics.UI;
@@ -30,7 +33,7 @@ namespace DromundKaasII.Graphics
         HudScreen Hud;
 
         // Use this to map types to textures.
-        Dictionary<Type, Texture2D> TypeTextures;
+        Dictionary<Type, Texture2D> TypeTextures2D;
 
         public IEngineOptions EngineOptions
         {
@@ -78,8 +81,8 @@ namespace DromundKaasII.Graphics
             base.LoadContent();
 
             this.Hud = new HudScreen();
+            this.TypeTextures2D = new Dictionary<Type, Texture2D>();
 
-            mychar = this.content.Load<Texture2D>("Actors/placeholderChar");
             mytile = this.content.Load<Texture2D>("Tiles/placeholderTile");
             ground = this.content.Load<Texture2D>("Tiles/default/ground");
             tree = this.content.Load<Texture2D>("Tiles/default/tree");
@@ -87,6 +90,12 @@ namespace DromundKaasII.Graphics
             water = this.content.Load<Texture2D>("Tiles/default/water");
             wall = this.content.Load<Texture2D>("Tiles/default/wall");
 
+            // Load Primal texture (horizontal)
+            mychar = this.content.Load<Texture2D>("Actors/Primal/ChovecheHorizontal");
+
+            this.TypeTextures2D[typeof(Primal)] = this.content.Load<Texture2D>("Actors/Primal/ChovecheHorizontal");
+            this.TypeTextures2D[typeof(Campfire)] = this.content.Load<Texture2D>("Actors/Debris/campfire");
+            this.TypeTextures2D[typeof(ZombieFriend)] = this.content.Load<Texture2D>("Actors/placeholderChar");
             this.Hud.LoadContent();
         }
 
@@ -99,9 +108,9 @@ namespace DromundKaasII.Graphics
         {
             base.Update(gameTime);
 
-            if(this.engineTask.IsFaulted)
+            if (this.engineTask.IsFaulted)
             {
-                throw new EngineFailureException("Engine failed!",this.engineTask.Exception);
+                throw new EngineFailureException("Engine failed!", this.engineTask.Exception);
             }
 
             this.Background.Position = Vector2.Zero + (-engine.Player.MapPosition * 64) / 10;
@@ -151,16 +160,19 @@ namespace DromundKaasII.Graphics
             base.Draw(spriteBatch);
 
             Vector2 playerOffset = -engine.Player.MapPosition;
-            Vector2 pixelOffset = new Vector2((ScreenManager.Instance.Dimensions.X - 64) / 2, (ScreenManager.Instance.Dimensions.Y - 64) / 2);
+            Vector2 pixelOffset = new Vector2((ScreenManager.Instance.Dimensions.X - 64) / 2,
+                                                (ScreenManager.Instance.Dimensions.Y - 64) / 2);
 
             for (int i = 0; i < engine.Map.GetLength(0); i++)
             {
                 for (int j = 0; j < engine.Map.GetLength(1); j++)
                 {
                     var currentTile = engine.Map[i, j];
+                    Rectangle originRect = new Rectangle(0, 0, 64, 64);
+
                     Vector2 destination = new Vector2((j + playerOffset.X) * 64, (i + playerOffset.Y) * 64) + pixelOffset;
                     Texture2D ToDraw = mytile;
-                    switch (engine.Map[i, j].TileType)
+                    switch (currentTile.TileType)
                     {
                         case TileTypeOptions.Ground:
                             ToDraw = ground;
@@ -178,11 +190,12 @@ namespace DromundKaasII.Graphics
                             ToDraw = wall;
                             break;
                     }
-
                     spriteBatch.Draw(ToDraw, destination, currentTile.Illumination);
-                    if (engine.Map[i, j].Occupant != null)
+                    if (currentTile.Occupant != null)
                     {
-                        spriteBatch.Draw(mychar, destination, currentTile.Illumination);
+                        originRect.Offset(new Point(64 * (int)currentTile.Occupant.Direction, 0));
+                        Texture2D temp = TypeTextures2D[currentTile.Occupant.GetType()];
+                        spriteBatch.Draw(temp, destination, originRect, currentTile.Illumination);
                     }
                 }
             }

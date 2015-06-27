@@ -188,18 +188,18 @@ namespace DromundKaasII.Engine
         private void PruneAllActors()
         {
             // Prune dead actors
-            Stack<Npc> NpcGarbageCan = new Stack<Npc>();
+            Stack<Actor> NpcGarbageCan = new Stack<Actor>();
 
             foreach (Actor a in this.GameState.Actors)
             {
                 if (a.Stats.Health <= 0)
                 {
-                    if (a is Npc)
+                    if (!(a is Player))
                     {
                         this.TranspiredEvents.Enqueue(new ActorStateEvent(ActorEvents.Death, a));
-                        NpcGarbageCan.Push(a as Npc);
+                        NpcGarbageCan.Push(a);
 
-                        AwardExp(this.Player as Player, a);
+                        AwardExp(this.Player, a);
 
                         if (a is IIlluminator)
                         {
@@ -243,7 +243,7 @@ namespace DromundKaasII.Engine
         {
             foreach (var illum in this.Illuminators)
             {
-                if (!illum.HasIlluminated)
+                if (true||!illum.HasIlluminated)
                 {
                     IlluminateMap(illum);
                 }
@@ -284,7 +284,7 @@ namespace DromundKaasII.Engine
         }
 
 
-        private void AwardExp(Player player, Actor a)
+        private void AwardExp(IPlayer player, IActor a)
         {
             // player.Stats.Experience += Calculator.CalculateExperience(a, player);
             player.Stats.Experience += 100;
@@ -319,12 +319,6 @@ namespace DromundKaasII.Engine
                 return;
             }
 
-            if (toEnact.FocusCost > Player.Stats.Focus || toEnact.ManaCost > Player.Stats.Mana)
-            {
-                return;
-            }
-
-            parent.SpendSkill(toEnact);
 
             Vector2 skillEffectLocation = GetGroundTarget(parent.MapPosition, DirectionToUnitVector(parent.Direction), toEnact.Range);
 
@@ -335,6 +329,12 @@ namespace DromundKaasII.Engine
             }
 
 
+            if (toEnact.FocusCost > Player.Stats.Focus || toEnact.ManaCost > Player.Stats.Mana)
+            {
+                return;
+            }
+
+            parent.SpendSkill(toEnact);
 
             if (toEnact.SkillType == SkillTypes.Summon)
             {
@@ -344,11 +344,13 @@ namespace DromundKaasII.Engine
                     return;
                 }
             }
-
-            Actor target = this.GameState.Map[(int)skillEffectLocation.Y, (int)skillEffectLocation.X].Occupant as Actor;
-            if (target != null)
+            else
             {
-                target.ReactToSkill(toEnact);
+                Actor target = this.GameState.Map[(int)skillEffectLocation.Y, (int)skillEffectLocation.X].Occupant as Actor;
+                if (target != null)
+                {
+                    target.ReactToSkill(toEnact);
+                }
             }
         }
 

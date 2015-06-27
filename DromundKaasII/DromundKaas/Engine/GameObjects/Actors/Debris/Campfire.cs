@@ -18,7 +18,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Debris
 
         public override void Act(GameState G)
         {
-
+            this.Stats.Health--;
         }
 
         public Color IlluminationColor { get; set; }

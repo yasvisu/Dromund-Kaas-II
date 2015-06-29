@@ -25,9 +25,11 @@ Nickolay Paunov
 
 
 Asya Manolova
+ +AsyaManolova
 
 
 Viktor Karaulanov
+ +Vik-Karaulanov
 
 
 
@@ -44,8 +46,34 @@ yasvisu:
    >Graphics
    >Tools
 
- .
- .
- .
+
+npaunov:
+ >Engine
+ >Pathfinding
+
+
+  AsyaManolova:
+   >Pathfinding
+
+
+Vik-Karaulanov:
+ >Graphics
+
+
+
+>>>> Assets
+
+npaunov:
+ >Sprites
+ >Effects
+
+
+  Vik-Karaulanov:
+   >Sprites
+   >Tiles
+
+IvayloKHristov:
+ >Sprites
+
 
 +End.

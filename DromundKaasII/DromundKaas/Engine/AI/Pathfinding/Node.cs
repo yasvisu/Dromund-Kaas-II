@@ -17,7 +17,7 @@ namespace DromundKaasII.Engine.AI.Pathfinding
 
         private int y;
 
-       // private bool isEmpty, isWall, isGoal, isZombieFriend;
+        // private bool isEmpty, isWall, isGoal, isZombieFriend;
 
         /// <summary>
         /// Basic constructor.
@@ -67,7 +67,7 @@ namespace DromundKaasII.Engine.AI.Pathfinding
         /// </summary>
         public int X { get; set; }
 
-        
+
         //public void SetType(string type)
         //{
         //    if (type.ToLower().Equals("empty"))
@@ -98,6 +98,6 @@ namespace DromundKaasII.Engine.AI.Pathfinding
         //        this.IsZombieFriend = false;
         //        this.IsGoal = true;
         //    }
-        }
     }
 }
+

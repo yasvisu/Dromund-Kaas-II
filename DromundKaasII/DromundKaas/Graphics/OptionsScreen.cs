@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.Engine;
@@ -29,6 +27,9 @@ namespace DromundKaasII.Graphics
 
         Texture2D fadeout;
 
+        /// <summary>
+        /// The EngineOptions to modify.
+        /// </summary>
         public IEngineOptions EngineOptions { get; set; }
 
         private int ActiveIndex
@@ -76,7 +77,7 @@ namespace DromundKaasII.Graphics
             this.buttonToggleActive = true;
             this.buttonTimeout = 150;
 
-            this.fadeout = content.Load<Texture2D>("fadeout");
+            this.fadeout = this.content.Load<Texture2D>("fadeout");
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace DromundKaasII.Graphics
             // React to button clicks
             if (this.buttonToggleActive)
             {
-                if (input.IsPressed(GameInputs.Up))
+                if (this.input.IsPressed(GameInputs.Up))
                 {
                     this.buttonToggleActive = false;
                     this.ActiveIndex--;
@@ -108,7 +109,7 @@ namespace DromundKaasII.Graphics
                         this.buttonToggleActive = true;
                     });
                 }
-                else if (input.IsPressed(GameInputs.Down))
+                else if (this.input.IsPressed(GameInputs.Down))
                 {
                     this.buttonToggleActive = false;
                     this.ActiveIndex++;
@@ -118,25 +119,25 @@ namespace DromundKaasII.Graphics
                         this.buttonToggleActive = true;
                     });
                 }
-                else if (input.IsPressed(GameInputs.Interact))
+                else if (this.input.IsPressed(GameInputs.Interact))
                 {
-                    if (buttons[activeIndex].IsActive)
+                    if (this.buttons[this.ActiveIndex].IsActive)
                     {
-                        buttons[activeIndex].IsActive = false;
+                        this.buttons[this.ActiveIndex].IsActive = false;
                         Console.Beep();
-                        buttons[activeIndex].Click();
+                        this.buttons[this.ActiveIndex].Click();
                         Task.Factory.StartNew(() =>
                         {
                             Thread.Sleep(this.buttonTimeout);
-                            buttons[activeIndex].IsActive = true;
+                            this.buttons[this.ActiveIndex].IsActive = true;
                         });
                     }
                 }
             }
 
             // Refresh button text
-            buttons[0].Text = string.Format("Toggle Speed: {0}", EngineOptions.GameSpeed.ToString());
-            buttons[1].Text = string.Format("Toggle Difficulty: {0}", EngineOptions.GameDifficulty.ToString());
+            this.buttons[0].Text = string.Format("Toggle Speed: {0}", this.EngineOptions.GameSpeed.ToString());
+            this.buttons[1].Text = string.Format("Toggle Difficulty: {0}", this.EngineOptions.GameDifficulty.ToString());
 
         }
 
@@ -150,14 +151,14 @@ namespace DromundKaasII.Graphics
 
             Point penPoint = (ScreenManager.Instance.Dimensions * new Vector2(0.10f, 0.10f)).ToPoint();
             Point sizePoint = (ScreenManager.Instance.Dimensions * new Vector2(0.80f, 0.20f)).ToPoint();
-            for (int i = 0; i < buttons.Count; i++)
+            for (int i = 0; i < this.buttons.Count; i++)
             {
-                Color tempTint = (i == activeIndex ? this.TintColor : Color.White);
-                spriteBatch.Draw(fadeout, new Rectangle(penPoint, sizePoint), tempTint * buttonTransparency);
+                Color tempTint = (i == this.ActiveIndex ? this.TintColor : Color.White);
+                spriteBatch.Draw(this.fadeout, new Rectangle(penPoint, sizePoint), tempTint * OptionsScreen.buttonTransparency);
 
                 Vector2 textPosition = penPoint.ToVector2() + (sizePoint.ToVector2() - ScreenManager.Instance.TitleFont.MeasureString(buttons[i].Text)) / 2;
 
-                spriteBatch.DrawString(ScreenManager.Instance.TitleFont, buttons[i].Text,
+                spriteBatch.DrawString(ScreenManager.Instance.TitleFont, this.buttons[i].Text,
                     textPosition,
                     tempTint);
 
@@ -166,6 +167,9 @@ namespace DromundKaasII.Graphics
             }
         }
 
+        /// <summary>
+        /// Cycle the speeds of the EngineOptions.
+        /// </summary>
         private void CycleSpeed()
         {
             switch (this.EngineOptions.GameSpeed)
@@ -182,6 +186,9 @@ namespace DromundKaasII.Graphics
             }
         }
 
+        /// <summary>
+        /// Cycle the difficulties of the EngineOptions.
+        /// </summary>
         private void CycleDifficulty()
         {
             switch (this.EngineOptions.GameDifficulty)

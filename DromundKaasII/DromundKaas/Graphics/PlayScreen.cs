@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 using DromundKaasII.Engine;
 using DromundKaasII.Engine.GameObjects.Actors.Debris;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
@@ -13,12 +13,15 @@ using DromundKaasII.Graphics.Exceptions;
 using DromundKaasII.Graphics.UI;
 using DromundKaasII.Input;
 using DromundKaasII.Interfaces;
-using DromundKaasII.Tools;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII.Graphics
 {
+    /// <summary>
+    /// Main screen for the game.
+    /// </summary>
     public class PlayScreen : GameScreen
     {
         Task engineTask;
@@ -28,10 +31,15 @@ namespace DromundKaasII.Graphics
 
         HudScreen Hud;
 
-        // Use this to map types to textures.
+        /// <summary>
+        /// Use this to map types to textures.
+        /// </summary>
         Dictionary<Type, Texture2D> TypeTextures2D;
         Dictionary<StatusEffects, Texture2D> StatusEffectTextures2D;
 
+        /// <summary>
+        /// Exposes the EngineOptions of the Engine.
+        /// </summary>
         public IEngineOptions EngineOptions
         {
             get
@@ -40,10 +48,13 @@ namespace DromundKaasII.Graphics
             }
         }
 
+        /// <summary>
+        /// Initialize this screen.
+        /// </summary>
         public void Initialize()
         {
             this.engine = new Engine.Engine();
-            engineTask = Task.Factory.StartNew(() =>
+            this.engineTask = Task.Factory.StartNew(() =>
                 {
                     while (this.engine.IsRunning)
                     {
@@ -64,11 +75,11 @@ namespace DromundKaasII.Graphics
         public override void Run()
         {
             base.Run();
-            if (engine == null)
+            if (this.engine == null)
             {
                 this.Initialize();
             }
-            engine.IsPaused = false;
+            this.engine.IsPaused = false;
         }
 
         /// <summary>
@@ -76,7 +87,7 @@ namespace DromundKaasII.Graphics
         /// </summary>
         public override void Pause()
         {
-            engine.IsPaused = true;
+            this.engine.IsPaused = true;
         }
 
         /// <summary>
@@ -90,11 +101,11 @@ namespace DromundKaasII.Graphics
             this.TypeTextures2D = new Dictionary<Type, Texture2D>();
             this.StatusEffectTextures2D = new Dictionary<StatusEffects, Texture2D>();
 
-            ground = this.content.Load<Texture2D>("Tiles/default/ground");
-            tree = this.content.Load<Texture2D>("Tiles/default/tree");
-            hole = this.content.Load<Texture2D>("Tiles/default/hole");
-            water = this.content.Load<Texture2D>("Tiles/default/water");
-            wall = this.content.Load<Texture2D>("Tiles/default/wall");
+            this.ground = this.content.Load<Texture2D>("Tiles/default/ground");
+            this.tree = this.content.Load<Texture2D>("Tiles/default/tree");
+            this.hole = this.content.Load<Texture2D>("Tiles/default/hole");
+            this.water = this.content.Load<Texture2D>("Tiles/default/water");
+            this.wall = this.content.Load<Texture2D>("Tiles/default/wall");
 
             // Load Primal texture (horizontal).
             this.TypeTextures2D[typeof(Primal)] = this.content.Load<Texture2D>("Actors/Primal/ChovecheHorizontal");
@@ -136,46 +147,46 @@ namespace DromundKaasII.Graphics
                 throw new EngineFailureException("Engine failed!", this.engineTask.Exception);
             }
 
-            this.Background.Position = Vector2.Zero + (-engine.Player.MapPosition * 64) / 10;
+            this.Background.Position = Vector2.Zero + (-this.engine.Player.MapPosition * 64) / 10;
 
-            if (input.IsPressed(GameInputs.Up))
+            if (this.input.IsPressed(GameInputs.Up))
             {
-                engine.Player.DesiredAction = GameInputs.Up;
+                this.engine.Player.DesiredAction = GameInputs.Up;
             }
-            else if (input.IsPressed(GameInputs.Down))
+            else if (this.input.IsPressed(GameInputs.Down))
             {
-                engine.Player.DesiredAction = GameInputs.Down;
+                this.engine.Player.DesiredAction = GameInputs.Down;
             }
-            else if (input.IsPressed(GameInputs.Left))
+            else if (this.input.IsPressed(GameInputs.Left))
             {
-                engine.Player.DesiredAction = GameInputs.Left;
+                this.engine.Player.DesiredAction = GameInputs.Left;
             }
-            else if (input.IsPressed(GameInputs.Right))
+            else if (this.input.IsPressed(GameInputs.Right))
             {
-                engine.Player.DesiredAction = GameInputs.Right;
+                this.engine.Player.DesiredAction = GameInputs.Right;
             }
-            else if (input.IsPressed(GameInputs.A1))
+            else if (this.input.IsPressed(GameInputs.A1))
             {
-                engine.Player.DesiredAction = GameInputs.A1;
+                this.engine.Player.DesiredAction = GameInputs.A1;
             }
-            else if (input.IsPressed(GameInputs.A2))
+            else if (this.input.IsPressed(GameInputs.A2))
             {
-                engine.Player.DesiredAction = GameInputs.A2;
+                this.engine.Player.DesiredAction = GameInputs.A2;
             }
-            else if (input.IsPressed(GameInputs.A3))
+            else if (this.input.IsPressed(GameInputs.A3))
             {
-                engine.Player.DesiredAction = GameInputs.A3;
+                this.engine.Player.DesiredAction = GameInputs.A3;
             }
             else if (input.IsPressed(GameInputs.A4))
             {
-                engine.Player.DesiredAction = GameInputs.A4;
+                this.engine.Player.DesiredAction = GameInputs.A4;
             }
-            else if (input.IsPressed(GameInputs.A5))
+            else if (this.input.IsPressed(GameInputs.A5))
             {
-                engine.Player.DesiredAction = GameInputs.A5;
+                this.engine.Player.DesiredAction = GameInputs.A5;
             }
 
-            Hud.Update(gameTime);
+            this.Hud.Update(gameTime);
         }
 
         /// <summary>
@@ -186,47 +197,47 @@ namespace DromundKaasII.Graphics
         {
             base.Draw(spriteBatch);
 
-            Vector2 playerOffset = -engine.Player.MapPosition;
+            Vector2 playerOffset = -this.engine.Player.MapPosition;
             Vector2 pixelOffset = new Vector2((ScreenManager.Instance.Dimensions.X - 64) / 2,
                                                 (ScreenManager.Instance.Dimensions.Y - 64) / 2);
 
-            for (int i = 0; i < engine.Map.GetLength(0); i++)
+            for (int i = 0; i < this.engine.Map.GetLength(0); i++)
             {
-                for (int j = 0; j < engine.Map.GetLength(1); j++)
+                for (int j = 0; j < this.engine.Map.GetLength(1); j++)
                 {
-                    var currentTile = engine.Map[i, j];
+                    var currentTile = this.engine.Map[i, j];
                     Rectangle originRect = new Rectangle(0, 0, 64, 64);
 
                     Vector2 destination = new Vector2((j + playerOffset.X) * 64, (i + playerOffset.Y) * 64) + pixelOffset;
-                    Texture2D ToDraw = ground;
+                    Texture2D ToDraw = this.ground;
                     switch (currentTile.TileType)
                     {
                         case TileTypeOptions.Ground:
-                            ToDraw = ground;
+                            ToDraw = this.ground;
                             break;
                         case TileTypeOptions.Water:
-                            ToDraw = water;
+                            ToDraw = this.water;
                             break;
                         case TileTypeOptions.Tree:
-                            ToDraw = tree;
+                            ToDraw = this.tree;
                             break;
                         case TileTypeOptions.Hole:
-                            ToDraw = hole;
+                            ToDraw = this.hole;
                             break;
                         case TileTypeOptions.Wall:
-                            ToDraw = wall;
+                            ToDraw = this.wall;
                             break;
                     }
                     spriteBatch.Draw(ToDraw, destination, currentTile.Illumination);
                     if (currentTile.Occupant != null)
                     {
                         originRect.Offset(new Point(64 * (int)currentTile.Occupant.Direction, 0));
-                        Texture2D temp = TypeTextures2D[currentTile.Occupant.GetType()];
+                        Texture2D temp = this.TypeTextures2D[currentTile.Occupant.GetType()];
                         
                         spriteBatch.Draw(temp, destination, originRect, currentTile.Illumination);
                         foreach(StatusEffects status in currentTile.Occupant.Status.ToList())
                         {
-                            temp = StatusEffectTextures2D[status];
+                            temp = this.StatusEffectTextures2D[status];
                             spriteBatch.Draw(temp, destination, currentTile.Illumination);
                         }
                     }

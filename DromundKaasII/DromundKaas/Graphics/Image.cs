@@ -9,69 +9,103 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII.Graphics
 {
+    /// <summary>
+    /// Image class to encapsulate image necessities, including drawing / updating.
+    /// </summary>
     public class Image
     {
-        public float Alpha;
-        public string Text, FontName, Path;
-        public Vector2 Position, Scale;
-        public Rectangle SourceRect;
-
-        public Texture2D Texture;
         Vector2 origin;
         ContentManager content;
-        RenderTarget2D renderTarget;
         SpriteFont font;
 
+        /// <summary>
+        /// Initializes a new image with default values.
+        /// </summary>
         public Image()
         {
-            Path = Text = String.Empty;
-            FontName = "Fonts/TextFont";
-            Position = Vector2.Zero;
-            Scale = Vector2.One;
-            Alpha = 1.0f;
-            SourceRect = Rectangle.Empty;
+            this.Path = this.Text = String.Empty;
+            this.FontName = "Fonts/TextFont";
+            this.Position = Vector2.Zero;
+            this.Scale = Vector2.One;
+            this.Alpha = 1.0f;
+            this.SourceRect = Rectangle.Empty;
         }
+
+        /// <summary>
+        /// The Alpha-channel of the image.
+        /// </summary>
+        public float Alpha { get; set; }
+
+        /// <summary>
+        /// The text of the image.
+        /// </summary>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// The font name of the image.
+        /// </summary>
+        public string FontName { get; set; }
+
+        /// <summary>
+        /// The path of the image.
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
+        /// The grid position of the image.
+        /// </summary>
+        public Vector2 Position { get; set; }
+
+        /// <summary>
+        /// The scale of the image.
+        /// </summary>
+        public Vector2 Scale { get; set; }
+
+        /// <summary>
+        /// The source rectangle of the image.
+        /// </summary>
+        public Rectangle SourceRect { get; set; }
+
+        /// <summary>
+        /// The Texture of the image.
+        /// </summary>
+        public Texture2D Texture { get; set; }
 
         /// <summary>
         /// Load all content.
         /// </summary>
         public void LoadContent()
         {
-            content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
+            this.content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
 
-            if (Path != String.Empty)
-                Texture = content.Load<Texture2D>(Path);
+            if (this.Path != String.Empty)
+            {
+                this.Texture = this.content.Load<Texture2D>(this.Path);
+            }
 
-            font = content.Load<SpriteFont>(FontName);
+            this.font = this.content.Load<SpriteFont>(this.FontName);
 
             Vector2 dimensions = Vector2.Zero;
 
-            if (Texture != null)
-                dimensions.X += Texture.Width;
-            dimensions.X += font.MeasureString(Text).X;
+            if (this.Texture != null)
+            {
+                dimensions.X += this.Texture.Width;
+            }
+            dimensions.X += this.font.MeasureString(this.Text).X;
 
-            if (Texture != null)
-                dimensions.Y = Math.Max(Texture.Height, font.MeasureString(Text).Y);
+            if (this.Texture != null)
+            {
+                dimensions.Y = Math.Max(this.Texture.Height, this.font.MeasureString(this.Text).Y);
+            }
             else
-                dimensions.Y = font.MeasureString(Text).Y;
+            {
+                dimensions.Y = this.font.MeasureString(this.Text).Y;
+            }
 
-            if (SourceRect == Rectangle.Empty)
-                SourceRect = new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y);
-
-            //renderTarget = new RenderTarget2D(ScreenManager.Instance.GraphicsDevice,
-            //    (int)dimensions.X, (int)dimensions.Y);
-            //ScreenManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
-            //ScreenManager.Instance.GraphicsDevice.Clear(Color.Transparent);
-            //ScreenManager.Instance.SpriteBatch.Begin();
-            //if (Texture != null)
-            //    ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
-            //ScreenManager.Instance.SpriteBatch.DrawString(font, Text, Vector2.Zero, Color.White);
-            //ScreenManager.Instance.SpriteBatch.End();
-
-            //Texture = renderTarget;
-
-            //ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
-
+            if (this.SourceRect == Rectangle.Empty)
+            {
+                this.SourceRect = new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y);
+            }
         }
 
         /// <summary>
@@ -79,7 +113,7 @@ namespace DromundKaasII.Graphics
         /// </summary>
         public void UnloadContent()
         {
-            content.Unload();
+            this.content.Unload();
         }
 
         /// <summary>
@@ -87,8 +121,7 @@ namespace DromundKaasII.Graphics
         /// </summary>
         /// <param name="gameTime">The GameTime to update to.</param>
         public void Update(GameTime gameTime)
-        {
-        }
+        { }
 
         /// <summary>
         /// Draw this element.
@@ -96,9 +129,8 @@ namespace DromundKaasII.Graphics
         /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            origin = new Vector2(SourceRect.Width / 2,
-                SourceRect.Height / 2);
-            spriteBatch.Draw(Texture, Position + origin, SourceRect, Color.White * Alpha, 0.0f, origin, Scale, SpriteEffects.None, 0.0f);
+            this.origin = new Vector2(this.SourceRect.Width / 2, this.SourceRect.Height / 2);
+            spriteBatch.Draw(this.Texture, this.Position + this.origin, this.SourceRect, Color.White * this.Alpha, 0.0f, this.origin, this.Scale, SpriteEffects.None, 0.0f);
         }
     }
 }

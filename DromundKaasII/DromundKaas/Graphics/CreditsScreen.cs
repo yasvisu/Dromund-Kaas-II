@@ -2,7 +2,9 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+
 using DromundKaasII.Input;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

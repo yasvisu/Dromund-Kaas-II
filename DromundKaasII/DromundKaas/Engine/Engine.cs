@@ -16,31 +16,72 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
 {
+    /// <summary>
+    /// Engine for all processing within the game.
+    /// </summary>
     public class Engine : IEngine
     {
+        /// <summary>
+        /// The cycle counter of the engine.
+        /// </summary>
         protected uint cycleCounter;
-        protected TimeSpan elapsedTime;
+
+        /// <summary>
+        /// The factory the Engine uses.
+        /// </summary>
         protected ActorFactory actorFactory;
 
         #region Vector Constants
+        /// <summary>
+        /// Unit vector Up.
+        /// </summary>
         protected static readonly Vector2 UpV = new Vector2(0, -1);
+
+        /// <summary>
+        /// Unit vector Down.
+        /// </summary>
         protected static readonly Vector2 DownV = new Vector2(0, 1);
+
+        /// <summary>
+        /// Unit vector Left.
+        /// </summary>
         protected static readonly Vector2 LeftV = new Vector2(-1, 0);
+
+        /// <summary>
+        /// Unit vector Right.
+        /// </summary>
         protected static readonly Vector2 RightV = new Vector2(1, 0);
 
+        /// <summary>
+        /// Unit vector Up-Left diagonal.
+        /// </summary>
         protected static readonly Vector2 UpLeftV = UpV + LeftV;
+
+        /// <summary>
+        /// Unit vector Up-Right diagonal.
+        /// </summary>
         protected static readonly Vector2 UpRightV = UpV + RightV;
+
+        /// <summary>
+        /// Unit vector Down-Left diagonal.
+        /// </summary>
         protected static readonly Vector2 DownLeftV = DownV + LeftV;
+
+        /// <summary>
+        /// Unit vector Down-Right diagonal.
+        /// </summary>
         protected static readonly Vector2 DownRightV = DownV + RightV;
         #endregion
 
+        /// <summary>
+        /// Initialize new Engine with default values.
+        /// </summary>
         public Engine()
         {
             this.GameState = new GameState(7, 7);
             this.GameState.GameSpeed = GameSpeedOptions.Fast;
             this.IsRunning = true;
             this.cycleCounter = 0;
-            this.elapsedTime = new TimeSpan();
             this.SkillManager = new SkillManager();
             this.actorFactory = new ActorFactory(this.GameState);
 
@@ -60,22 +101,34 @@ namespace DromundKaasII.Engine
             this.GameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree, this.GameState.FogOfWar);
 
             Player p = new Primal(new Vector2(2, 2), SkillManager.Skills);
-            actorFactory.CreatePlayer(p);
+            this.actorFactory.CreatePlayer(p);
 
             ZombieFriend z = new ZombieFriend(new Vector2(5, 5), SkillManager.Skills);
-            actorFactory.CreateActor(z);
+            this.actorFactory.CreateActor(z);
 
             Campfire c = new Campfire(new Vector2(6, 6), new Statblock(8));
-            actorFactory.CreateActor(c);
+            this.actorFactory.CreateActor(c);
         }
 
+        /// <summary>
+        /// The GameState the Engine uses.
+        /// </summary>
         protected GameState GameState { get; set; }
 
         #region Public Interface
+        /// <summary>
+        /// Whether the Engine is running.
+        /// </summary>
         public bool IsRunning { get; set; }
 
+        /// <summary>
+        /// Whether the Engine is paused.
+        /// </summary>
         public bool IsPaused { get; set; }
 
+        /// <summary>
+        /// The CycleCounter of the Engine.
+        /// </summary>
         public uint CycleCounter
         {
             get
@@ -84,8 +137,14 @@ namespace DromundKaasII.Engine
             }
         }
 
+        /// <summary>
+        /// The SkillManager the Engine uses.
+        /// </summary>
         public SkillManager SkillManager { get; private set; }
 
+        /// <summary>
+        /// The Player of the Engine's GameState.
+        /// </summary>
         public IPlayer Player
         {
             get
@@ -93,6 +152,10 @@ namespace DromundKaasII.Engine
                 return this.GameState.Player;
             }
         }
+
+        /// <summary>
+        /// The transpired events since last Engine Update.
+        /// </summary>
         public ConcurrentQueue<ActorStateEvent> TranspiredEvents
         {
             get
@@ -100,6 +163,10 @@ namespace DromundKaasII.Engine
                 return this.GameState.TranspiredEvents;
             }
         }
+
+        /// <summary>
+        /// The GameSpeed of the Engine.
+        /// </summary>
         public GameSpeedOptions GameSpeed
         {
             get
@@ -111,6 +178,10 @@ namespace DromundKaasII.Engine
                 this.GameState.GameSpeed = value;
             }
         }
+
+        /// <summary>
+        /// The GameDifficulty of the Engine.
+        /// </summary>
         public GameDifficultyOptions GameDifficulty
         {
             get
@@ -122,6 +193,10 @@ namespace DromundKaasII.Engine
                 this.GameState.GameDifficulty = value;
             }
         }
+
+        /// <summary>
+        /// A collection of the Actors in the Engine.
+        /// </summary>
         public IEnumerable<IActor> Actors
         {
             get
@@ -129,6 +204,10 @@ namespace DromundKaasII.Engine
                 return this.GameState.Actors;
             }
         }
+
+        /// <summary>
+        /// A collection of the Illuminators of the Engine.
+        /// </summary>
         public IEnumerable<IIlluminator> Illuminators
         {
             get
@@ -136,6 +215,10 @@ namespace DromundKaasII.Engine
                 return this.GameState.Illuminators;
             }
         }
+
+        /// <summary>
+        /// The Tile Map of the Engine.
+        /// </summary>
         public ITile[,] Map
         {
             get
@@ -143,6 +226,10 @@ namespace DromundKaasII.Engine
                 return this.GameState.Map;
             }
         }
+
+        /// <summary>
+        /// The height of the Engine's Map.
+        /// </summary>
         public int MapHeight
         {
             get
@@ -150,6 +237,10 @@ namespace DromundKaasII.Engine
                 return this.GameState.MapHeight;
             }
         }
+
+        /// <summary>
+        /// The width of the Engine's Map.
+        /// </summary>
         public int MapWidth
         {
             get
@@ -157,6 +248,10 @@ namespace DromundKaasII.Engine
                 return this.GameState.MapWidth;
             }
         }
+
+        /// <summary>
+        /// The default Fog of War color.
+        /// </summary>
         public Color FogOfWar
         {
             get
@@ -165,19 +260,22 @@ namespace DromundKaasII.Engine
             }
         }
 
+        /// <summary>
+        /// Update the Engine.
+        /// </summary>
         public void Update()
         {
-            cycleCounter++;
+            this.cycleCounter++;
 
-            PruneAllActors();
+            this.PruneAllActors();
 
-            SpawnNewActors();
+            this.SpawnNewActors();
 
-            ProcessAllActors();
+            this.ProcessAllActors();
 
-            ProcessAllIlluminators();
+            this.ProcessAllIlluminators();
 
-            ActAllActors();
+            this.ActAllActors();
         }
 
         #endregion
@@ -185,10 +283,11 @@ namespace DromundKaasII.Engine
 
         #region State Changers
 
-
+        /// <summary>
+        /// Prune all dead actors.
+        /// </summary>
         private void PruneAllActors()
         {
-            // Prune dead actors
             Stack<Actor> NpcGarbageCan = new Stack<Actor>();
 
             foreach (Actor a in this.GameState.Actors)
@@ -217,6 +316,9 @@ namespace DromundKaasII.Engine
             }
         }
 
+        /// <summary>
+        /// Spawn all new actors.
+        /// </summary>
         private void SpawnNewActors()
         {
             while (this.GameState.SpawnQueue.Count > 0)
@@ -230,71 +332,80 @@ namespace DromundKaasII.Engine
             }
         }
 
+        /// <summary>
+        /// Tell all actors to think of a move.
+        /// </summary>
         private void ProcessAllActors()
         {
             foreach (Actor a in this.GameState.Actors)
             {
                 a.ProcessStatusEffects();
-                // Tell all actors to think of a next move
                 a.Act(this.GameState);
             }
         }
 
+        /// <summary>
+        /// Illuminate the map with all illuminators, sorted by range.
+        /// </summary>
         private void ProcessAllIlluminators()
         {
             this.GameState.Illuminators = this.GameState.Illuminators.OrderBy((x) => x.IlluminationRange).ToList();
 
             foreach (var illum in this.Illuminators)
             {
-                IlluminateMap(illum);
+                this.IlluminateMap(illum);
             }
         }
 
+        /// <summary>
+        /// Act all actors according to their state.
+        /// </summary>
         private void ActAllActors()
         {
-            // Move / act all actors based on their desired move
             foreach (Actor a in this.GameState.Actors)
             {
                 switch (a.DesiredAction)
                 {
                     case GameInputs.Up:
-                        MoveActor(a, a.MapPosition + UpV);
-                        break;
                     case GameInputs.Down:
-                        MoveActor(a, a.MapPosition + DownV);
-                        break;
                     case GameInputs.Left:
-                        MoveActor(a, a.MapPosition + LeftV);
-                        break;
                     case GameInputs.Right:
-                        MoveActor(a, a.MapPosition + RightV);
+                        this.MoveActor(a, a.MapPosition + this.DirectionToUnitVector(a.Direction));
                         break;
                     case GameInputs.A1:
                     case GameInputs.A2:
                     case GameInputs.A3:
                     case GameInputs.A4:
                     case GameInputs.A5:
-                        EnactSkill(a);
+                        this.EnactSkill(a);
                         break;
                     default:
                         break;
                 }
                 a.DesiredAction = GameInputs.None;
 
-                if (IsAloneInTheDark(a) && !(a is Debris))
+                if (this.IsAloneInTheDark(a) && !(a is Debris))
                 {
                     a.Inflict(StatusEffects.Fear);
                 }
             }
         }
 
-
+        /// <summary>
+        /// Award experience to the player.
+        /// </summary>
+        /// <param name="player">The player to award experience to.</param>
+        /// <param name="a">The actor to award experience from.</param>
         private void AwardExp(IPlayer player, IActor a)
         {
             // player.Stats.Experience += Calculator.CalculateExperience(a, player);
             player.Stats.Experience += 100;
         }
 
+        /// <summary>
+        /// Enact actor skill.
+        /// </summary>
+        /// <param name="parent">The parent whose skill to enact.</param>
         private void EnactSkill(Actor parent)
         {
             Skill toEnact;
@@ -325,7 +436,7 @@ namespace DromundKaasII.Engine
             }
 
 
-            Vector2 skillEffectLocation = GetGroundTarget(parent.MapPosition, DirectionToUnitVector(parent.Direction), toEnact.Range);
+            Vector2 skillEffectLocation = Engine.GetGroundTarget(parent.MapPosition, DirectionToUnitVector(parent.Direction), toEnact.Range);
 
             if (skillEffectLocation.X < 0 || skillEffectLocation.X >= this.GameState.MapWidth ||
                 skillEffectLocation.Y < 0 || skillEffectLocation.Y >= this.GameState.MapHeight)
@@ -334,7 +445,7 @@ namespace DromundKaasII.Engine
             }
 
 
-            if (toEnact.FocusCost > Player.Stats.Focus || toEnact.ManaCost > Player.Stats.Mana)
+            if (toEnact.FocusCost > parent.Stats.Focus || toEnact.ManaCost > parent.Stats.Mana)
             {
                 return;
             }
@@ -343,7 +454,7 @@ namespace DromundKaasII.Engine
 
             if (toEnact.SkillType == SkillTypes.Summon)
             {
-                bool summoningResult = HandleSummonSkill(toEnact, skillEffectLocation);
+                bool summoningResult = this.HandleSummonSkill(toEnact, skillEffectLocation);
                 if (!summoningResult)
                 {
                     return;
@@ -359,6 +470,11 @@ namespace DromundKaasII.Engine
             }
         }
 
+        /// <summary>
+        /// Get Unit Vector from Direction
+        /// </summary>
+        /// <param name="D">The Direction to switch.</param>
+        /// <returns>The Unit Vector corresponding to the direction.</returns>
         private Vector2 DirectionToUnitVector(Directions D)
         {
             switch (D)
@@ -376,11 +492,24 @@ namespace DromundKaasII.Engine
             }
         }
 
-        private Vector2 GetGroundTarget(Vector2 Current, Vector2 Movement, int Range)
+        /// <summary>
+        /// Get the ground target, based on a movement vector and range.
+        /// </summary>
+        /// <param name="Current">The current location.</param>
+        /// <param name="Movement">The movement vector.</param>
+        /// <param name="Range">The range to move.</param>
+        /// <returns>The new ground target.</returns>
+        private static Vector2 GetGroundTarget(Vector2 Current, Vector2 Movement, int Range)
         {
             return Current + Movement * Range;
         }
 
+        /// <summary>
+        /// Handle summoning skill.
+        /// </summary>
+        /// <param name="toEnact">The skill to handle.</param>
+        /// <param name="spawnLocation">The location to handle.</param>
+        /// <returns>Whether the skill was handled successfully.</returns>
         private bool HandleSummonSkill(Skill toEnact, Vector2 spawnLocation)
         {
             if (toEnact == null)
@@ -411,36 +540,44 @@ namespace DromundKaasII.Engine
             return true;
         }
 
+        /// <summary>
+        /// Move actor to target coordinates.
+        /// </summary>
+        /// <param name="parent">The parent to move.</param>
+        /// <param name="target">The target coordinates to move to.</param>
         private void MoveActor(Actor parent, Vector2 target)
         {
             // Check whether Actor can move on tile, then move Actor.
-            if (target.X < 0 || target.X >= GameState.MapWidth || target.Y < 0 || target.Y >= GameState.MapHeight)
+            if (target.X < 0 || target.X >= this.GameState.MapWidth || target.Y < 0 || target.Y >= this.GameState.MapHeight)
             {
                 return;
             }
-            if (parent.Stats.TraversalPower >= GameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
-                GameState.Map[(int)target.Y, (int)target.X].Occupant == null)
+            if (parent.Stats.TraversalPower >= this.GameState.Map[(int)target.Y, (int)target.X].TraversalCost &&
+                this.GameState.Map[(int)target.Y, (int)target.X].Occupant == null)
             {
                 if (parent is IIlluminator)
                 {
-                    RemoveIllumination(parent as IIlluminator);
+                    this.RemoveIllumination(parent as IIlluminator);
                 }
 
-                GameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
+                this.GameState.Map[(int)parent.MapPosition.Y, (int)parent.MapPosition.X].Occupant = null;
                 parent.MapPosition = target;
-                GameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
+                this.GameState.Map[(int)target.Y, (int)target.X].Occupant = parent;
 
                 if (parent is IIlluminator)
                 {
-                    IlluminateMap(parent as IIlluminator);
+                    this.IlluminateMap(parent as IIlluminator);
                 }
             }
         }
 
 
-
         // Illumination
 
+        /// <summary>
+        /// Illuminate the map.
+        /// </summary>
+        /// <param name="I">The illuminator to illuminate from.</param>
         private void IlluminateMap(IIlluminator I)
         {
             I.HasIlluminated = true;
@@ -450,18 +587,17 @@ namespace DromundKaasII.Engine
 
             Rectangle IllumRect = new Rectangle(topLeft.ToPoint(), bottomRight.ToPoint());
 
-
             for (int i = IllumRect.Top; i <= IllumRect.Bottom; i++)
             {
                 for (int j = IllumRect.Left; j <= IllumRect.Right; j++)
                 {
                     if (i >= 0 && i < this.MapHeight &&
                         j >= 0 && j < this.MapWidth &&
-                        Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
+                        Calculator.Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
                     {
                         var currentTileIllumination = this.GameState.Map[i, j].Illumination;
                         if (currentTileIllumination == this.GameState.FogOfWar ||
-                            new[] { currentTileIllumination.R, currentTileIllumination.G, currentTileIllumination.B }.Max() < 
+                            new[] { currentTileIllumination.R, currentTileIllumination.G, currentTileIllumination.B }.Max() <
                             new[] { I.IlluminationColor.R, I.IlluminationColor.G, I.IlluminationColor.B }.Max())
                         {
                             this.GameState.Map[i, j].Illumination = I.IlluminationColor;
@@ -471,11 +607,10 @@ namespace DromundKaasII.Engine
             }
         }
 
-        private double Distance(Vector2 a, Vector2 b)
-        {
-            return Math.Sqrt((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y));
-        }
-
+        /// <summary>
+        /// Remove illumination from the map.
+        /// </summary>
+        /// <param name="I">The illuminator whose illumination to remove.</param>
         private void RemoveIllumination(IIlluminator I)
         {
             if (!I.HasIlluminated)
@@ -495,7 +630,7 @@ namespace DromundKaasII.Engine
                 {
                     if (i >= 0 && i < this.MapHeight &&
                         j >= 0 && j < this.MapWidth &&
-                        Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
+                        Calculator.Distance(new Vector2(j, i), I.MapPosition) <= I.IlluminationRange)
                     {
                         var tempColor = this.GameState.Map[i, j].Illumination;
                         if (tempColor == I.IlluminationColor)
@@ -508,6 +643,11 @@ namespace DromundKaasII.Engine
             I.HasIlluminated = false;
         }
 
+        /// <summary>
+        /// Checks whether an actor is sitting in FogOfWar, or in its own illumination.
+        /// </summary>
+        /// <param name="a">The actor to check.</param>
+        /// <returns>Whether the actor is sitting in FogOfWar / its own illumination.</returns>
         private bool IsAloneInTheDark(IActor a)
         {
             var currentTileIllumination = this.GameState.Map[(int)a.MapPosition.Y, (int)a.MapPosition.X].Illumination;
@@ -521,8 +661,6 @@ namespace DromundKaasII.Engine
 
             return result;
         }
-
-
 
         #endregion
     }

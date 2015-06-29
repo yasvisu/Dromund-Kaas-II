@@ -1,9 +1,11 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
+
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Engine.Interfaces;
 using DromundKaasII.Interfaces;
+
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
@@ -54,8 +56,14 @@ namespace DromundKaasII.Engine
         /// </summary>
         public List<Actor> Actors { get; set; }
 
+        /// <summary>
+        /// The queue of Actors to spawn in the next round of the GameState.
+        /// </summary>
         public ConcurrentQueue<Actor> SpawnQueue { get; set; }
 
+        /// <summary>
+        /// A list of the illuminators in the GameState.
+        /// </summary>
         public List<IIlluminator> Illuminators { get; set; }
 
         /// <summary>
@@ -85,6 +93,9 @@ namespace DromundKaasII.Engine
             }
         }
 
+        /// <summary>
+        /// The default color of non-illuminated tiles of this GameState.
+        /// </summary>
         public Color FogOfWar { get; set; }
     }
 }

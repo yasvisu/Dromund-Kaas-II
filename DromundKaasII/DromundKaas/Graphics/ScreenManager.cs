@@ -10,10 +10,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DromundKaasII.Graphics
 {
+    /// <summary>
+    /// Manager of various screens, their initialization, and their switching.
+    /// </summary>
     public class ScreenManager
     {
+        /// <summary>
+        /// The singleton instance of this class.
+        /// </summary>
         private static ScreenManager instance;
-
 
         GameScreen[] Screens;
 
@@ -25,52 +30,87 @@ namespace DromundKaasII.Graphics
         GameScreen currentScreen;
         Stack<GameScreen> stackedScreens;
 
+        /// <summary>
+        /// The graphics device of the ScreenManager.
+        /// </summary>
         public GraphicsDevice GraphicsDevice;
+
+        /// <summary>
+        /// The sprite batch of the ScreenManager.
+        /// </summary>
         public SpriteBatch SpriteBatch;
 
 
-
+        /// <summary>
+        /// Initializes a default ScreenManager singleton instance.
+        /// </summary>
         public ScreenManager()
         {
-            Dimensions = new Vector2(640, 480);
-            currentScreen = new SplashScreen();
-            stackedScreens = new Stack<GameScreen>();
+            this.Dimensions = new Vector2(640, 480);
+            this.currentScreen = new SplashScreen();
+            this.stackedScreens = new Stack<GameScreen>();
 
-            Screens = new GameScreen[4];
+            this.Screens = new GameScreen[4];
 
-            Splash = new SplashScreen();
-            Play = new PlayScreen();
-            Options = new OptionsScreen();
-            Credits = new CreditsScreen();
+            this.Splash = new SplashScreen();
+            this.Play = new PlayScreen();
+            this.Options = new OptionsScreen();
+            this.Credits = new CreditsScreen();
 
-            Screens[0] = Splash;
-            Screens[1] = Play;
-            Screens[2] = Options;
-            Screens[3] = Credits;
+            this.Screens[0] = this.Splash;
+            this.Screens[1] = this.Play;
+            this.Screens[2] = this.Options;
+            this.Screens[3] = this.Credits;
 
-            currentScreen = Splash;
-            Splash.Run();
+            this.currentScreen = this.Splash;
+            this.Splash.Run();
         }
 
+        /// <summary>
+        /// The singleton instance of the ScreenManager class.
+        /// </summary>
         public static ScreenManager Instance
         {
             get
             {
-                if (instance == null)
+                if (ScreenManager.instance == null)
                 {
-                    instance = new ScreenManager();
+                    ScreenManager.instance = new ScreenManager();
                 }
-                return instance;
+                return ScreenManager.instance;
             }
         }
 
+        /// <summary>
+        /// Font used for titles.
+        /// </summary>
         public SpriteFont TitleFont { get; private set; }
+
+        /// <summary>
+        /// Font used for texts.
+        /// </summary>
         public SpriteFont TextFont { get; private set; }
 
+
+        /// <summary>
+        /// The dimensions of the ScreenManager.
+        /// </summary>
         public Vector2 Dimensions { private set; get; }
+
+        /// <summary>
+        /// The content manager of the ScreenManager.
+        /// </summary>
         public ContentManager Content { private set; get; }
+
+        /// <summary>
+        /// The input manager of the ScreenManager.
+        /// </summary>
         public InputManager Input { private set; get; }
 
+
+        /// <summary>
+        /// Whether to play credits.
+        /// </summary>
         public bool PlayCredits { get; set; }
 
         /// <summary>
@@ -81,8 +121,8 @@ namespace DromundKaasII.Graphics
             this.Content = new ContentManager(Content.ServiceProvider, "Content");
             this.Input = Input;
 
-            TitleFont = Content.Load<SpriteFont>("Fonts/TitleFont");
-            TextFont = Content.Load<SpriteFont>("Fonts/TextFont");
+            this.TitleFont = this.Content.Load<SpriteFont>("Fonts/TitleFont");
+            this.TextFont = this.Content.Load<SpriteFont>("Fonts/TextFont");
 
             // starry background from http://amzwall.com/starry-background-image/
             Image Background = new Image()
@@ -91,10 +131,10 @@ namespace DromundKaasII.Graphics
             };
             Background.LoadContent();
 
-            for (int i = 0; i < Screens.Length; i++)
+            for (int i = 0; i < this.Screens.Length; i++)
             {
-                Screens[i].LoadContent();
-                Screens[i].Background = Background;
+                this.Screens[i].LoadContent();
+                this.Screens[i].Background = Background;
             }
         }
 
@@ -103,9 +143,9 @@ namespace DromundKaasII.Graphics
         /// </summary>
         public void UnloadContent()
         {
-            for (int i = 0; i < Screens.Length; i++)
+            for (int i = 0; i < this.Screens.Length; i++)
             {
-                Screens[i].UnloadContent();
+                this.Screens[i].UnloadContent();
             }
         }
 
@@ -115,9 +155,9 @@ namespace DromundKaasII.Graphics
         /// <param name="gameTime">The GameTime to update to.</param>
         public void Update(GameTime gameTime)
         {
-            CheckForSwitch(gameTime);
+            this.CheckForSwitch(gameTime);
 
-            currentScreen.Update(gameTime);
+            this.currentScreen.Update(gameTime);
         }
 
         /// <summary>
@@ -126,47 +166,60 @@ namespace DromundKaasII.Graphics
         /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            currentScreen.Draw(spriteBatch);
+            this.currentScreen.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Checks whether switch is applicable and applies it.
+        /// </summary>
+        /// <param name="gameTime">The GameTime to check.</param>
         private void CheckForSwitch(GameTime gameTime)
         {
-            if (currentScreen.IsSwitchReady)
+            if (this.currentScreen.IsSwitchReady)
             {
-                if (currentScreen is SplashScreen && (gameTime.TotalGameTime.TotalSeconds > 3 || Input.IsPressed(GameInputs.Pause)))
+                if (this.currentScreen is SplashScreen && (gameTime.TotalGameTime.TotalSeconds > 3 || this.Input.IsPressed(GameInputs.Pause)))
                 {
-                    this.SwitchScreen(Play);
-                    Options.EngineOptions = Play.EngineOptions;
+                    this.SwitchScreen(this.Play);
+                    this.Options.EngineOptions = this.Play.EngineOptions;
                 }
-                else if ((currentScreen is PlayScreen || currentScreen is CreditsScreen) && Input.IsPressed(GameInputs.Pause))
+                else if ((this.currentScreen is PlayScreen || this.currentScreen is CreditsScreen) && this.Input.IsPressed(GameInputs.Pause))
                 {
-                    this.SwitchScreen(Options, true);
+                    this.SwitchScreen(this.Options, true);
                 }
-                else if (currentScreen is OptionsScreen && Input.IsPressed(GameInputs.Pause))
+                else if (this.currentScreen is OptionsScreen && this.Input.IsPressed(GameInputs.Pause))
                 {
-                    this.SwitchScreen(Play);
+                    this.SwitchScreen(this.Play);
                 }
-                else if (!(currentScreen is CreditsScreen) && PlayCredits)
+                else if (!(this.currentScreen is CreditsScreen) && this.PlayCredits)
                 {
-                    this.SwitchScreen(Credits);
+                    this.SwitchScreen(this.Credits);
                 }
             }
         }
 
+        /// <summary>
+        /// Switch to a different screen.
+        /// </summary>
+        /// <param name="G">The screen to switch to.</param>
         private void SwitchScreen(GameScreen G)
         {
             this.SwitchScreen(G, false);
         }
 
+        /// <summary>
+        /// Switch to a different screen.
+        /// </summary>
+        /// <param name="G">The screen to switch to.</param>
+        /// <param name="stackScreen">Whether to push that screen on the screen stack.</param>
         private void SwitchScreen(GameScreen G, bool stackScreen)
         {
             if (stackScreen)
             {
-                stackedScreens.Push(currentScreen);
-                currentScreen.Pause();
+                this.stackedScreens.Push(currentScreen);
+                this.currentScreen.Pause();
             }
-            currentScreen = G;
-            currentScreen.Run();
+            this.currentScreen = G;
+            this.currentScreen.Run();
         }
     }
 }

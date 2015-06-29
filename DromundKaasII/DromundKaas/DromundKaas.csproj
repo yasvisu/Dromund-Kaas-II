@@ -62,7 +62,6 @@
     <Compile Include="Engine\Exceptions\PlayerAlreadyExistsException.cs" />
     <Compile Include="Engine\Exceptions\SpawnOccupiedException.cs" />
     <Compile Include="Engine\Exceptions\UnsupportedKeyException.cs" />
-    <Compile Include="Engine\GameObjects\Actors\ActionTypeOptions.cs" />
     <Compile Include="Engine\GameObjects\Actors\Debris\Campfire.cs" />
     <Compile Include="Engine\GameObjects\Actors\Debris\Debris.cs" />
     <Compile Include="Engine\GameObjects\Actors\Directions.cs" />

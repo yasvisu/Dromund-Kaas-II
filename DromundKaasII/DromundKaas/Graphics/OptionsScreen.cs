@@ -76,11 +76,18 @@ namespace DromundKaasII.Graphics
             this.fadeout = content.Load<Texture2D>("fadeout");
         }
 
+        /// <summary>
+        /// Unload all content.
+        /// </summary>
         public override void UnloadContent()
         {
             base.UnloadContent();
         }
 
+        /// <summary>
+        /// Update this element.
+        /// </summary>
+        /// <param name="gameTime">The GameTime to update to.</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

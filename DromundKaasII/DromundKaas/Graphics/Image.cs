@@ -73,11 +73,19 @@ namespace DromundKaasII.Graphics
             //ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
 
         }
+
+        /// <summary>
+        /// Unload all content.
+        /// </summary>
         public void UnloadContent()
         {
             content.Unload();
         }
 
+        /// <summary>
+        /// Update this element.
+        /// </summary>
+        /// <param name="gameTime">The GameTime to update to.</param>
         public void Update(GameTime gameTime)
         {
         }

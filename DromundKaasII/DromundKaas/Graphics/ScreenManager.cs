@@ -98,6 +98,9 @@ namespace DromundKaasII.Graphics
             }
         }
 
+        /// <summary>
+        /// Unload all content.
+        /// </summary>
         public void UnloadContent()
         {
             for (int i = 0; i < Screens.Length; i++)
@@ -106,6 +109,10 @@ namespace DromundKaasII.Graphics
             }
         }
 
+        /// <summary>
+        /// Update this element.
+        /// </summary>
+        /// <param name="gameTime">The GameTime to update to.</param>
         public void Update(GameTime gameTime)
         {
             CheckForSwitch(gameTime);

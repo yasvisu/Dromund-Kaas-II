@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using DromundKaasII.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -20,7 +16,6 @@ namespace DromundKaasII.Graphics.UI
         /// The default bar transparency of the HUD bars.
         /// </summary>
         public const float BAR_TRANSPARENCY = 0.9f;
-
 
         Texture2D whiteFadeout;
         StatusBar health, mana, focus, experience;
@@ -56,11 +51,18 @@ namespace DromundKaasII.Graphics.UI
             bars = new List<StatusBar> { health, mana, focus, experience }.ToArray();
         }
 
+        /// <summary>
+        /// Unload all content.
+        /// </summary>
         public override void UnloadContent()
         {
             content.Unload();
         }
 
+        /// <summary>
+        /// Update this element.
+        /// </summary>
+        /// <param name="gameTime">The GameTime to update to.</param>
         public override void Update(GameTime gameTime)
         {
             //if(expBarBlink!=null  && expBarBlink.IsCompleted)

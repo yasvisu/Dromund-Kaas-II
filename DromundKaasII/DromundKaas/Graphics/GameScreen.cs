@@ -44,11 +44,18 @@ namespace DromundKaasII.Graphics
             this.input = ScreenManager.Instance.Input;
         }
 
+        /// <summary>
+        /// Unload all content.
+        /// </summary>
         public virtual void UnloadContent()
         {
             content.Unload();
         }
 
+        /// <summary>
+        /// Update this element.
+        /// </summary>
+        /// <param name="gameTime">The GameTime to update to.</param>
         public virtual void Update(GameTime gameTime)
         {
         }

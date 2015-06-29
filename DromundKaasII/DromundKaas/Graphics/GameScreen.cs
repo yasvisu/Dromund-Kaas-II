@@ -35,6 +35,9 @@ namespace DromundKaasII.Graphics
 
         }
 
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");

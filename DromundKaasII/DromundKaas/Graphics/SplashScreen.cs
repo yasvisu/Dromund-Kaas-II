@@ -10,12 +10,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII.Graphics
 {
-    class SplashScreen : GameScreen
+    public class SplashScreen : GameScreen
     {
         Texture2D image;
         string path;
 
 
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();

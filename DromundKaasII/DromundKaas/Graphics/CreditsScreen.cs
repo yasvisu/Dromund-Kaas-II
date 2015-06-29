@@ -51,6 +51,9 @@ namespace DromundKaasII.Graphics
             this.bgOffset = Background.Position;
         }
 
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();

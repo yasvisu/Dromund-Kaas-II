@@ -11,22 +11,34 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII.Graphics.UI
 {
+    /// <summary>
+    /// A Heads-Up-Display containing various StatusBars.
+    /// </summary>
     public class HudScreen : GameScreen
     {
+        /// <summary>
+        /// The default bar transparency of the HUD bars.
+        /// </summary>
         public const float BAR_TRANSPARENCY = 0.9f;
 
 
         Texture2D whiteFadeout;
-
         StatusBar health, mana, focus, experience;
         StatusBar[] bars;
 
+        /// <summary>
+        /// Delay between blinks.
+        /// </summary>
         private static readonly TimeSpan blinkDelayMillis = new TimeSpan(0, 0, 0, 0, 400);
 
+        /// <summary>
+        /// The Player owner of this HUD.
+        /// </summary>
         public IPlayer Player { get; set; }
 
-
-
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public new void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");

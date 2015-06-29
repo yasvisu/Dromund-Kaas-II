@@ -73,6 +73,9 @@ namespace DromundKaasII.Graphics
             engine.IsPaused = true;
         }
 
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();

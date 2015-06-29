@@ -73,6 +73,9 @@ namespace DromundKaasII.Graphics
 
         public bool PlayCredits { get; set; }
 
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public void LoadContent(ContentManager Content, InputManager Input)
         {
             this.Content = new ContentManager(Content.ServiceProvider, "Content");

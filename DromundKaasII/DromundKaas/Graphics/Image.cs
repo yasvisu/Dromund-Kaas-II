@@ -32,6 +32,9 @@ namespace DromundKaasII.Graphics
             SourceRect = Rectangle.Empty;
         }
 
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");

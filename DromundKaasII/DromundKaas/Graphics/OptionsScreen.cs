@@ -51,6 +51,9 @@ namespace DromundKaasII.Graphics
             }
         }
 
+        /// <summary>
+        /// Load all content.
+        /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();

@@ -35,6 +35,9 @@ namespace DromundKaasII.Interfaces
         /// </summary>
         IEnumerable<IActor> Actors { get; }
 
+        /// <summary>
+        /// A collection of illuminators that are in the game state.
+        /// </summary>
         IEnumerable<IIlluminator> Illuminators { get; }
 
         /// <summary>
@@ -52,6 +55,9 @@ namespace DromundKaasII.Interfaces
         /// </summary>
         int MapWidth { get; }
 
+        /// <summary>
+        /// The default color the map returns to when not illuminated.
+        /// </summary>
         Color FogOfWar { get; }
 
         /// <summary>

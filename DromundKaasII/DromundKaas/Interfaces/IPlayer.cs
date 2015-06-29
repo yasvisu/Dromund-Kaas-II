@@ -14,6 +14,9 @@ namespace DromundKaasII.Interfaces
         /// </summary>
         int Score { get; }
 
+        /// <summary>
+        /// Whether the player is ready for a level-up.
+        /// </summary>
         bool LevelUp { get; }
 
 

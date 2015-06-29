@@ -13,6 +13,9 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
 {
+    /// <summary>
+    /// Factory for easy creation of Actors on a GameState.
+    /// </summary>
     public class ActorFactory
     {
         GameState GameState;

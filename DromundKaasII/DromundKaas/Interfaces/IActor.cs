@@ -10,13 +10,14 @@ namespace DromundKaasII.Interfaces
     /// </summary>
     public interface IActor : IPlaceable
     {
-
-
         /// <summary>
         /// The direction of the actor.
         /// </summary>
         Directions Direction { get; set; }
 
+        /// <summary>
+        /// A collection of the StatusEffects affecting the Actor.
+        /// </summary>
         IEnumerable<StatusEffects> Status { get; }
 
     }

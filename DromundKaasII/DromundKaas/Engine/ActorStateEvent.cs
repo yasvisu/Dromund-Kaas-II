@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
 {
+    /// <summary>
+    /// An event that occurred with relation to an Actor.
+    /// </summary>
     public class ActorStateEvent
     {
         public ActorStateEvent(ActorEvents EventType, IActor Actor)

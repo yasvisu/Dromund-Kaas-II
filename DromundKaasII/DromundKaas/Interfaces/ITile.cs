@@ -18,6 +18,9 @@ namespace DromundKaasII.Interfaces
         /// </summary>
         TileTypeOptions TileType { get; }
 
+        /// <summary>
+        /// The current illumination of the tile.
+        /// </summary>
         Color Illumination { get; set; }
     }
 }

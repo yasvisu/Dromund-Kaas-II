@@ -15,7 +15,6 @@ namespace DromundKaasII.Graphics
     {
 
         string text;
-        Texture2D textTexture;
 
         Vector2 initialPosition;
         Vector2 creditsPosition;

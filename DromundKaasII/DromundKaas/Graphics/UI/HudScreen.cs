@@ -21,7 +21,6 @@ namespace DromundKaasII.Graphics.UI
         StatusBar health, mana, focus, experience;
         StatusBar[] bars;
 
-        Task expBarBlink;
         private static readonly TimeSpan blinkDelayMillis = new TimeSpan(0, 0, 0, 0, 400);
 
         public IPlayer Player { get; set; }

@@ -21,14 +21,9 @@ namespace DromundKaasII.Graphics
 {
     public class PlayScreen : GameScreen
     {
-        Texture2D image;
-        string path;
         Task engineTask;
         IEngine engine;
 
-        Texture2D mytex;
-        Texture2D mychar;
-        Texture2D mytile;
         Texture2D ground, tree, hole, water, wall;
 
         HudScreen Hud;
@@ -86,20 +81,23 @@ namespace DromundKaasII.Graphics
             this.TypeTextures2D = new Dictionary<Type, Texture2D>();
             this.StatusEffectTextures2D = new Dictionary<StatusEffects, Texture2D>();
 
-            mytile = this.content.Load<Texture2D>("Tiles/placeholderTile");
             ground = this.content.Load<Texture2D>("Tiles/default/ground");
             tree = this.content.Load<Texture2D>("Tiles/default/tree");
             hole = this.content.Load<Texture2D>("Tiles/default/hole");
             water = this.content.Load<Texture2D>("Tiles/default/water");
             wall = this.content.Load<Texture2D>("Tiles/default/wall");
 
-            // Load Primal texture (horizontal)
-            mychar = this.content.Load<Texture2D>("Actors/Primal/ChovecheHorizontal");
-
+            // Load Primal texture (horizontal).
             this.TypeTextures2D[typeof(Primal)] = this.content.Load<Texture2D>("Actors/Primal/ChovecheHorizontal");
+
+            // Load Campfire texture.
             this.TypeTextures2D[typeof(Campfire)] = this.content.Load<Texture2D>("Actors/Debris/campfire");
+
+            // Load ZombieFriend texture (horizontal).
             this.TypeTextures2D[typeof(ZombieFriend)] = this.content.Load<Texture2D>("Actors/NPCs/ZombieFriendHorizontal");
 
+
+            // Load textures for all status effects.
             foreach (StatusEffects se in Enum.GetValues(typeof(StatusEffects)))
             {
                 this.StatusEffectTextures2D[se] = this.content.Load<Texture2D>("StatusEffects/" + se.ToString());
@@ -180,7 +178,7 @@ namespace DromundKaasII.Graphics
                     Rectangle originRect = new Rectangle(0, 0, 64, 64);
 
                     Vector2 destination = new Vector2((j + playerOffset.X) * 64, (i + playerOffset.Y) * 64) + pixelOffset;
-                    Texture2D ToDraw = mytile;
+                    Texture2D ToDraw = ground;
                     switch (currentTile.TileType)
                     {
                         case TileTypeOptions.Ground:

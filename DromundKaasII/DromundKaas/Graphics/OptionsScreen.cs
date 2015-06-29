@@ -13,6 +13,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII.Graphics
 {
+    /// <summary>
+    /// Screen managing options.
+    /// </summary>
     public class OptionsScreen : GameScreen
     {
         private const float buttonTransparency = 0.50f;

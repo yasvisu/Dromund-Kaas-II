@@ -58,6 +58,9 @@ namespace DromundKaasII.Graphics
             this.Hud.Player = this.engine.Player;
         }
 
+        /// <summary>
+        /// Run the PlayScreen and the Engine.
+        /// </summary>
         public override void Run()
         {
             base.Run();
@@ -68,6 +71,9 @@ namespace DromundKaasII.Graphics
             engine.IsPaused = false;
         }
 
+        /// <summary>
+        /// Pause the PlayScreen and the Engine.
+        /// </summary>
         public override void Pause()
         {
             engine.IsPaused = true;

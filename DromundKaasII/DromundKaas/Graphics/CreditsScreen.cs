@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DromundKaasII.Input;
@@ -11,10 +8,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII.Graphics
 {
+    /// <summary>
+    /// Credits screen to display all the credits for this game.
+    /// </summary>
     public class CreditsScreen : GameScreen
     {
-
-        string text;
+        string creditsText;
 
         Vector2 initialPosition;
         Vector2 creditsPosition;
@@ -29,10 +28,12 @@ namespace DromundKaasII.Graphics
         private static readonly Vector2 bgIdleScroll = bgScroll * new Vector2(idleScroll.X,Math.Abs(idleScroll.Y));
         private static readonly Vector2 bgActiveScroll = bgScroll * activeScroll;
 
-
         bool scroll;
         bool done;
 
+        /// <summary>
+        /// Run the CreditsScreen.
+        /// </summary>
         public override void Run()
         {
             this.IsSwitchReady = false;
@@ -57,9 +58,9 @@ namespace DromundKaasII.Graphics
         public override void LoadContent()
         {
             base.LoadContent();
-            this.text = File.ReadAllText("Content/Credits.txt");
+            this.creditsText = File.ReadAllText("Content/Credits.txt");
 
-            Vector2 textSize = ScreenManager.Instance.TextFont.MeasureString(this.text);
+            Vector2 textSize = ScreenManager.Instance.TextFont.MeasureString(this.creditsText);
             this.initialPosition = (ScreenManager.Instance.Dimensions - new Vector2(textSize.X, 0)) / 2;
             this.finalThresholdY = ScreenManager.Instance.Dimensions.Y / 2 - textSize.Y;
         }
@@ -119,7 +120,7 @@ namespace DromundKaasII.Graphics
             base.Draw(spriteBatch);
 
             this.Background.Position = temp;
-            spriteBatch.DrawString(ScreenManager.Instance.TextFont, this.text, this.creditsPosition, Color.Yellow);
+            spriteBatch.DrawString(ScreenManager.Instance.TextFont, this.creditsText, this.creditsPosition, Color.Yellow);
         }
     }
 }

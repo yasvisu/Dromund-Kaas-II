@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII.Graphics
 {
+    /// <summary>
+    /// Simple splash screen.
+    /// </summary>
     public class SplashScreen : GameScreen
     {
         Texture2D image;
@@ -21,8 +24,8 @@ namespace DromundKaasII.Graphics
         public override void LoadContent()
         {
             base.LoadContent();
-            path = "Splash/dksplash";
-            image = content.Load<Texture2D>(path);
+            this.path = "Splash/dksplash";
+            this.image = this.content.Load<Texture2D>(this.path);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace DromundKaasII.Graphics
         /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(image, Vector2.Zero, Color.White);
+            spriteBatch.Draw(this.image, Vector2.Zero, Color.White);
         }
     }
 }

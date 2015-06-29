@@ -2,8 +2,8 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+
 using DromundKaasII.Engine.Exceptions;
-using DromundKaasII.Engine.GameObjects;
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Actors.Debris;
 using DromundKaasII.Engine.GameObjects.Actors.NPCs;
@@ -12,6 +12,7 @@ using DromundKaasII.Engine.GameObjects.Skills;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Input;
 using DromundKaasII.Interfaces;
+
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine

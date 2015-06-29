@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DromundKaasII.Interfaces;
+﻿using DromundKaasII.Interfaces;
 
 namespace DromundKaasII.Engine.Interfaces
 {
@@ -19,6 +15,6 @@ namespace DromundKaasII.Engine.Interfaces
         /// <summary>
         /// The current occupant of this element.
         /// </summary>
-        IActor Occupant { get; set; }
+        new IActor Occupant { get; set; }
     }
 }

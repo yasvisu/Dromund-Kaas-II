@@ -1,23 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Interfaces;
 
 namespace DromundKaasII.Engine.GameObjects.Skills
 {
+    /// <summary>
+    /// A screen manager to contain and seed all skills.
+    /// </summary>
     public class SkillManager
     {
+        /// <summary>
+        /// Initializes a new SkillManager.
+        /// </summary>
         public SkillManager()
         {
             this.Skills = new Dictionary<string, Skill>();
             this.LoadSkills();
         }
 
+        /// <summary>
+        /// A dictionary of the skills in this SkillManager.
+        /// </summary>
         public Dictionary<string, Skill> Skills { get; private set; }
 
-        void LoadSkills()
+        /// <summary>
+        /// Seeds all skills.
+        /// </summary>
+        protected virtual void LoadSkills()
         {
             // Load all skills here
             this.Skills["None"] = new Skill("None", 0, 0, 0, SkillTypes.Physical, null, Augment, SkillTargetOptions.Directional, SkillTargetPermissions.None);
@@ -62,17 +72,25 @@ namespace DromundKaasII.Engine.GameObjects.Skills
                 SkillTargetOptions.Directional,
                 SkillTargetPermissions.Ground);
 
-
-
-
             // Ice bolt...
             // Electric shock...
         }
 
+        /// <summary>
+        /// Augment target with effect.
+        /// </summary>
+        /// <param name="target">Target to augment.</param>
+        /// <param name="effect">Effect to use.</param>
         void Augment(Actor target, IStatsheet effect)
         {
             target.Stats.Add(effect);
         }
+
+        /// <summary>
+        /// Damage target with effect.
+        /// </summary>
+        /// <param name="target">Target to damage.</param>
+        /// <param name="effect">Effect to use.</param>
         void Damage(Actor target, IStatsheet effect)
         {
             target.Stats.Remove(effect);

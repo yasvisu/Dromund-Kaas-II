@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DromundKaasII.Engine.GameObjects.Skills
+﻿namespace DromundKaasII.Engine.GameObjects.Skills
 {
+    /// <summary>
+    /// Skill target options.
+    /// </summary>
     public enum SkillTargetOptions
     {
+        /// <summary>
+        /// Directional target.
+        /// </summary>
         Directional,
+
+        /// <summary>
+        /// Area of Effect target.
+        /// </summary>
         AoE
     }
 }

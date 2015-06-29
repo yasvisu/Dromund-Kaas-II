@@ -172,6 +172,10 @@ namespace DromundKaasII.Graphics
             Hud.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draw this element.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);

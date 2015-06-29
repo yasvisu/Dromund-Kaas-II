@@ -42,6 +42,10 @@ namespace DromundKaasII.Graphics
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draw this element.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(image, Vector2.Zero, Color.White);

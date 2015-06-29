@@ -90,6 +90,10 @@ namespace DromundKaasII.Graphics
         {
         }
 
+        /// <summary>
+        /// Draw this element.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
             origin = new Vector2(SourceRect.Width / 2,

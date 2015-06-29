@@ -120,6 +120,10 @@ namespace DromundKaasII.Graphics
             currentScreen.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draw this element.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
             currentScreen.Draw(spriteBatch);

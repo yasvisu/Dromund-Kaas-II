@@ -60,6 +60,10 @@ namespace DromundKaasII.Graphics
         {
         }
 
+        /// <summary>
+        /// Draw this element.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Background != null)

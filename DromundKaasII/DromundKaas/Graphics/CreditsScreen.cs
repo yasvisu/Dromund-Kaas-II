@@ -109,6 +109,10 @@ namespace DromundKaasII.Graphics
             }
         }
 
+        /// <summary>
+        /// Draw this element.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             var temp = this.Background.Position;

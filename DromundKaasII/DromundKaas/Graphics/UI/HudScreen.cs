@@ -36,19 +36,19 @@ namespace DromundKaasII.Graphics.UI
         /// </summary>
         public new void LoadContent()
         {
-            content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
+            this.content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
             this.input = ScreenManager.Instance.Input;
-            whiteFadeout = content.Load<Texture2D>("w_Fadeout");
+            this.whiteFadeout = this.content.Load<Texture2D>("w_Fadeout");
 
-            health = new StatusBar(new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)(ScreenManager.Instance.Dimensions.Y * 0.05f)), 1, Color.Red);
+            this.health = new StatusBar(new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)(ScreenManager.Instance.Dimensions.Y * 0.05f)), 1, Color.Red);
 
-            mana = new StatusBar(new Rectangle((int)(ScreenManager.Instance.Dimensions.X * 0.95f), (int)(ScreenManager.Instance.Dimensions.Y * 0.05f), (int)(ScreenManager.Instance.Dimensions.X * 0.05f), (int)(ScreenManager.Instance.Dimensions.Y * 0.95f)), 1, Color.CadetBlue * BAR_TRANSPARENCY);
+            this.mana = new StatusBar(new Rectangle((int)(ScreenManager.Instance.Dimensions.X * 0.95f), (int)(ScreenManager.Instance.Dimensions.Y * 0.05f), (int)(ScreenManager.Instance.Dimensions.X * 0.05f), (int)(ScreenManager.Instance.Dimensions.Y * 0.95f)), 1, Color.CadetBlue * BAR_TRANSPARENCY);
 
-            focus = new StatusBar(new Rectangle(0, (int)(ScreenManager.Instance.Dimensions.Y * 0.05f), (int)(ScreenManager.Instance.Dimensions.X * 0.05f), (int)(ScreenManager.Instance.Dimensions.Y * 0.95f)), 1, Color.Green * BAR_TRANSPARENCY);
+            this.focus = new StatusBar(new Rectangle(0, (int)(ScreenManager.Instance.Dimensions.Y * 0.05f), (int)(ScreenManager.Instance.Dimensions.X * 0.05f), (int)(ScreenManager.Instance.Dimensions.Y * 0.95f)), 1, Color.Green * BAR_TRANSPARENCY);
 
-            experience = new StatusBar(new Rectangle((int)(ScreenManager.Instance.Dimensions.X * 0.05f), (int)(ScreenManager.Instance.Dimensions.Y * 0.05f), (int)(ScreenManager.Instance.Dimensions.X * 0.90f), (int)(ScreenManager.Instance.Dimensions.Y * 0.05f)), 1, Color.Indigo * BAR_TRANSPARENCY);
+            this.experience = new StatusBar(new Rectangle((int)(ScreenManager.Instance.Dimensions.X * 0.05f), (int)(ScreenManager.Instance.Dimensions.Y * 0.05f), (int)(ScreenManager.Instance.Dimensions.X * 0.90f), (int)(ScreenManager.Instance.Dimensions.Y * 0.05f)), 1, Color.Indigo * BAR_TRANSPARENCY);
 
-            bars = new List<StatusBar> { health, mana, focus, experience }.ToArray();
+            this.bars = new List<StatusBar> { this.health, this.mana, this.focus, this.experience }.ToArray();
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace DromundKaasII.Graphics.UI
         /// </summary>
         public override void UnloadContent()
         {
-            content.Unload();
+            this.content.Unload();
         }
 
         /// <summary>
@@ -65,12 +65,6 @@ namespace DromundKaasII.Graphics.UI
         /// <param name="gameTime">The GameTime to update to.</param>
         public override void Update(GameTime gameTime)
         {
-            //if(expBarBlink!=null  && expBarBlink.IsCompleted)
-            //{
-            //    expBarBlink.Dispose();
-            //    expBarBlink = null;
-            //}
-
             this.health.FillRatio = (float)this.Player.Stats.Health / this.Player.Stats.MaxHealth;
             this.mana.FillRatio = (float)this.Player.Stats.Mana / this.Player.Stats.MaxMana;
             this.focus.FillRatio = (float)this.Player.Stats.Focus / this.Player.Stats.MaxFocus;
@@ -80,27 +74,17 @@ namespace DromundKaasII.Graphics.UI
             this.mana.Bounds = new Rectangle(this.mana.Bounds.X, this.mana.Bounds.Y, this.mana.MaxWidth, (int)(this.mana.MaxHeight * this.mana.FillRatio));
             this.focus.Bounds = new Rectangle(this.focus.Bounds.X, this.focus.Bounds.Y, this.focus.Bounds.Width, (int)(this.focus.MaxHeight * this.focus.FillRatio));
             this.experience.Bounds = new Rectangle(this.experience.Bounds.X, this.experience.Bounds.Y, (int)(this.experience.MaxWidth * this.experience.FillRatio), this.experience.Bounds.Height);
-
-            //if(this.Player.LevelUp && expBarBlink==null)
-            //{
-            //    expBarBlink = Task.Factory.StartNew(() =>
-            //    {
-            //        while (this.Player.LevelUp)
-            //        {
-            //            Thread.Sleep(blinkDelayMillis);
-            //            this.experience.Color = Color.Indigo * BAR_TRANSPARENCY;
-            //            Thread.Sleep(blinkDelayMillis);
-            //            this.experience.Color = Color.Yellow * BAR_TRANSPARENCY;
-            //        }
-            //    });
-            //}
         }
 
+        /// <summary>
+        /// Draw this element.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to draw to.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var bar in bars)
+            foreach (var bar in this.bars)
             {
-                spriteBatch.Draw(whiteFadeout, bar.Bounds, bar.Color);
+                spriteBatch.Draw(this.whiteFadeout, bar.Bounds, bar.Color);
                 spriteBatch.DrawString(ScreenManager.Instance.TextFont, bar.FillRatio.ToString(), new Vector2(bar.Bounds.X, bar.Bounds.Y), Color.White);
             }
         }

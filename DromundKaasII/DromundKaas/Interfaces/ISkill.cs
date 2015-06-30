@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DromundKaasII.Interfaces
+﻿namespace DromundKaasII.Interfaces
 {
     /// <summary>
     /// Interface exposing a Skill's name.

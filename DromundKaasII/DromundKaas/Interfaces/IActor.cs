@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+
 using DromundKaasII.Engine;
 using DromundKaasII.Engine.GameObjects.Actors;
-using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Interfaces
 {
@@ -19,6 +19,5 @@ namespace DromundKaasII.Interfaces
         /// A collection of the StatusEffects affecting the Actor.
         /// </summary>
         IEnumerable<StatusEffects> Status { get; }
-
     }
 }

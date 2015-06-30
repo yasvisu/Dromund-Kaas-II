@@ -16,7 +16,7 @@ namespace Pathfinding
         private static int mode;
         private static String[][] nodeTypes;
 
-        public static void Main()
+        public static void Path_Main()
         {
             LinkedList<Node> thegrid = new LinkedList<Node>();
 

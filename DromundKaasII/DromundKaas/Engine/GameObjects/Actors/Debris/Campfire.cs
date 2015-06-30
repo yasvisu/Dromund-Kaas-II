@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DromundKaasII.Interfaces;
+﻿using DromundKaasII.Interfaces;
+
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Actors.Debris
 {
+    /// <summary>
+    /// A basic illuminating campfire.
+    /// </summary>
     public class Campfire : Debris, IIlluminator
     {
+        /// <summary>
+        /// Initializes a new Campfire.
+        /// </summary>
+        /// <param name="MapPosition">The Campfire's position.</param>
+        /// <param name="Stats">The Campfire's stats.</param>
         public Campfire(Vector2 MapPosition, Statblock Stats)
             : base(MapPosition, null, Stats)
         {
@@ -16,12 +21,23 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Debris
             this.IlluminationColor = Color.LightYellow;
         }
 
+        /// <summary>
+        /// Tells campfire to burn.
+        /// </summary>
+        /// <param name="G">The gamestate to process.</param>
         public override void Act(GameState G)
         {
             this.Stats.Health--;
         }
 
+        /// <summary>
+        /// The illumination color of the campfire.
+        /// </summary>
         public Color IlluminationColor { get; set; }
+
+        /// <summary>
+        /// The illumination range of the campfire.
+        /// </summary>
         public float IlluminationRange
         {
             get
@@ -30,6 +46,9 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Debris
             }
         }
 
+        /// <summary>
+        /// Whether the campfire has illuminated.
+        /// </summary>
         public bool HasIlluminated { get; set; }
     }
 }

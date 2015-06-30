@@ -36,8 +36,8 @@ namespace DromundKaasII.Engine
         /// <summary>
         /// Sum the stat coefficients of a statsheet.
         /// </summary>
-        /// <param name="target">The target to sum the coefficients of.</param>
-        /// <returns></returns>
+        /// <param name="stats">The target to sum the coefficients of.</param>
+        /// <returns>The sum of the stat coefficients.</returns>
         public static float SumStatCoefficients(IStatsheet stats)
         {
             return Calculator.SumStats(stats) / 10;

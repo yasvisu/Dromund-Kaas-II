@@ -1,62 +1,61 @@
 ﻿using System;
+
 using DromundKaasII.Graphics;
 using DromundKaasII.Input;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DromundKaasII
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// The main class of the game.
     /// </summary>
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        InputManager Input;
+        InputManager input;
         
-
+        /// <summary>
+        /// Initializes the Game.
+        /// </summary>
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            Input = new InputManager();
+            this.graphics = new GraphicsDeviceManager(this);
+            this.Content.RootDirectory = "Content";
+            this.input = new InputManager();
         }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
+        /// This is where it queries for any required services and loads any non-graphic
+        /// related content.
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
-            graphics.ApplyChanges();  
+            this.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
+            this.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
+            this.graphics.ApplyChanges();  
             base.Initialize();
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+        /// LoadContent will be called once per game.
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ScreenManager.Instance.LoadContent(Content, Input);
+            ScreenManager.Instance.LoadContent(Content, input);
         }
 
         /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
+        /// UnloadContent will be called once per game.
         /// </summary>
         protected override void UnloadContent()
         {
             ScreenManager.Instance.UnloadContent();
-            //engineTask.Dispose();
         }
 
         /// <summary>
@@ -66,25 +65,25 @@ namespace DromundKaasII
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if(Input.GamePadConnected)
+            if(input.GamePadConnected)
             {
-                if (Input.InputMode != InputModes.GamePad)
+                if (input.InputMode != InputModes.GamePad)
                 {
                     Console.Beep();
-                    Input.InputMode = InputModes.GamePad;
+                    this.input.InputMode = InputModes.GamePad;
                 }
             }
-            else if(Input.InputMode!=InputModes.Keyboard)
+            else if(input.InputMode!=InputModes.Keyboard)
             {
                 Console.Beep();
-                Input.InputMode = InputModes.Keyboard;
+                this.input.InputMode = InputModes.Keyboard;
             }
 
-            if (Input.IsPressed(GameInputs.Quit))
-                Exit();
+            if (input.IsPressed(GameInputs.Quit))
+                this.Exit();
 
             ScreenManager.Instance.Update(gameTime);
-            Input.UpdateInput();
+            this.input.UpdateInput();
 
             base.Update(gameTime);
         }
@@ -95,12 +94,12 @@ namespace DromundKaasII
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin();
+            this.GraphicsDevice.Clear(Color.Black);
+            this.spriteBatch.Begin();
 
             ScreenManager.Instance.Draw(spriteBatch);
 
-            spriteBatch.End();
+            this.spriteBatch.End();
             base.Draw(gameTime);
         }
     }

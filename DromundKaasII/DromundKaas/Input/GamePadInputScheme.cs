@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿#pragma warning disable 1591
+
+using Microsoft.Xna.Framework.Input;
 
 namespace DromundKaasII.Input
 {
@@ -74,3 +76,5 @@ namespace DromundKaasII.Input
 
     }
 }
+
+#pragma warning restore 1591

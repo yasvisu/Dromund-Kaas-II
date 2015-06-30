@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Interfaces
 {
+    /// <summary>
+    /// Exposes the position of a placeable element.
+    /// </summary>
     public interface IPlaceable
     {
         /// <summary>

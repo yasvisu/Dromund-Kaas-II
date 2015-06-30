@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
 {
+    /// <summary>
+    /// Catch-all class for all Npc's.
+    /// </summary>
     public abstract class Npc : Actor
     {
         /// <summary>

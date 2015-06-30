@@ -1,10 +1,15 @@
-﻿using System;
+﻿#pragma warning disable 1591
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace DromundKaasII.Interfaces
 {
+    /// <summary>
+    /// Exposes a statsheet's stats.
+    /// </summary>
     public interface IStatsheet
     {
         // Combat
@@ -37,3 +42,5 @@ namespace DromundKaasII.Interfaces
         void Remove(IStatsheet target);
     }
 }
+
+#pragma warning restore 1591

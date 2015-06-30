@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+
 using DromundKaasII.Engine.GameObjects.Skills;
+
+using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Actors.Players
 {
-
-
+    /// <summary>
+    /// Tier 0 Primal.
+    /// </summary>
     public class Primal : Player 
     {
-
+        /// <summary>
+        /// Initializes a new Primal.
+        /// </summary>
+        /// <param name="MapPosition">The Primal's map position.</param>
+        /// <param name="SkillChain">The skills the Primal can pick from.</param>
         public Primal(Vector2 MapPosition, Dictionary<string, Skill> SkillChain)
             : base(MapPosition,SkillChain)
         {

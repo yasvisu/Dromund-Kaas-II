@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Actors.Players.Tier1
 {
-    public abstract class Tier1 : Player
+    abstract class Tier1 : Player
     {
         protected Tier1(Vector2 MapPosition, Dictionary<string, Skill> SkillChain)
             : base(MapPosition,SkillChain)

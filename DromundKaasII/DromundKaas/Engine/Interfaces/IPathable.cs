@@ -5,7 +5,7 @@ namespace DromundKaasII.Engine.Interfaces
     /// <summary>
     /// Exposes the occupant and traversal cost of a pathable element.
     /// </summary>
-    public interface IPathable : ITile
+    public interface IPathable : ITile, IPlaceable
     {
         /// <summary>
         /// The traversal cost / power needed to traverse this element.

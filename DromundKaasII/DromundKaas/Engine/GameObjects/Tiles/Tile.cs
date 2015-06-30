@@ -42,5 +42,10 @@ namespace DromundKaasII.Engine.GameObjects.Tiles
         /// The current illumination color of the tile.
         /// </summary>
         public Color Illumination { get; set; }
+
+        /// <summary>
+        /// The tile's map position.
+        /// </summary>
+        public Vector2 MapPosition { get; set; }
     }
 }

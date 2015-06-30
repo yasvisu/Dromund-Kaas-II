@@ -1,11 +1,10 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
-
+using DromundKaasII.Engine.AI.Pathfinding;
 using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.GameObjects.Tiles;
 using DromundKaasII.Engine.Interfaces;
 using DromundKaasII.Interfaces;
-
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine
@@ -97,5 +96,11 @@ namespace DromundKaasII.Engine
         /// The default color of non-illuminated tiles of this GameState.
         /// </summary>
         public Color FogOfWar { get; set; }
+
+
+        /// <summary>
+        /// The default Pathfinder of the GameState.
+        /// </summary>
+        public Pathfinder Pathfinder { get; }
     }
 }

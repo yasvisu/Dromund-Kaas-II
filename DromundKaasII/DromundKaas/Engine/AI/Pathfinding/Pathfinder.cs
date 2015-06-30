@@ -1,40 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DromundKaasII.Engine.Interfaces;
+using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.AI.Pathfinding
 {
 
     public class Pathfinder
     {
-
+        GameState gameState;
         private double movementCost = 1.0;
-        private IEnumerable<Node> iEnumerableInput;
-        private Dictionary<Node, Double> gmap;
-        private Dictionary<Node, Double> fmap;
-        private Dictionary<Node, Node> navmap;
+        private Dictionary<IPathable, Double> gmap;
+        private Dictionary<IPathable, Double> fmap;
+        private Dictionary<IPathable, IPathable> navmap;
         private static int heuristicMode;
 
-        public Pathfinder(IEnumerable<Node> input)
+        public Pathfinder(GameState G)
         {
-            iEnumerableInput = input;
+            this.gameState = G;
+        }
+
+        public double MovementCost
+        {
+            get
+            {
+                return this.movementCost;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("MovementCost", "Value cannot be negative!");
+                }
+                this.movementCost = value;
+            }
         }
 
 
-        public string Pathfind(Node start, Node goal, int mode)
+        public LinkedList<IPathable> Pathfind(IPathable start, IPathable goal, int mode)
         {
             heuristicMode = mode;
             return astar(start, goal);
         }
 
-        private string astar(Node start, Node goal)
+        private LinkedList<IPathable> astar(IPathable start, IPathable goal)
         {
-            HashSet<Node> closedset = new HashSet<Node>(); //set of evaluated nodes
-            HashSet<Node> openset = new HashSet<Node>(); //set of nodes to be evaluated
-            openset.Add(start); //first node to be evaluated
-            gmap = populateHashMap(iEnumerableInput); //initialize HashMap of visited Nodes
-            navmap = new Dictionary<Node, Node>();
-            fmap = populateHashMap(iEnumerableInput);
+            HashSet<IPathable> closedset = new HashSet<IPathable>(); //set of evaluated IPathables
+            HashSet<IPathable> openset = new HashSet<IPathable>(); //set of IPathables to be evaluated
+            openset.Add(start); //first IPathable to be evaluated
+            this.gmap = Pathfinder.populateHashMap(this.gameState); //initialize HashMap of visited IPathables
+            this.navmap = new Dictionary<IPathable, IPathable>();
+            this.fmap = Pathfinder.populateHashMap(this.gameState);
 
 
             //Heuristic: F=G+H
@@ -45,12 +62,12 @@ namespace DromundKaasII.Engine.AI.Pathfinding
             gmap.Add(start, 0.0);
             fmap.Add(start, gmap[start] + ManhattanDistance(start, goal)); //heuristic cost of 0
 
-            Node current;
+            IPathable current;
 
-            while (!openset.Any())
+            while (openset.Any())
             {
                 current = GetCheapest(openset);
-                if (SameNode(current, goal))
+                if (current == goal)
                 {
                     return constructPath(navmap, goal);
                 }
@@ -58,11 +75,12 @@ namespace DromundKaasII.Engine.AI.Pathfinding
                 openset.Remove(current);
                 closedset.Add(current);
 
-                HashSet<Node> neighbors = GetNeighbors(current, heuristicMode);
-                foreach (Node neighbor in neighbors)
+                HashSet<IPathable> neighbors = GetNeighbors(current, heuristicMode);
+                foreach (IPathable neighbor in neighbors)
                 {
                     if (closedset.Contains(neighbor))
                         continue;
+
                     double temp_g = gmap[current] + movementCost;
                     if (!openset.Contains(neighbor) || temp_g < gmap[neighbor])
                     {
@@ -73,17 +91,11 @@ namespace DromundKaasII.Engine.AI.Pathfinding
                             openset.Add(neighbor);
                     }
                 }
-
             }
-            return "failed";
+            return null;
         }
 
-        public void setMovementCost(double cost)
-        {
-            movementCost = cost;
-        }
-
-        private double heuristicCost(Node current, Node goal, int mode)
+        private double heuristicCost(IPathable current, IPathable goal, int mode)
         {
             switch (mode)
             {
@@ -94,101 +106,100 @@ namespace DromundKaasII.Engine.AI.Pathfinding
             }
         }
 
-        private double ManhattanDistance(Node current, Node goal)
+        #region Heuristics
+
+        private double ManhattanDistance(IPathable current, IPathable goal)
         {
-            return movementCost*(Math.Abs(current.getX() - goal.getX()) + Math.Abs(current.getY() - goal.getY()));
+            return movementCost * (Math.Abs(current.MapPosition.X - goal.MapPosition.X) + Math.Abs(current.MapPosition.Y - goal.MapPosition.Y));
         }
 
-        private double DiagonalDistance(Node current, Node goal)
+        private double DiagonalDistance(IPathable current, IPathable goal)
         {
-            return movementCost*(Math.Abs(current.getX() - goal.getX()) + Math.Abs(current.getY() - goal.getY())) +
-                   (Math.Sqrt(2)*movementCost - 2*movementCost)*
-                   Math.Min(Math.Abs(current.getX() - goal.getX()), Math.Abs(current.getY() - goal.getY()));
+            return
+                movementCost * (Math.Abs(current.MapPosition.X - goal.MapPosition.X) + Math.Abs(current.MapPosition.Y - goal.MapPosition.Y)) +
+                (Math.Sqrt(2) * movementCost - 2 * movementCost) * Math.Min(Math.Abs(current.MapPosition.X - goal.MapPosition.X), Math.Abs(current.MapPosition.Y - goal.MapPosition.Y));
         }
 
-        private Dictionary<Node, Double> populateHashMap(IEnumerable<Node> input)
+        #endregion
+
+        private static Dictionary<IPathable, Double> populateHashMap(GameState G)
         {
-            Dictionary<Node, Double> hashmap = new Dictionary<Node, double>();
-            var iterator = input.GetEnumerator();
-            while (iterator.MoveNext())
+            Dictionary<IPathable, Double> result = new Dictionary<IPathable, double>();
+            foreach (IPathable p in G.Map)
             {
-                hashmap.Add(iterator.Current, -1.0);
+                result.Add(p, -1.0);
             }
-            return hashmap;
+            return result;
         }
 
-        private Node GetCheapest(HashSet<Node> openset)
+        private IPathable GetCheapest(HashSet<IPathable> openset)
         {
             var iterator = openset.GetEnumerator();
-            Node thisNode = iterator.Current;
-            Node nextNode;
+            IPathable thisIPathable = iterator.Current;
+            IPathable nextIPathable;
             while (iterator.MoveNext())
             {
-                nextNode = iterator.Current;
+                nextIPathable = iterator.Current;
 
-                if (fmap[nextNode] < fmap[thisNode])
-                    thisNode = nextNode;
+                if (fmap[nextIPathable] < fmap[thisIPathable])
+                    thisIPathable = nextIPathable;
             }
-            return thisNode;
+            return thisIPathable;
         }
 
-        private HashSet<Node> GetNeighbors(Node current, int mode)
+        private HashSet<IPathable> GetNeighbors(IPathable current, int mode)
         {
-            HashSet<Node> result = new HashSet<Node>();
-            //List<int> keySet = new List<int>(gmap.Keys);
-            HashSet<Node> keySet = (HashSet<Node>) gmap.Select(x => x.Key);
-            var iterator = keySet.GetEnumerator();
-            while (iterator.MoveNext())
+            HashSet<IPathable> result = new HashSet<IPathable>();
+
+            Point master = current.MapPosition.ToPoint();
+
+            List<Point> toCheck = new List<Point>()
             {
-                Node thisNode = iterator.Current;
-                //Manhattan movement
-                if (thisNode.getX() + 1 == current.getX() && thisNode.getY() == current.getY())
-                    result.Add(thisNode);
-                else if (thisNode.getX() - 1 == current.getX() && thisNode.getY() == current.getY())
-                    result.Add(thisNode);
-                else if (thisNode.getX() == current.getX() && thisNode.getY() + 1 == current.getY())
-                    result.Add(thisNode);
-                else if (thisNode.getX() == current.getX() && thisNode.getY() - 1 == current.getY())
-                    result.Add(thisNode);
-                //Diagonal movement
-                else if (mode == 1)
+                master + new Point(0, -1),
+                master + new Point(0, 1),
+                master + new Point(-1, 0),
+                master + new Point(1, 0)
+            };
+
+            if (mode == 1)
+            {
+                toCheck.AddRange(new List<Point>()
+                    {
+                        master + new Point(-1, -1),
+                        master + new Point(-1, 1),
+                        master + new Point(1, -1),
+                        master + new Point(1, 1)
+                    });
+            }
+
+            foreach (Point p in toCheck)
+            {
+                if (IsValidPoint(p))
                 {
-                    if (thisNode.getX() + 1 == current.getX() && thisNode.getY() + 1 == current.getY())
-                        result.Add(thisNode);
-                    else if (thisNode.getX() + 1 == current.getX() && thisNode.getY() - 1 == current.getY())
-                        result.Add(thisNode);
-                    else if (thisNode.getX() - 1 == current.getX() && thisNode.getY() + 1 == current.getY())
-                        result.Add(thisNode);
-                    else if (thisNode.getX() - 1 == current.getX() && thisNode.getY() - 1 == current.getY())
-                        result.Add(thisNode);
+                    result.Add(this.gameState.Map[p.Y, p.X]);
                 }
             }
             return result;
         }
 
-        private bool SameNode(Node thisNode, Node otherNode)
+        private bool IsValidPoint(Point p)
         {
-            return thisNode.getX() == otherNode.getX() && thisNode.getY() == otherNode.getY();
+            return p.X >= 0 && p.X < this.gameState.MapWidth && p.Y >= 0 && p.Y < this.gameState.MapHeight;
         }
 
-        private String constructPath(Dictionary<Node, Node> hashmap, Node last)
+        private LinkedList<IPathable> constructPath(Dictionary<IPathable, IPathable> map, IPathable last)
         {
-            string t;
-            if (hashmap.ContainsKey(last))
-            {
-                t = constructPath(hashmap, hashmap[last]);
-                return (t + last);
-            }
-            else
-            {
-                return toNodeString(last);
-            }
-        }
+            LinkedList<IPathable> result = new LinkedList<IPathable>();
 
-        private string toNodeString(Node a)
-        {
-            return "(" + a.getX() + "," + a.getY() + ")";
+            IPathable current = last;
+            result.AddFirst(current);
+
+            while (map.ContainsKey(current))
+            {
+                current = map[current];
+                result.AddFirst(current);
+            }
+            return result;
         }
     }
-
 }

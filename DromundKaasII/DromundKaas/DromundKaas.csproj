@@ -55,9 +55,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Engine\ActorFactory.cs" />
-    <Compile Include="Engine\AI\Pathfinding\Node.cs" />
     <Compile Include="Engine\AI\Pathfinding\Pathfinder.cs" />
-    <Compile Include="Engine\AI\Pathfinding\World.cs" />
     <Compile Include="Engine\Calculator.cs" />
     <Compile Include="Engine\Exceptions\InvalidSkillTypeException.cs" />
     <Compile Include="Engine\Exceptions\PlayerAlreadyExistsException.cs" />

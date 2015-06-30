@@ -12,7 +12,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
 
     public abstract class Player : Actor, IPlayer
     {
-        protected GameInputs playerInputOptions;
+        private GameInputs playerInputOptions;
 
         public Player(Vector2 MapPosition)
             : base(MapPosition)
@@ -51,7 +51,5 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             }
             base.Act(G);
         }
-
-
     }
 }

@@ -40,6 +40,7 @@ yasvisu:
  >Graphics
  >Tools
  >Game
+ >Pathfinding
 
 
   IvayloKHristov:

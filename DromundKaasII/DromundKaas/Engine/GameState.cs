@@ -101,6 +101,6 @@ namespace DromundKaasII.Engine
         /// <summary>
         /// The default Pathfinder of the GameState.
         /// </summary>
-        public Pathfinder Pathfinder { get; }
+        public Pathfinder Pathfinder { get; private set; }
     }
 }

@@ -7,7 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.AI.Pathfinding
 {
-
+    /// <summary>
+    /// Class containing pathfinding and orientation functionalities.
+    /// </summary>
     public class Pathfinder
     {
         GameState gameState;
@@ -17,11 +19,18 @@ namespace DromundKaasII.Engine.AI.Pathfinding
         private Dictionary<IPathable, IPathable> navmap;
         private static int heuristicMode;
 
+        /// <summary>
+        /// Initializes a new Pathfinder.
+        /// </summary>
+        /// <param name="G">The GameState to use in complex pathfinding.</param>
         public Pathfinder(GameState G)
         {
             this.gameState = G;
         }
 
+        /// <summary>
+        /// The cost of a movement.
+        /// </summary>
         public double MovementCost
         {
             get
@@ -38,7 +47,12 @@ namespace DromundKaasII.Engine.AI.Pathfinding
             }
         }
 
-
+        /// <summary>
+        /// Returns the direction of the target, relative to the parent.
+        /// </summary>
+        /// <param name="parent">The origin position.</param>
+        /// <param name="target">The target position.</param>
+        /// <returns>The direction in which the target is.</returns>
         public Directions Orient(Vector2 parent, Vector2 target)
         {
             Directions result;
@@ -72,6 +86,13 @@ namespace DromundKaasII.Engine.AI.Pathfinding
             return result;
         }
 
+        /// <summary>
+        /// Pathfinds between two pathables.
+        /// </summary>
+        /// <param name="start">The start pathable.</param>
+        /// <param name="goal">The goal pathable.</param>
+        /// <param name="mode">The heuristic mode (Manhattan or Diagonal movement)</param>
+        /// <returns>The path to the target, if there is any.</returns>
         public LinkedList<IPathable> Pathfind(IPathable start, IPathable goal, int mode)
         {
             heuristicMode = mode;
@@ -93,8 +114,8 @@ namespace DromundKaasII.Engine.AI.Pathfinding
             //G = path cost
             //H = heuristic cost
             //put appropriate G for start
-            gmap.Add(start, 0.0);
-            fmap.Add(start, gmap[start] + ManhattanDistance(start, goal)); //heuristic cost of 0
+            gmap[start]= 0.0;
+            fmap[start]= gmap[start] + ManhattanDistance(start, goal); //heuristic cost of 0
 
             IPathable current;
 
@@ -119,8 +140,8 @@ namespace DromundKaasII.Engine.AI.Pathfinding
                     if (!openset.Contains(neighbor) || temp_g < gmap[neighbor])
                     {
                         navmap.Add(neighbor, current);
-                        gmap.Add(neighbor, temp_g);
-                        fmap.Add(neighbor, gmap[neighbor] + heuristicCost(neighbor, goal, heuristicMode));
+                        gmap[neighbor]= temp_g;
+                        fmap[neighbor]= gmap[neighbor] + heuristicCost(neighbor, goal, heuristicMode);
                         if (!openset.Contains(neighbor))
                             openset.Add(neighbor);
                     }
@@ -168,6 +189,8 @@ namespace DromundKaasII.Engine.AI.Pathfinding
 
         private IPathable GetCheapest(HashSet<IPathable> openset)
         {
+            return openset.Aggregate((x, y) => fmap[x] < fmap[y] ? x : y);
+
             var iterator = openset.GetEnumerator();
             IPathable max = iterator.Current;
             double maxValue = fmap[max];

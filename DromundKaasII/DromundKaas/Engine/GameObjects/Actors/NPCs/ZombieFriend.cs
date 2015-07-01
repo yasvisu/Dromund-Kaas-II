@@ -39,7 +39,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
                 {
                     if (Calculator.Distance(this.MapPosition, G.Player.MapPosition) <= this.Skills[i].Range)
                     {
-                        this.DesiredAction = (GameInputs)Enum.Parse(typeof(GameInputs), "A" + (i+1));
+                        this.DesiredAction = (GameInputs)Enum.Parse(typeof(GameInputs), "A" + (i + 1));
                     }
                 }
             }

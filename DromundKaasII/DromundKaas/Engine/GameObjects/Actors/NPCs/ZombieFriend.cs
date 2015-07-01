@@ -29,6 +29,7 @@ namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
         /// <param name="G">The gamestate to process.</param>
         public override void Act(GameState G)
         {
+            G.Pathfinder.Orient(this.MapPosition, G.Player.MapPosition);
             this.DesiredAction = GameInputs.Up;
 
             if (this.MapPosition.X == 0)

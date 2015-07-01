@@ -57,6 +57,8 @@ namespace DromundKaasII.Engine.GameObjects.Actors
 
             this.DesiredAction = GameInputs.None;
             this.Stats = Stats;
+
+            this.Skills = new Skill[5];
         }
 
         /// <summary>
@@ -114,24 +116,6 @@ namespace DromundKaasII.Engine.GameObjects.Actors
         public virtual void Act(GameState G)
         {
             this.ApplyRegeneration();
-
-            switch (this.DesiredAction)
-            {
-                case GameInputs.Up:
-                    this.Direction = Directions.North;
-                    break;
-                case GameInputs.Down:
-                    this.Direction = Directions.South;
-                    break;
-                case GameInputs.Left:
-                    this.Direction = Directions.West;
-                    break;
-                case GameInputs.Right:
-                    this.Direction = Directions.East;
-                    break;
-                default:
-                    break;
-            }
         }
 
         /// <summary>

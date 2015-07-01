@@ -77,6 +77,25 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             {
                 this.LevelUp = true;
             }
+
+            switch (this.DesiredAction)
+            {
+                case GameInputs.Up:
+                    this.Direction = Directions.North;
+                    break;
+                case GameInputs.Down:
+                    this.Direction = Directions.South;
+                    break;
+                case GameInputs.Left:
+                    this.Direction = Directions.West;
+                    break;
+                case GameInputs.Right:
+                    this.Direction = Directions.East;
+                    break;
+                default:
+                    break;
+            }
+
             base.Act(G);
         }
     }

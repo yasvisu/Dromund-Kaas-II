@@ -25,8 +25,6 @@ namespace DromundKaasII.Engine.GameObjects.Actors.Players
             this.Stats.Mana = this.Stats.MaxMana;
             this.Stats.Focus = this.Stats.MaxFocus;
 
-            this.Skills = new Skill[5];
-
             this.Skills[0] = SkillChain["Hit"];
             this.Skills[1] = SkillChain["Throw Rock"];
             this.Skills[2] = SkillChain["Huddle"];

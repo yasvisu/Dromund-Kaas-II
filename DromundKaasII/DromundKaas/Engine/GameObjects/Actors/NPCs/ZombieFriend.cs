@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
 using DromundKaasII.Engine.GameObjects.Skills;
 using DromundKaasII.Input;
-
 using Microsoft.Xna.Framework;
 
 namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
@@ -17,10 +16,12 @@ namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
         /// </summary>
         /// <param name="MapPosition">The ZombieFriend's position.</param>
         /// <param name="SkillChain">The skills the ZombieFriend can pick from.</param>
-        public ZombieFriend(Vector2 MapPosition, Dictionary<string,Skill> SkillChain)
-            : base(MapPosition,SkillChain)
+        public ZombieFriend(Vector2 MapPosition, Dictionary<string, Skill> SkillChain)
+            : base(MapPosition, SkillChain)
         {
             this.Stats = new Statblock(8);
+
+            this.Skills[0] = SkillChain["Hit"];
         }
 
         /// <summary>
@@ -29,25 +30,20 @@ namespace DromundKaasII.Engine.GameObjects.Actors.NPCs
         /// <param name="G">The gamestate to process.</param>
         public override void Act(GameState G)
         {
-            G.Pathfinder.Orient(this.MapPosition, G.Player.MapPosition);
-            this.DesiredAction = GameInputs.Up;
+            this.Direction = G.Pathfinder.Orient(this.MapPosition, G.Player.MapPosition);
+            this.DesiredAction = this.Direction.ToGameInput();
 
-            if (this.MapPosition.X == 0)
+            for (int i = 0; i < this.Skills.Length; i++)
             {
-                this.DesiredAction = GameInputs.Down;
+                if (this.Skills[i] != null)
+                {
+                    if (Calculator.Distance(this.MapPosition, G.Player.MapPosition) <= this.Skills[i].Range)
+                    {
+                        this.DesiredAction = (GameInputs)Enum.Parse(typeof(GameInputs), "A" + (i+1));
+                    }
+                }
             }
-            if(this.MapPosition.Y==G.MapHeight-1)
-            {
-                this.DesiredAction = GameInputs.Right;
-            }
-            if (this.MapPosition.X == G.MapWidth - 1)
-            {
-                this.DesiredAction = GameInputs.Up;
-            }
-            if (this.MapPosition.Y == 0 && this.MapPosition.X!=0)
-            {
-                this.DesiredAction = GameInputs.Left;
-            }
+
             base.Act(G);
         }
     }

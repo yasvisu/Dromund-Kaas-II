@@ -41,7 +41,7 @@ namespace DromundKaasII.Engine.AI.Pathfinding
 
         public Directions Orient(Vector2 parent, Vector2 target)
         {
-            Directions result = Directions.South;
+            Directions result;
 
             float dx = target.X - parent.X;
             float dy = target.Y - parent.Y;

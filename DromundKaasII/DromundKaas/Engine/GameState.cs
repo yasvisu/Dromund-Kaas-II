@@ -28,6 +28,8 @@ namespace DromundKaasII.Engine
             this.Map = new Tile[X, Y];
             this.TranspiredEvents = new ConcurrentQueue<ActorStateEvent>();
             this.FogOfWar = Color.Black;
+
+            this.Pathfinder = new Pathfinder(this);
         }
 
         /// <summary>

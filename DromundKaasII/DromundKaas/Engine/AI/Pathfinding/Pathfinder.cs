@@ -189,7 +189,7 @@ namespace DromundKaasII.Engine.AI.Pathfinding
 
         private IPathable GetCheapest(HashSet<IPathable> openset)
         {
-            return openset.Aggregate((x, y) => fmap[x] < fmap[y] ? x : y);
+            // return openset.Aggregate((x, y) => fmap[x] < fmap[y] ? x : y);
 
             var iterator = openset.GetEnumerator();
             IPathable max = iterator.Current;

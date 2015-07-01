@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DromundKaasII.Engine.GameObjects.Actors;
 using DromundKaasII.Engine.Interfaces;
 using Microsoft.Xna.Framework;
 
@@ -37,6 +38,39 @@ namespace DromundKaasII.Engine.AI.Pathfinding
             }
         }
 
+
+        public Directions Orient(Vector2 parent, Vector2 target)
+        {
+            Directions result = Directions.South;
+
+            float dx = target.X - parent.X;
+            float dy = target.Y - parent.Y;
+
+            if (Math.Abs(dx) > Math.Abs(dy))
+            {
+                if (dx > 0)
+                {
+                    result = Directions.East;
+                }
+                else
+                {
+                    result = Directions.West;
+                }
+            }
+            else
+            {
+                if (dy >= 0)
+                {
+                    result = Directions.South;
+                }
+                else
+                {
+                    result = Directions.North;
+                }
+            }
+
+            return result;
+        }
 
         public LinkedList<IPathable> Pathfind(IPathable start, IPathable goal, int mode)
         {
@@ -135,16 +169,21 @@ namespace DromundKaasII.Engine.AI.Pathfinding
         private IPathable GetCheapest(HashSet<IPathable> openset)
         {
             var iterator = openset.GetEnumerator();
-            IPathable thisIPathable = iterator.Current;
-            IPathable nextIPathable;
+            IPathable max = iterator.Current;
+            double maxValue = fmap[max];
+
             while (iterator.MoveNext())
             {
-                nextIPathable = iterator.Current;
+                IPathable current = iterator.Current;
+                double currentValue = fmap[current];
 
-                if (fmap[nextIPathable] < fmap[thisIPathable])
-                    thisIPathable = nextIPathable;
+                if (currentValue < maxValue)
+                {
+                    max = current;
+                    maxValue = currentValue;
+                }
             }
-            return thisIPathable;
+            return max;
         }
 
         private HashSet<IPathable> GetNeighbors(IPathable current, int mode)

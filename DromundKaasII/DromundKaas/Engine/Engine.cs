@@ -79,36 +79,52 @@ namespace DromundKaasII.Engine
         /// </summary>
         public Engine()
         {
-            this.GameState = new GameState(7, 7);
+            this.GameState = new GameState(100, 100);
             this.GameState.GameSpeed = GameSpeedOptions.Fast;
             this.IsRunning = true;
             this.cycleCounter = 0;
             this.SkillManager = new SkillManager();
             this.actorFactory = new ActorFactory(this.GameState);
 
+            Random ra = new Random();
+            int n;
             for (int i = 0; i < this.GameState.Map.GetLength(0); i++)
             {
                 for (int j = 0; j < this.GameState.Map.GetLength(1); j++)
                 {
-                    Tile temp = new Tile(100, TileTypeOptions.Ground, this.GameState.FogOfWar);
+                    n = ra.Next(100);
+                    Tile temp;
+                    if (n <= 5)
+                    {
+                        temp = new Tile(1000, TileTypeOptions.Hole, this.GameState.FogOfWar);
+                    }
+                    else if (n <= 10)
+                    {
+                        temp = new Tile(700, TileTypeOptions.Wall, this.GameState.FogOfWar);
+                    }
+                    else if (n <= 20)
+                    {
+                        temp = new Tile(200, TileTypeOptions.Water, this.GameState.FogOfWar);
+                    }
+                    else if (n <= 40)
+                    {
+                        temp = new Tile(500, TileTypeOptions.Tree, this.GameState.FogOfWar);
+                    }
+                    else
+                    {
+                        temp = new Tile(100, TileTypeOptions.Ground, this.GameState.FogOfWar);
+                    }
                     this.GameState.Map[i, j] = temp;
                 }
             }
 
-            // Sample water tile!
-            this.GameState.Map[1, 1] = new Tile(200, TileTypeOptions.Water, this.GameState.FogOfWar);
-            this.GameState.Map[3, 1] = new Tile(1000, TileTypeOptions.Hole, this.GameState.FogOfWar);
-            this.GameState.Map[1, 3] = new Tile(700, TileTypeOptions.Wall, this.GameState.FogOfWar);
-            this.GameState.Map[3, 3] = new Tile(500, TileTypeOptions.Tree, this.GameState.FogOfWar);
+            this.GameState.Map[(int)this.GameState.MapWidth / 2, (int)this.GameState.MapHeight / 2] = new Tile(100, TileTypeOptions.Ground, this.GameState.FogOfWar);
 
-            Player p = new Primal(new Vector2(2, 2), SkillManager.Skills);
+            Player p = new Primal(new Vector2((int)this.GameState.MapWidth / 2, (int)this.GameState.MapHeight / 2), SkillManager.Skills);
             this.actorFactory.CreatePlayer(p);
 
-            ZombieFriend z = new ZombieFriend(new Vector2(5, 5), SkillManager.Skills);
-            this.actorFactory.CreateActor(z);
-
-            Campfire c = new Campfire(new Vector2(6, 6), new Statblock(8));
-            this.actorFactory.CreateActor(c);
+            //ZombieFriend z = new ZombieFriend(new Vector2(5, 5), SkillManager.Skills);
+            //this.actorFactory.CreateActor(z);
         }
 
         /// <summary>
@@ -121,6 +137,11 @@ namespace DromundKaasII.Engine
         /// Whether the Engine is running.
         /// </summary>
         public bool IsRunning { get; set; }
+
+        /// <summary>
+        /// The time stamp of the last Update call.
+        /// </summary>
+        public DateTime LastCalled { get; private set; }
 
         /// <summary>
         /// Whether the Engine is paused.
@@ -266,6 +287,7 @@ namespace DromundKaasII.Engine
         /// </summary>
         public void Update()
         {
+            this.LastCalled = DateTime.Now;
             this.cycleCounter++;
 
             this.PruneAllActors();

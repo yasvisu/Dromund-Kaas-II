@@ -58,7 +58,7 @@ namespace DromundKaasII.Graphics
                 {
                     while (this.engine.IsRunning)
                     {
-                        Thread.Sleep((int)this.engine.GameSpeed);
+                        Thread.Sleep((int)Math.Max((int)this.engine.GameSpeed - (DateTime.Now - this.engine.LastCalled).TotalMilliseconds, 0));
                         if (!this.engine.IsPaused)
                         {
                             this.engine.Update();
@@ -233,9 +233,9 @@ namespace DromundKaasII.Graphics
                     {
                         originRect.Offset(new Point(64 * (int)currentTile.Occupant.Direction, 0));
                         Texture2D temp = this.TypeTextures2D[currentTile.Occupant.GetType()];
-                        
+
                         spriteBatch.Draw(temp, destination, originRect, currentTile.Illumination);
-                        foreach(StatusEffects status in currentTile.Occupant.Status.ToList())
+                        foreach (StatusEffects status in currentTile.Occupant.Status.ToList())
                         {
                             temp = this.StatusEffectTextures2D[status];
                             spriteBatch.Draw(temp, destination, currentTile.Illumination);

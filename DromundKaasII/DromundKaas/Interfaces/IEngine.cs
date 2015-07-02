@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 using DromundKaasII.Engine;
@@ -16,6 +17,11 @@ namespace DromundKaasII.Interfaces
         /// Whether the engine is running or set for exit.
         /// </summary>
         bool IsRunning { get; set; }
+
+        /// <summary>
+        /// The time stamp of the last Update call.
+        /// </summary>
+        DateTime LastCalled { get; }
 
         /// <summary>
         /// Whether the engine is momentarily paused.

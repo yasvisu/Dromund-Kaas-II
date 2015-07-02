@@ -11,7 +11,7 @@ Dromund Kaas team - C# game for the C# OOP course in SoftUni.
   * Start fires, stay in the light and avoid the shadow!
   * Live!
 
-## Included:
+#### Included:
 * ONE WHOLE LEVEL!
 * One primary profession.
 * Various attack and defense skills.

@@ -421,7 +421,7 @@ namespace DromundKaasII.Engine
             {
                 this.actorFactory.CreateActor(new ZombieFriend(new Vector2(x, y), this.SkillManager.Skills));
             }
-            catch (SpawnOccupiedException se)
+            catch (SpawnOccupiedException)
             { }
         }
 

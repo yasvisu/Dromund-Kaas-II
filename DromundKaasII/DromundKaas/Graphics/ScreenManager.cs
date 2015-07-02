@@ -175,7 +175,7 @@ namespace DromundKaasII.Graphics
         {
             if (this.currentScreen.IsSwitchReady)
             {
-                if (this.currentScreen is SplashScreen && (gameTime.TotalGameTime.TotalSeconds > 3 || this.Input.IsPressed(GameInputs.Pause)))
+                if (this.currentScreen is SplashScreen && (gameTime.TotalGameTime.TotalSeconds > 5 || this.Input.IsPressed(GameInputs.Pause)))
                 {
                     this.SwitchScreen(this.Play);
                     this.Options.EngineOptions = this.Play.EngineOptions;

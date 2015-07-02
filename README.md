@@ -1,4 +1,46 @@
 # Dromund Kaas II
+Dromund Kaas team - C# game for the C# OOP course in SoftUni.
+
+# CAVEMAN
+##There is light in the darkest places.
+
+### The Game:
+
+* You are a survivor!
+  * Survive waves of zombies!
+  * Start fires, stay in the light and avoid the shadow!
+  * Live!
+
+Included:
+* ONE WHOLE LEVEL!
+* One primary profession.
+* Various attack and defense skills.
+* Terrifying zombies out for your brains!
+
+### Controls:
+GamePad:
+   Movement: D-Pad
+   Actions: A-B-X-Y-Bumper
+   Pause: Back
+   Interact: Select
+   Quit: Back + Select
+
+Keyboard:
+   Movement: WASD
+   Actions: 1-2-3-4-5
+   Pause: Space
+   Interact: F
+   Quit: Escape
+
+### Technical Features:
+
+* Easily extendable code:
+  * Fully documented.
+  * Fully OOP-driven.
+  * Neatly formatted.
+* A wealth of options for extension, including character classes, custom engines, custom skills, and advanced character handling.
+* Reusable and extendable classes.
+* Great to tinker and polish.
 
 ---
 

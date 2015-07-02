@@ -8,16 +8,16 @@
         /// <summary>
         /// Easy game difficulty.
         /// </summary>
-        Easy,
+        Easy = 20,
 
         /// <summary>
         /// Medium game difficulty.
         /// </summary>
-        Medium,
+        Medium = 14,
 
         /// <summary>
         /// Hard game difficulty.
         /// </summary>
-        Hard
+        Hard = 7
     }
 }

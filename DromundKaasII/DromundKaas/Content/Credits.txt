@@ -51,6 +51,7 @@ yasvisu:
 npaunov:
  >Engine
  >Pathfinding
+ >Graphics
 
 
   AsyaManolova:
@@ -75,6 +76,10 @@ npaunov:
 
 IvayloKHristov:
  >Sprites
+
+
+  AsyaManolova
+  >Power Point Presentation
 
 
 +End.

@@ -79,8 +79,9 @@ namespace DromundKaasII.Engine
         /// </summary>
         public Engine()
         {
-            this.GameState = new GameState(100, 100);
+            this.GameState = new GameState(33, 33);
             this.GameState.GameSpeed = GameSpeedOptions.Fast;
+            this.GameState.GameDifficulty = GameDifficultyOptions.Easy;
             this.IsRunning = true;
             this.cycleCounter = 0;
             this.SkillManager = new SkillManager();
@@ -94,19 +95,19 @@ namespace DromundKaasII.Engine
                 {
                     n = ra.Next(100);
                     Tile temp;
-                    if (n <= 5)
+                    if (n <= 1)
                     {
                         temp = new Tile(1000, TileTypeOptions.Hole, this.GameState.FogOfWar);
                     }
-                    else if (n <= 10)
+                    else if (n <= 2)
                     {
                         temp = new Tile(700, TileTypeOptions.Wall, this.GameState.FogOfWar);
                     }
-                    else if (n <= 20)
+                    else if (n <= 6)
                     {
                         temp = new Tile(200, TileTypeOptions.Water, this.GameState.FogOfWar);
                     }
-                    else if (n <= 40)
+                    else if (n <= 10)
                     {
                         temp = new Tile(500, TileTypeOptions.Tree, this.GameState.FogOfWar);
                     }
@@ -344,6 +345,11 @@ namespace DromundKaasII.Engine
         /// </summary>
         private void SpawnNewActors()
         {
+            if (this.CycleCounter % ((int)this.GameDifficulty + 1) == 0)
+            {
+                this.SpawnZombie();
+            }
+
             while (this.GameState.SpawnQueue.Count > 0)
             {
                 Actor candidate;
@@ -353,6 +359,70 @@ namespace DromundKaasII.Engine
                     this.actorFactory.CreateActor(candidate);
                 }
             }
+        }
+
+        /// <summary>
+        /// Spawns a zombie on the fringes of the map.
+        /// </summary>
+        private void SpawnZombie()
+        {
+            Random ra = new Random();
+
+            Directions d = (Directions)ra.Next(4);
+
+            int x = 0, y = 0;
+            char toSwitch = 'x';
+            switch (d)
+            {
+                case Directions.East:
+                case Directions.West:
+                    if (d == Directions.East)
+                    {
+                        x = this.GameState.MapWidth - 1;
+                    }
+                    else
+                    {
+                        x = 0;
+                    }
+                    toSwitch = 'y';
+                    y = ra.Next(this.GameState.MapHeight);
+                    break;
+
+                case Directions.South:
+                case Directions.North:
+                    if (d == Directions.South)
+                    {
+                        y = this.GameState.MapHeight - 1;
+                    }
+                    else
+                    {
+                        y = 0;
+                    }
+                    toSwitch = 'x';
+                    x = ra.Next(this.GameState.MapWidth);
+                    break;
+                default:
+                    break;
+            }
+            int counter = 0;
+            while (this.GameState.Map[y, x].Occupant != null && counter++ < 100)
+            {
+                switch (toSwitch)
+                {
+                    case 'x':
+                        x = ra.Next(this.GameState.MapWidth);
+                        break;
+                    case 'y':
+                        y = ra.Next(this.GameState.MapHeight);
+                        break;
+                }
+            }
+            try
+            {
+                this.actorFactory.CreateActor(new ZombieFriend(new Vector2(x, y), this.SkillManager.Skills));
+            }
+            catch (SpawnOccupiedException)
+            { }
         }
 
         /// <summary>
